@@ -55,7 +55,7 @@ jobs:
 
           # 最初は true 推奨
           # Qiita記事の更新内容を確認して問題なければ false に変更
-          QIITA_PRIVATE: "true"
+          QIITA_PRIVATE: "false"
         run: |
           python scripts/update_qiita.py
 
