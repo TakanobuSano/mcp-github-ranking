@@ -41,25 +41,45 @@ def get_env_bool(name: str, default: bool) -> bool:
     return value.lower() in {"1", "true", "yes", "y", "on"}
 
 
+def trim_report_intro(report_markdown: str) -> str:
+    """
+    output/mcp_repositories_latest.md の冒頭説明を削り、
+    Qiita記事ではランキング本文から表示する。
+
+    これにより、Qiita側の概要と自動生成Markdown側の概要が重複しない。
+    """
+    ranking_heading = "# 注目MCPリポジトリランキング"
+
+    index = report_markdown.find(ranking_heading)
+
+    if index == -1:
+        return report_markdown.strip()
+
+    return report_markdown[index:].strip()
+
+
 def build_qiita_body(report_markdown: str) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
+    ranking_markdown = trim_report_intro(report_markdown)
 
     lines = [
         "# 概要",
         "",
-        "Claude Code周辺で使えそうなMCP関連リポジトリを、GitHub Search APIで定期収集して一覧化しています。",
+        "Claude Code周辺で使えそうなMCP関連リポジトリを、GitHub Search APIで毎日自動収集してランキング化しています。",
         "",
-        "MCP関連ツールは増えるスピードが速く、手動で探し続けるのが大変です。",
-        "そこで、GitHub Actionsで毎日自動実行し、スター数・Fork数・Open Issues・最終更新日をもとにランキングを更新する仕組みにしました。",
-        "",
-        "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
-        "> GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用します。",
-        "",
+        ":::note info",
+        "この記事はGitHub Actionsにより毎日自動更新されます。",
         f"最終更新: **{now}**",
+        ":::",
+        "",
+        ":::note warn",
+        "この一覧はClaude Codeでの動作を保証するものではありません。",
+        "GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用してください。",
+        ":::",
         "",
         "---",
         "",
-        report_markdown,
+        ranking_markdown,
         "",
         "---",
         "",
@@ -69,6 +89,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "- 最近更新されたMCP関連リポジトリ",
         "- Fork数、Open Issues、使用言語、Topics",
         "- GitHub Search APIで使用している検索条件",
+        "- allowlistで手動追加した重要候補",
         "",
         "# 仕組み",
         "",
@@ -76,6 +97,8 @@ def build_qiita_body(report_markdown: str) -> str:
         "GitHub Search API",
         "  ↓",
         "MCP / Claude Code / Model Context Protocol 関連リポジトリを検索",
+        "  ↓",
+        "allowlistの重要候補を直接取得",
         "  ↓",
         "スター数・更新日・Fork数・説明文を取得",
         "  ↓",
@@ -88,7 +111,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "",
         "# 注意点",
         "",
-        "この仕組みは、GitHub Search APIの検索結果をもとにした自動集計です。",
+        "このランキングは、GitHub Search APIの検索結果をもとにした自動集計です。",
         "そのため、以下のようなリポジトリが混ざる可能性があります。",
         "",
         "- Claude Desktop向けのMCPサーバー",
@@ -97,17 +120,22 @@ def build_qiita_body(report_markdown: str) -> str:
         "- MCPに関するドキュメント用リポジトリ",
         "- READMEにMCPと書かれているだけのリポジトリ",
         "",
-        "そのため、このランキングは「導入推奨リスト」ではなく、あくまで「探索リスト」として使う想定です。",
+        ":::note warn",
+        "このランキングは「導入推奨リスト」ではなく、あくまで「探索リスト」として利用する想定です。",
+        "実際に導入する場合は、README、最終更新日、Issues、Pull Requests、ライセンス、利用方法を確認してください。",
+        ":::",
         "",
         "# 補足",
         "",
-        "GitHubのスター数は人気度の参考になりますが、実務で使う場合は以下も確認することをおすすめします。",
+        "GitHubのスター数は人気度の参考になりますが、実務で使う場合はスター数だけで判断しないほうが安全です。",
         "",
-        "- READMEの内容",
-        "- 最終更新日",
-        "- Issues / Pull Requests の状況",
-        "- ライセンス",
-        "- Claude Codeで利用する場合の設定方法",
+        "特にClaude Codeで利用する場合は、以下を確認することをおすすめします。",
+        "",
+        "- Claude Codeで利用できるMCPサーバーか",
+        "- Claude Desktop向け設定だけでなく、Claude Code向けの設定例があるか",
+        "- 最終更新日が古すぎないか",
+        "- IssuesやPull Requestsが放置されていないか",
+        "- 商用利用や社内利用に問題ないライセンスか",
         "",
     ]
 
@@ -120,8 +148,8 @@ def update_qiita_item() -> None:
 
     title = os.getenv("QIITA_TITLE", DEFAULT_TITLE)
 
-    # 最初は true 推奨です。
-    # 公開する場合は GitHub Actions 側で QIITA_PRIVATE: "false" にしてください。
+    # 最初は true 推奨。
+    # 公開する場合は GitHub Actions 側で QIITA_PRIVATE: "false" にする。
     private = get_env_bool("QIITA_PRIVATE", True)
 
     if not REPORT_PATH.exists():
@@ -161,6 +189,8 @@ def update_qiita_item() -> None:
     url = data.get("url", "")
 
     print("[INFO] Qiita item updated.")
+    print(f"[INFO] private: {private}")
+
     if url:
         print(f"[INFO] URL: {url}")
 
