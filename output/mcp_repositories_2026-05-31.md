@@ -1,11 +1,3 @@
-# Claude Code向けMCPツール候補ランキング
-
-GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。
-
-> 注意: この一覧は「Claude Codeでの動作」を保証するものではありません。  
-> GitHub上のリポジトリ名・説明文・READMEなどに含まれる情報をもとに、MCP関連ツール候補を探すための入口として利用します。
-
-<!-- MCP_REPOS_START -->
 最終更新: **2026-05-31 18:17:04 JST**
 
 GitHub Search APIでMCP関連リポジトリを検索し、スター数順に並べています。
@@ -161,20 +153,3 @@ GitHub Search APIでMCP関連リポジトリを検索し、スター数順に並
 "mcp" "claude code" in:name,description,readme
 "modelcontextprotocol" in:name,description,readme stars:>10
 ```
-
-<!-- MCP_REPOS_END -->
-
-## 仕組み
-
-```text
-GitHub Search API
-  ↓
-MCP / Claude Code / Model Context Protocol 関連リポジトリを検索
-  ↓
-スター数・更新日・Fork数・説明文を取得
-  ↓
-Markdown / CSV を生成
-  ↓
-GitHub Actionsで毎日自動実行
-  ↓
-READMEを自動更新
