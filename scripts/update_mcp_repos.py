@@ -244,6 +244,15 @@ def md_escape(value: str) -> str:
     )
 
 
+def truncate_text(value: str, max_chars: int = 120) -> str:
+    text = md_escape(value)
+
+    if len(text) <= max_chars:
+        return text
+
+    return text[:max_chars].rstrip() + "..."
+
+
 def date_only(value: str) -> str:
     if not value:
         return ""
@@ -253,9 +262,9 @@ def date_only(value: str) -> str:
 
 def build_topics(topics: list[str]) -> str:
     if not topics:
-        return "topicなし"
+        return "'topicなし'"
 
-    return " / ".join([md_escape(topic) for topic in topics[:8]])
+    return " / ".join([f"'{md_escape(topic)}'" for topic in topics[:8]])
 
 
 def build_markdown(repositories: list[Repository], now: datetime) -> str:
@@ -274,7 +283,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     ]
 
     for index, repo in enumerate(repositories, start=1):
-        description = md_escape(repo.description) or "説明なし"
+        description = truncate_text(repo.description, 120) or "説明なし"
         language = md_escape(repo.language) or "不明"
         updated_at = date_only(repo.updated_at)
         topics = build_topics(repo.topics)
@@ -290,7 +299,6 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                     f"　🍴 **{repo.forks_count:,} Forks**"
                     f"　/　🟢 **{repo.open_issues_count:,} Open Issues**"
                     f"　/　{language}"
-                    f"　/　最終更新: {updated_at}"
                 ),
                 "",
                 f"Topics: {topics}",
@@ -316,7 +324,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     )[:30]
 
     for index, repo in enumerate(recently_updated, start=1):
-        description = md_escape(repo.description) or "説明なし"
+        description = truncate_text(repo.description, 120) or "説明なし"
         language = md_escape(repo.language) or "不明"
         updated_at = date_only(repo.updated_at)
         topics = build_topics(repo.topics)
