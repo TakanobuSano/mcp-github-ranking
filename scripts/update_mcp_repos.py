@@ -262,9 +262,9 @@ def date_only(value: str) -> str:
 
 def build_topics(topics: list[str]) -> str:
     if not topics:
-        return "'topicなし'"
+        return "`topicなし`"
 
-    return " / ".join([f"'{md_escape(topic)}'" for topic in topics[:8]])
+    return " / ".join([f"`{md_escape(topic)}`" for topic in topics[:8]])
 
 
 def build_markdown(repositories: list[Repository], now: datetime) -> str:
