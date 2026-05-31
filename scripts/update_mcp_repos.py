@@ -262,7 +262,7 @@ def truncate_description(value: str) -> str:
     if not text:
         return ""
 
-    max_chars = 160 if contains_fullwidth_text(text) else 320
+    max_chars = 160 if contains_fullwidth_text(text) else 360
 
     if len(text) <= max_chars:
         return text
