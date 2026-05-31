@@ -27,16 +27,25 @@ DEFAULT_SEARCH_QUERIES = [
     '"model context protocol" in:name,description,readme stars:>10',
     '"mcp server" in:name,description,readme stars:>10',
     '"mcp" "claude" in:name,description,readme stars:>10',
+    '"claude" "mcp" in:name,description,readme stars:>10',
     '"modelcontextprotocol" in:name,description,readme stars:>10',
     '"claude code" in:name,description,readme stars:>10',
     '"claude" "plugin" in:name,description,readme stars:>10',
     '"claude" "memory" in:name,description,readme stars:>10',
-    '"claude" "agent" in:name,description,readme stars:>10',
-    '"claude" "tool" in:name,description,readme stars:>10',
 ]
 
 EXCLUDE_KEYWORDS = [
     "minecraft",
+    "awesome",
+    "roadmap",
+    "interview",
+    "coding-interview",
+    "leetcode",
+    "awesome-python",
+    "awesome-go",
+    "awesome-mac",
+    "awesome-llm-apps",
+    "funNLP",
 ]
 
 
@@ -169,23 +178,55 @@ def repository_text(repo: Repository) -> str:
     ).lower()
 
 
+def is_related_repository(repo: Repository) -> bool:
+    text = repository_text(repo)
+
+    if "mcp" in text:
+        return True
+
+    if "model context protocol" in text:
+        return True
+
+    if "modelcontextprotocol" in text:
+        return True
+
+    if "claude code" in text:
+        return True
+
+    if "claude-code" in text:
+        return True
+
+    if "claude" in text and any(
+        keyword in text
+        for keyword in [
+            "plugin",
+            "memory",
+            "context",
+            "mcp",
+        ]
+    ):
+        return True
+
+    return False
+
+
 def is_candidate_repository(repo: Repository) -> bool:
     if repo.archived:
         return False
 
     text = repository_text(repo)
 
-    if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
+    if any(excluded.lower() in text for excluded in EXCLUDE_KEYWORDS):
         return False
 
-    return True
+    return is_related_repository(repo)
 
 
 def search_repositories() -> list[Repository]:
     queries = get_search_queries()
     max_pages = get_env_int("MAX_PAGES_PER_QUERY", 2)
     per_page = min(get_env_int("PER_PAGE", 100), 100)
-    max_results = get_env_int("MAX_RESULTS", 100)
+    max_results = get_env_int("MAX_RESULTS", 50)
 
     headers = build_headers()
     repositories: dict[str, Repository] = {}
@@ -245,15 +286,15 @@ def md_escape(value: str) -> str:
     )
 
 
+def remove_urls(value: str) -> str:
+    return re.sub(r"https?://\S+", "", value).strip()
+
+
 def contains_fullwidth_text(value: str) -> bool:
     return any(
         unicodedata.east_asian_width(char) in {"F", "W"}
         for char in value
     )
-
-
-def remove_urls(value: str) -> str:
-    return re.sub(r"https?://\S+", "", value).strip()
 
 
 def truncate_description(value: str) -> str:
@@ -262,7 +303,7 @@ def truncate_description(value: str) -> str:
     if not text:
         return ""
 
-    max_chars = 160 if contains_fullwidth_text(text) else 320
+    max_chars = 160 if contains_fullwidth_text(text) else 360
 
     if len(text) <= max_chars:
         return text
@@ -302,7 +343,6 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     for index, repo in enumerate(repositories, start=1):
         description = truncate_description(repo.description) or "説明なし"
         language = md_escape(repo.language) or "不明"
-        updated_at = date_only(repo.updated_at)
         topics = build_topics(repo.topics)
 
         lines.extend(
