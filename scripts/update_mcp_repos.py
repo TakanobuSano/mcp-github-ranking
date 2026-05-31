@@ -37,7 +37,7 @@ MCP_KEYWORDS = [
 ]
 
 EXCLUDE_KEYWORDS = [
-    "minecraft",  # MCPという略語のノイズ対策
+    "minecraft",
 ]
 
 
@@ -183,7 +183,6 @@ def search_repositories() -> list[Repository]:
     max_results = get_env_int("MAX_RESULTS", 30)
 
     headers = build_headers()
-
     repositories: dict[str, Repository] = {}
 
     with requests.Session() as session:
@@ -393,28 +392,139 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
 
 
 def build_default_readme() -> str:
-    return f"""# Claude Code向けMCPツール候補ランキング
+    lines = [
+        "# Claude Code向けMCPツール候補ランキング",
+        "",
+        "GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。",
+        "",
+        "> 注意: この一覧は「Claude Codeでの動作」を保証するものではありません。  ",
+        "> GitHub上のリポジトリ名・説明文・Topicsなどに含まれる情報をもとに、MCP関連ツール候補を探すための入口として利用します。",
+        "",
+        START_MARKER,
+        "まだランキングは生成されていません。",
+        END_MARKER,
+        "",
+        "## 仕組み",
+        "",
+        "```text",
+        "GitHub Search API",
+        "  ↓",
+        "MCP / Claude Code / Model Context Protocol 関連リポジトリを検索",
+        "  ↓",
+        "スター数・更新日・Fork数・説明文を取得",
+        "  ↓",
+        "Markdown / CSV を生成",
+        "  ↓",
+        "GitHub Actionsで毎日自動実行",
+        "  ↓",
+        "READMEを自動更新",
+        "```",
+        "",
+        "## 生成ファイル",
+        "",
+        "```text",
+        "output/mcp_repositories_latest.md",
+        "output/mcp_repositories_latest.csv",
+        "output/mcp_repositories_YYYY-MM-DD.md",
+        "output/mcp_repositories_YYYY-MM-DD.csv",
+        "```",
+        "",
+    ]
 
-GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。
+    return "\n".join(lines)
 
-> 注意: この一覧は「Claude Codeでの動作」を保証するものではありません。  
-> GitHub上のリポジトリ名・説明文・Topicsなどに含まれる情報をもとに、MCP関連ツール候補を探すための入口として利用します。
 
-{START_MARKER}
-まだランキングは生成されていません。
-{END_MARKER}
+def ensure_readme_exists() -> None:
+    if README_PATH.exists():
+        return
 
-## 仕組み
+    print("[WARN] README.md does not exist. Create default README.md.")
+    README_PATH.write_text(build_default_readme(), encoding="utf-8")
 
-```text
-GitHub Search API
-  ↓
-MCP / Claude Code / Model Context Protocol 関連リポジトリを検索
-  ↓
-スター数・更新日・Fork数・説明文を取得
-  ↓
-Markdown / CSV を生成
-  ↓
-GitHub Actionsで毎日自動実行
-  ↓
-READMEを自動更新
+
+def update_readme(markdown: str) -> None:
+    ensure_readme_exists()
+
+    readme = README_PATH.read_text(encoding="utf-8")
+
+    pattern = re.compile(
+        f"{re.escape(START_MARKER)}.*?{re.escape(END_MARKER)}",
+        re.DOTALL,
+    )
+
+    replacement = f"{START_MARKER}\n{markdown}\n{END_MARKER}"
+
+    if pattern.search(readme):
+        updated = pattern.sub(replacement, readme)
+    else:
+        updated = readme.rstrip() + "\n\n" + replacement + "\n"
+
+    README_PATH.write_text(updated, encoding="utf-8")
+
+
+def cleanup_old_outputs(retention_days: int) -> None:
+    if retention_days <= 0:
+        return
+
+    if not OUTPUT_DIR.exists():
+        return
+
+    dated_files = sorted(OUTPUT_DIR.glob("mcp_repositories_20??-??-??.*"))
+
+    date_to_files: dict[str, list[Path]] = {}
+
+    for file in dated_files:
+        match = re.search(r"mcp_repositories_(\d{4}-\d{2}-\d{2})\.", file.name)
+
+        if not match:
+            continue
+
+        date_to_files.setdefault(match.group(1), []).append(file)
+
+    keep_dates = set(sorted(date_to_files.keys(), reverse=True)[:retention_days])
+
+    for date, files in date_to_files.items():
+        if date in keep_dates:
+            continue
+
+        for file in files:
+            print(f"[INFO] Remove old output: {file}")
+            file.unlink(missing_ok=True)
+
+
+def main() -> int:
+    now = datetime.now(JST)
+    date_text = now.strftime("%Y-%m-%d")
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    repositories = search_repositories()
+
+    if not repositories:
+        print("[ERROR] No repositories found.")
+        return 1
+
+    markdown = build_markdown(repositories, now)
+
+    latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
+    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
+    dated_md_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.md"
+    dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.csv"
+
+    latest_md_path.write_text(markdown, encoding="utf-8")
+    dated_md_path.write_text(markdown, encoding="utf-8")
+
+    write_csv(repositories, latest_csv_path)
+    write_csv(repositories, dated_csv_path)
+
+    update_readme(markdown)
+
+    retention_days = get_env_int("OUTPUT_RETENTION_DAYS", 5)
+    cleanup_old_outputs(retention_days)
+
+    print(f"[INFO] Updated README and output files. repositories={len(repositories)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
