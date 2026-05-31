@@ -276,9 +276,9 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 description,
                 "",
                 (
-                    f"◇ **{repo.stargazers_count:,} Stars**"
-                    f"　♡ **{repo.forks_count:,} Forks**"
-                    f"　/　**{repo.open_issues_count:,} Issues**"
+                    f"⭐ **{repo.stargazers_count:,} Stars**"
+                    f"　🍴 **{repo.forks_count:,} Forks**"
+                    f"　/　🟢 **{repo.open_issues_count:,} Open Issues**"
                     f"　/　{language}"
                     f"　/　最終更新: {updated_at}"
                 ),
@@ -318,8 +318,8 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 description,
                 "",
                 (
-                    f"◇ **{repo.stargazers_count:,} Stars**"
-                    f"　♡ **{repo.forks_count:,} Forks**"
+                    f"⭐ **{repo.stargazers_count:,} Stars**"
+                    f"　🍴 **{repo.forks_count:,} Forks**"
                     f"　/　{language}"
                     f"　/　最終更新: {updated_at}"
                 ),
