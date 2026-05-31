@@ -262,7 +262,7 @@ def truncate_description(value: str) -> str:
     if not text:
         return ""
 
-    max_chars = 160 if contains_fullwidth_text(text) else 360
+    max_chars = 160 if contains_fullwidth_text(text) else 320
 
     if len(text) <= max_chars:
         return text
@@ -327,28 +327,28 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
 
     lines.extend(
         [
-            "# 最近更新されたMCP・関連ツール候補",
+            "# 最近プッシュされたMCP・関連ツール候補",
             "",
-            "スター数ランキングとは別に、最近更新されたリポジトリを表示します。古いスター数だけではなく、現在もメンテナンスされていそうな候補を探すための一覧です。",
+            "スター数ランキングとは別に、最近コードがプッシュされたリポジトリを表示します。古いスター数だけではなく、現在も開発が動いていそうな候補を探すための一覧です。",
             "",
         ]
     )
 
     recently_updated = sorted(
         repositories,
-        key=lambda repo: repo.updated_at,
+        key=lambda repo: repo.pushed_at or repo.updated_at,
         reverse=True,
     )[:30]
 
     for index, repo in enumerate(recently_updated, start=1):
         description = truncate_description(repo.description) or "説明なし"
         language = md_escape(repo.language) or "不明"
-        updated_at = date_only(repo.updated_at)
+        pushed_at = date_only(repo.pushed_at or repo.updated_at)
         topics = build_topics(repo.topics)
 
         lines.extend(
             [
-                f"## 更新順 {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
+                f"## プッシュ順 {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
                 "",
                 description,
                 "",
@@ -356,7 +356,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                     f"⭐ **{repo.stargazers_count:,} Stars**"
                     f"　🍴 **{repo.forks_count:,} Forks**"
                     f"　/　{language}"
-                    f"　/　最終更新: {updated_at}"
+                    f"　/　最終プッシュ: {pushed_at}"
                 ),
                 "",
                 f"Topics: {topics}",
