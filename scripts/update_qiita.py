@@ -42,13 +42,6 @@ def get_env_bool(name: str, default: bool) -> bool:
 
 
 def trim_report_intro(report_markdown: str) -> str:
-    """
-    output/mcp_repositories_latest.md の冒頭説明を削り、
-    Qiita記事ではランキング本文から表示する。
-
-    update_mcp_repos.py 側の見出し変更にも対応できるよう、
-    複数の候補見出しを順番に探す。
-    """
     heading_candidates = [
         "# 注目MCP・関連ツール候補ランキング",
         "# 注目MCPリポジトリランキング",
@@ -69,47 +62,30 @@ def build_qiita_body(report_markdown: str) -> str:
     ranking_markdown = trim_report_intro(report_markdown)
 
     lines = [
-        "# 概要",
+        ":::note info",
+        f"最終更新: **{now}**",
         "",
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールを、GitHub Search APIで毎日自動収集してランキング化しています。",
-        "",
-        ":::note info",
-        "この記事はGitHub Actionsにより毎日自動更新されます。",
-        f"最終更新: **{now}**",
         ":::",
         "",
         ranking_markdown,
-        "",
-        "---",
         "",
         "# このランキングで確認できること",
         "",
         "- MCP関連リポジトリのスター数ランキング",
         "- Claude Code周辺で活用候補になりそうな関連ツール",
-        "- 最近更新されたMCP・関連ツール候補",
+        "- 最近プッシュされたMCP・関連ツール候補",
         "- Fork数、Open Issues、使用言語、Topics",
         "- GitHub Search APIで使用している検索条件",
-        "- allowlistで手動追加した重要候補",
         "",
         "# 仕組み",
         "",
-        "```text",
-        "GitHub Search API",
-        "  ↓",
-        "MCP / Claude Code / Model Context Protocol 関連リポジトリを検索",
-        "  ↓",
-        "Claude Code関連ツール候補を検索",
-        "  ↓",
-        "allowlistの重要候補を直接取得",
-        "  ↓",
-        "スター数・更新日・Fork数・説明文を取得",
-        "  ↓",
-        "Markdown / CSV を生成",
-        "  ↓",
-        "GitHub Actionsで毎日自動実行",
-        "  ↓",
-        "Qiita記事を自動更新",
-        "```",
+        "1. GitHub Search APIでMCP関連リポジトリを検索",
+        "2. Claude Code関連ツール候補を検索",
+        "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
+        "4. Markdown / CSV を生成",
+        "5. GitHub Actionsで毎日自動実行",
+        "6. Qiita記事を自動更新",
         "",
         "# 注意点",
         "",
@@ -125,7 +101,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "",
         ":::note warn",
         "このランキングは「導入推奨リスト」ではなく、あくまで「探索リスト」として利用する想定です。",
-        "実際に導入する場合は、README、最終更新日、Issues、Pull Requests、ライセンス、Claude Codeでの利用方法を確認してください。",
+        "実際に導入する場合は、README、最終プッシュ日、Issues、Pull Requests、ライセンス、Claude Codeでの利用方法を確認してください。",
         ":::",
         "",
         "# 補足",
@@ -136,7 +112,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "",
         "- Claude Codeで利用できるMCPサーバーまたは関連ツールか",
         "- Claude Desktop向け設定だけでなく、Claude Code向けの設定例があるか",
-        "- 最終更新日が古すぎないか",
+        "- 最終プッシュ日が古すぎないか",
         "- IssuesやPull Requestsが放置されていないか",
         "- 商用利用や社内利用に問題ないライセンスか",
         "- セキュリティ上、社内コードや機密情報を扱って問題ない設計か",
@@ -151,9 +127,6 @@ def update_qiita_item() -> None:
     item_id = require_env("QIITA_ITEM_ID")
 
     title = os.getenv("QIITA_TITLE", DEFAULT_TITLE)
-
-    # 最初は true 推奨。
-    # 公開する場合は GitHub Actions 側で QIITA_PRIVATE: "false" にする。
     private = get_env_bool("QIITA_PRIVATE", True)
 
     if not REPORT_PATH.exists():
