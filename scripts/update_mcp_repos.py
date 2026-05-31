@@ -183,7 +183,7 @@ text = repository_text(repo)
 if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
     return False
 
-# GitHub Search API側で、MCP系・Claude Code関連ツール系の検索条件を指定しているため、
+# GitHub Search API側でMCP系・Claude Code関連ツール系の検索条件を指定しているため、
 # ここでは過度に絞り込まず、検索結果を候補として扱う。
 return True
 ```
