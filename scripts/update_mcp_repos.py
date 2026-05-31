@@ -320,8 +320,6 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 "",
                 f"Topics: {topics}",
                 "",
-                "---",
-                "",
             ]
         )
 
@@ -360,8 +358,6 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 ),
                 "",
                 f"Topics: {topics}",
-                "",
-                "---",
                 "",
             ]
         )
