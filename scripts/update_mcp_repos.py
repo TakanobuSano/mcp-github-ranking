@@ -252,13 +252,17 @@ def contains_fullwidth_text(value: str) -> bool:
     )
 
 
+def remove_urls(value: str) -> str:
+    return re.sub(r"https?://\S+", "", value).strip()
+
+
 def truncate_description(value: str) -> str:
-    text = md_escape(value)
+    text = md_escape(remove_urls(value))
 
     if not text:
         return ""
 
-    max_chars = 160 if contains_fullwidth_text(text) else 300
+    max_chars = 160 if contains_fullwidth_text(text) else 320
 
     if len(text) <= max_chars:
         return text
