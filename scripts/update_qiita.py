@@ -12,7 +12,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 REPORT_PATH = Path("output/mcp_repositories_latest.md")
 
-DEFAULT_TITLE = "Claude Code向けMCPツール候補ランキング【毎日自動更新】"
+DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【毎日自動更新】"
 
 DEFAULT_TAGS = [
     {"name": "ClaudeCode", "versions": []},
@@ -46,16 +46,22 @@ def trim_report_intro(report_markdown: str) -> str:
     output/mcp_repositories_latest.md の冒頭説明を削り、
     Qiita記事ではランキング本文から表示する。
 
-    これにより、Qiita側の概要と自動生成Markdown側の概要が重複しない。
+    update_mcp_repos.py 側の見出し変更にも対応できるよう、
+    複数の候補見出しを順番に探す。
     """
-    ranking_heading = "# 注目MCPリポジトリランキング"
+    heading_candidates = [
+        "# 注目MCP・関連ツール候補ランキング",
+        "# 注目MCPリポジトリランキング",
+        "# 注目MCPリポジトリ一覧",
+    ]
 
-    index = report_markdown.find(ranking_heading)
+    for heading in heading_candidates:
+        index = report_markdown.find(heading)
 
-    if index == -1:
-        return report_markdown.strip()
+        if index != -1:
+            return report_markdown[index:].strip()
 
-    return report_markdown[index:].strip()
+    return report_markdown.strip()
 
 
 def build_qiita_body(report_markdown: str) -> str:
@@ -65,7 +71,7 @@ def build_qiita_body(report_markdown: str) -> str:
     lines = [
         "# 概要",
         "",
-        "Claude Code周辺で使えそうなMCP関連リポジトリを、GitHub Search APIで毎日自動収集してランキング化しています。",
+        "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールを、GitHub Search APIで毎日自動収集してランキング化しています。",
         "",
         ":::note info",
         "この記事はGitHub Actionsにより毎日自動更新されます。",
@@ -74,7 +80,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "",
         ":::note warn",
         "この一覧はClaude Codeでの動作を保証するものではありません。",
-        "GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用してください。",
+        "MCP関連ツールまたはClaude Code関連ツール候補を探すための入口として利用してください。",
         ":::",
         "",
         "---",
@@ -86,7 +92,8 @@ def build_qiita_body(report_markdown: str) -> str:
         "# このランキングで確認できること",
         "",
         "- MCP関連リポジトリのスター数ランキング",
-        "- 最近更新されたMCP関連リポジトリ",
+        "- Claude Code周辺で活用候補になりそうな関連ツール",
+        "- 最近更新されたMCP・関連ツール候補",
         "- Fork数、Open Issues、使用言語、Topics",
         "- GitHub Search APIで使用している検索条件",
         "- allowlistで手動追加した重要候補",
@@ -97,6 +104,8 @@ def build_qiita_body(report_markdown: str) -> str:
         "GitHub Search API",
         "  ↓",
         "MCP / Claude Code / Model Context Protocol 関連リポジトリを検索",
+        "  ↓",
+        "Claude Code関連ツール候補を検索",
         "  ↓",
         "allowlistの重要候補を直接取得",
         "  ↓",
@@ -118,11 +127,12 @@ def build_qiita_body(report_markdown: str) -> str:
         "- Cursorなど他エディタ向けのMCPツール",
         "- MCP関連のサンプルコード",
         "- MCPに関するドキュメント用リポジトリ",
-        "- READMEにMCPと書かれているだけのリポジトリ",
+        "- Claude APIやClaude Desktop向けのサンプル",
+        "- READMEにMCPやClaudeと書かれているだけのリポジトリ",
         "",
         ":::note warn",
         "このランキングは「導入推奨リスト」ではなく、あくまで「探索リスト」として利用する想定です。",
-        "実際に導入する場合は、README、最終更新日、Issues、Pull Requests、ライセンス、利用方法を確認してください。",
+        "実際に導入する場合は、README、最終更新日、Issues、Pull Requests、ライセンス、Claude Codeでの利用方法を確認してください。",
         ":::",
         "",
         "# 補足",
@@ -131,11 +141,12 @@ def build_qiita_body(report_markdown: str) -> str:
         "",
         "特にClaude Codeで利用する場合は、以下を確認することをおすすめします。",
         "",
-        "- Claude Codeで利用できるMCPサーバーか",
+        "- Claude Codeで利用できるMCPサーバーまたは関連ツールか",
         "- Claude Desktop向け設定だけでなく、Claude Code向けの設定例があるか",
         "- 最終更新日が古すぎないか",
         "- IssuesやPull Requestsが放置されていないか",
         "- 商用利用や社内利用に問題ないライセンスか",
+        "- セキュリティ上、社内コードや機密情報を扱って問題ない設計か",
         "",
     ]
 
