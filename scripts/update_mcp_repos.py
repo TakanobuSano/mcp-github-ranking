@@ -184,7 +184,7 @@ def search_repositories() -> list[Repository]:
     queries = get_search_queries()
     max_pages = get_env_int("MAX_PAGES_PER_QUERY", 2)
     per_page = min(get_env_int("PER_PAGE", 100), 100)
-    max_results = get_env_int("MAX_RESULTS", 30)
+    max_results = get_env_int("MAX_RESULTS", 100)
 
     headers = build_headers()
     repositories: dict[str, Repository] = {}
