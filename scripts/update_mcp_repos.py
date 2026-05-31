@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import time
+import unicodedata
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -244,8 +245,20 @@ def md_escape(value: str) -> str:
     )
 
 
-def truncate_text(value: str, max_chars: int = 120) -> str:
+def contains_fullwidth_text(value: str) -> bool:
+    return any(
+        unicodedata.east_asian_width(char) in {"F", "W"}
+        for char in value
+    )
+
+
+def truncate_description(value: str) -> str:
     text = md_escape(value)
+
+    if not text:
+        return ""
+
+    max_chars = 160 if contains_fullwidth_text(text) else 300
 
     if len(text) <= max_chars:
         return text
@@ -283,7 +296,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     ]
 
     for index, repo in enumerate(repositories, start=1):
-        description = truncate_text(repo.description, 120) or "説明なし"
+        description = truncate_description(repo.description) or "説明なし"
         language = md_escape(repo.language) or "不明"
         updated_at = date_only(repo.updated_at)
         topics = build_topics(repo.topics)
@@ -324,7 +337,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     )[:30]
 
     for index, repo in enumerate(recently_updated, start=1):
-        description = truncate_text(repo.description, 120) or "説明なし"
+        description = truncate_description(repo.description) or "説明なし"
         language = md_escape(repo.language) or "不明"
         updated_at = date_only(repo.updated_at)
         topics = build_topics(repo.topics)
