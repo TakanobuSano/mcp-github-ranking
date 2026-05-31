@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 
 
 GITHUB_SEARCH_API_URL = "https://api.github.com/search/repositories"
+GITHUB_REPO_API_URL = "https://api.github.com/repos/{full_name}"
 
 README_PATH = Path("README.md")
 OUTPUT_DIR = Path("output")
@@ -29,6 +30,11 @@ DEFAULT_SEARCH_QUERIES = [
     '"mcp" "claude code" in:name,description,readme',
     '"modelcontextprotocol" in:name,description,readme stars:>10',
 ]
+
+# GitHub Search APIの条件だけでは漏れる可能性がある重要候補を直接取得します。
+ALLOWLIST_REPOSITORIES = {
+    "thedotmack/claude-mem",
+}
 
 MCP_KEYWORDS = [
     "mcp",
@@ -96,15 +102,16 @@ def build_headers() -> dict[str, str]:
     return headers
 
 
-def request_with_retry(
+def request_json_with_retry(
     session: requests.Session,
-    params: dict[str, Any],
+    url: str,
+    params: dict[str, Any] | None,
     headers: dict[str, str],
     max_retries: int = 3,
 ) -> dict[str, Any]:
     for attempt in range(1, max_retries + 1):
         response = session.get(
-            GITHUB_SEARCH_API_URL,
+            url,
             params=params,
             headers=headers,
             timeout=30,
@@ -131,6 +138,7 @@ def request_with_retry(
 
         if not response.ok:
             print("[ERROR] GitHub API request failed.")
+            print(f"url: {url}")
             print(f"status: {response.status_code}")
             print(response.text)
             response.raise_for_status()
@@ -157,9 +165,16 @@ def to_repository(item: dict[str, Any]) -> Repository:
     )
 
 
+def is_allowlisted_repository(repo: Repository) -> bool:
+    return repo.full_name in ALLOWLIST_REPOSITORIES
+
+
 def is_candidate_repository(repo: Repository) -> bool:
     if repo.archived:
         return False
+
+    if is_allowlisted_repository(repo):
+        return True
 
     text = " ".join(
         [
@@ -174,6 +189,64 @@ def is_candidate_repository(repo: Repository) -> bool:
         return False
 
     return any(keyword in text for keyword in MCP_KEYWORDS)
+
+
+def fetch_repository_by_full_name(
+    session: requests.Session,
+    headers: dict[str, str],
+    full_name: str,
+) -> Repository | None:
+    url = GITHUB_REPO_API_URL.format(full_name=full_name)
+
+    try:
+        data = request_json_with_retry(
+            session=session,
+            url=url,
+            params=None,
+            headers=headers,
+        )
+    except requests.HTTPError:
+        print(f"[WARN] Failed to fetch allowlist repository: {full_name}")
+        return None
+
+    repo = to_repository(data)
+
+    if repo.archived:
+        print(f"[WARN] Allowlist repository is archived. skip: {full_name}")
+        return None
+
+    return repo
+
+
+def select_repositories(
+    repositories: dict[str, Repository],
+    max_results: int,
+) -> list[Repository]:
+    sorted_repositories = sorted(
+        repositories.values(),
+        key=lambda repo: repo.stargazers_count,
+        reverse=True,
+    )
+
+    selected = sorted_repositories[:max_results]
+    selected_names = {repo.full_name for repo in selected}
+
+    # allowlistのリポジトリは、スター数順位でmax_results外になっても出力に残します。
+    for full_name in sorted(ALLOWLIST_REPOSITORIES):
+        repo = repositories.get(full_name)
+
+        if repo is None:
+            continue
+
+        if repo.full_name not in selected_names:
+            selected.append(repo)
+            selected_names.add(repo.full_name)
+
+    return sorted(
+        selected,
+        key=lambda repo: repo.stargazers_count,
+        reverse=True,
+    )
 
 
 def search_repositories() -> list[Repository]:
@@ -198,7 +271,13 @@ def search_repositories() -> list[Repository]:
                     "page": page,
                 }
 
-                data = request_with_retry(session, params, headers)
+                data = request_json_with_retry(
+                    session=session,
+                    url=GITHUB_SEARCH_API_URL,
+                    params=params,
+                    headers=headers,
+                )
+
                 items = data.get("items", [])
 
                 print(f"[INFO] page={page}, items={len(items)}")
@@ -216,13 +295,20 @@ def search_repositories() -> list[Repository]:
 
                 time.sleep(1)
 
-    sorted_repositories = sorted(
-        repositories.values(),
-        key=lambda repo: repo.stargazers_count,
-        reverse=True,
-    )
+        for full_name in sorted(ALLOWLIST_REPOSITORIES):
+            if full_name in repositories:
+                print(f"[INFO] Allowlist repository already found: {full_name}")
+                continue
 
-    return sorted_repositories[:max_results]
+            print(f"[INFO] Fetch allowlist repository directly: {full_name}")
+            repo = fetch_repository_by_full_name(session, headers, full_name)
+
+            if repo is not None:
+                repositories[repo.full_name] = repo
+
+            time.sleep(1)
+
+    return select_repositories(repositories, max_results)
 
 
 def md_escape(value: str) -> str:
@@ -246,6 +332,16 @@ def build_topics(topics: list[str]) -> str:
         return "`topicなし`"
 
     return " ".join([f"`{md_escape(topic)}`" for topic in topics[:8]])
+
+
+def build_allowlist_note(repo: Repository) -> list[str]:
+    if not is_allowlisted_repository(repo):
+        return []
+
+    return [
+        "",
+        "> 手動追加候補: GitHub Search APIの検索条件から漏れる可能性があるため、allowlistで直接取得しています。",
+    ]
 
 
 def build_markdown(repositories: list[Repository], now: datetime) -> str:
@@ -274,6 +370,13 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 f"## {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
                 "",
                 description,
+            ]
+        )
+
+        lines.extend(build_allowlist_note(repo))
+
+        lines.extend(
+            [
                 "",
                 (
                     f"⭐ **{repo.stargazers_count:,} Stars**"
@@ -316,6 +419,13 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 f"## 更新順 {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
                 "",
                 description,
+            ]
+        )
+
+        lines.extend(build_allowlist_note(repo))
+
+        lines.extend(
+            [
                 "",
                 (
                     f"⭐ **{repo.stargazers_count:,} Stars**"
@@ -341,8 +451,20 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
             *get_search_queries(),
             "```",
             "",
+            "# 手動追加候補",
+            "",
+            "GitHub Search APIの検索条件から漏れる可能性がある重要候補は、allowlistで直接取得しています。",
+            "",
         ]
     )
+
+    if ALLOWLIST_REPOSITORIES:
+        for full_name in sorted(ALLOWLIST_REPOSITORIES):
+            lines.append(f"- `{full_name}`")
+    else:
+        lines.append("- なし")
+
+    lines.append("")
 
     return "\n".join(lines)
 
@@ -368,6 +490,7 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
                 "updated_at",
                 "pushed_at",
                 "archived",
+                "allowlisted",
             ]
         )
 
@@ -387,13 +510,14 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
                     repo.updated_at,
                     repo.pushed_at,
                     repo.archived,
+                    is_allowlisted_repository(repo),
                 ]
             )
 
 
 def build_default_readme() -> str:
     lines = [
-        "# Claude Code向けMCPツール候補ランキング",
+        "# Claude Code向けMCPツール候補ランキング【毎日自動更新】",
         "",
         "GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。",
         "",
@@ -410,6 +534,8 @@ def build_default_readme() -> str:
         "GitHub Search API",
         "  ↓",
         "MCP / Claude Code / Model Context Protocol 関連リポジトリを検索",
+        "  ↓",
+        "allowlistの重要候補を直接取得",
         "  ↓",
         "スター数・更新日・Fork数・説明文を取得",
         "  ↓",
