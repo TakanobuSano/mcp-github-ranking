@@ -3,11 +3,16 @@ name: Update MCP GitHub Repository Ranking
 on:
   workflow_dispatch:
   schedule:
-    # JST 06:15 に実行したい場合は、UTCでは前日の21:15。
+    # 毎日 JST 06:15 に実行
+    # GitHub Actions の cron は UTC 基準なので、JST 06:15 = UTC 21:15
     - cron: "15 21 * * *"
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-mcp-repos
+  cancel-in-progress: true
 
 jobs:
   update:
@@ -15,9 +20,13 @@ jobs:
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # GitHub Search API の取得設定
       MAX_PAGES_PER_QUERY: "2"
       PER_PAGE: "100"
-      MAX_RESULTS: "100"
+      MAX_RESULTS: "30"
+
+      # output/ 配下の日付付きファイルを最新5日分だけ残す
       OUTPUT_RETENTION_DAYS: "5"
 
     steps:
@@ -37,6 +46,18 @@ jobs:
       - name: Update MCP repositories ranking
         run: |
           python scripts/update_mcp_repos.py
+
+      - name: Update Qiita article
+        env:
+          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+          QIITA_ITEM_ID: ${{ secrets.QIITA_ITEM_ID }}
+          QIITA_TITLE: "Claude Code向けMCPツール候補ランキング【毎日自動更新】"
+
+          # 最初は true 推奨
+          # Qiita記事の更新内容を確認して問題なければ false に変更
+          QIITA_PRIVATE: "true"
+        run: |
+          python scripts/update_qiita.py
 
       - name: Commit and push changes
         run: |
