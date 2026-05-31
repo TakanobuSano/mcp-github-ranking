@@ -59,6 +59,7 @@ class Repository:
 
 def get_env_int(name: str, default: int) -> int:
     value = os.getenv(name)
+
     if not value:
         return default
 
@@ -86,6 +87,7 @@ def build_headers() -> dict[str, str]:
     }
 
     token = os.getenv("GITHUB_TOKEN")
+
     if token:
         headers["Authorization"] = f"Bearer {token}"
     else:
@@ -120,7 +122,10 @@ def request_with_retry(
 
         if response.status_code in {500, 502, 503, 504}:
             wait_seconds = attempt * 5
-            print(f"[WARN] GitHub API temporary error: {response.status_code}. retry in {wait_seconds}s.")
+            print(
+                f"[WARN] GitHub API temporary error: {response.status_code}. "
+                f"retry in {wait_seconds}s."
+            )
             time.sleep(wait_seconds)
             continue
 
@@ -135,11 +140,47 @@ def request_with_retry(
     raise RuntimeError("GitHub API request failed after retries.")
 
 
+def to_repository(item: dict[str, Any]) -> Repository:
+    return Repository(
+        full_name=item.get("full_name", ""),
+        html_url=item.get("html_url", ""),
+        description=item.get("description") or "",
+        stargazers_count=item.get("stargazers_count") or 0,
+        forks_count=item.get("forks_count") or 0,
+        open_issues_count=item.get("open_issues_count") or 0,
+        language=item.get("language") or "",
+        topics=item.get("topics") or [],
+        created_at=item.get("created_at") or "",
+        updated_at=item.get("updated_at") or "",
+        pushed_at=item.get("pushed_at") or "",
+        archived=item.get("archived") or False,
+    )
+
+
+def is_candidate_repository(repo: Repository) -> bool:
+    if repo.archived:
+        return False
+
+    text = " ".join(
+        [
+            repo.full_name,
+            repo.description,
+            repo.language,
+            " ".join(repo.topics),
+        ]
+    ).lower()
+
+    if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
+        return False
+
+    return any(keyword in text for keyword in MCP_KEYWORDS)
+
+
 def search_repositories() -> list[Repository]:
     queries = get_search_queries()
     max_pages = get_env_int("MAX_PAGES_PER_QUERY", 2)
     per_page = min(get_env_int("PER_PAGE", 100), 100)
-    max_results = get_env_int("MAX_RESULTS", 100)
+    max_results = get_env_int("MAX_RESULTS", 30)
 
     headers = build_headers()
 
@@ -185,42 +226,6 @@ def search_repositories() -> list[Repository]:
     return sorted_repositories[:max_results]
 
 
-def to_repository(item: dict[str, Any]) -> Repository:
-    return Repository(
-        full_name=item.get("full_name", ""),
-        html_url=item.get("html_url", ""),
-        description=item.get("description") or "",
-        stargazers_count=item.get("stargazers_count") or 0,
-        forks_count=item.get("forks_count") or 0,
-        open_issues_count=item.get("open_issues_count") or 0,
-        language=item.get("language") or "",
-        topics=item.get("topics") or [],
-        created_at=item.get("created_at") or "",
-        updated_at=item.get("updated_at") or "",
-        pushed_at=item.get("pushed_at") or "",
-        archived=item.get("archived") or False,
-    )
-
-
-def is_candidate_repository(repo: Repository) -> bool:
-    if repo.archived:
-        return False
-
-    text = " ".join(
-        [
-            repo.full_name,
-            repo.description,
-            repo.language,
-            " ".join(repo.topics),
-        ]
-    ).lower()
-
-    if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
-        return False
-
-    return any(keyword in text for keyword in MCP_KEYWORDS)
-
-
 def md_escape(value: str) -> str:
     return (
         value.replace("\n", " ")
@@ -237,47 +242,61 @@ def date_only(value: str) -> str:
     return value.split("T")[0]
 
 
+def build_topics(topics: list[str]) -> str:
+    if not topics:
+        return "`topicなし`"
+
+    return " ".join([f"`{md_escape(topic)}`" for topic in topics[:8]])
+
+
 def build_markdown(repositories: list[Repository], now: datetime) -> str:
     generated_at = now.strftime("%Y-%m-%d %H:%M:%S JST")
 
     lines = [
         f"最終更新: **{generated_at}**",
         "",
-        "GitHub Search APIでMCP関連リポジトリを検索し、スター数順に並べています。",
+        "GitHub Search APIでMCP関連リポジトリを検索し、Claude Code周辺で活用候補になりそうなリポジトリをランキング形式で表示しています。",
         "",
-        "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。MCP関連ツール候補を探すための入口として利用してください。",
+        "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
+        "> GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用してください。",
         "",
-        "## スター数ランキング",
+        "# 注目MCPリポジトリランキング",
         "",
-        "| 順位 | リポジトリ | 説明 | Star | Fork | Issue | 言語 | 最終更新 |",
-        "|---:|---|---|---:|---:|---:|---|---|",
     ]
 
     for index, repo in enumerate(repositories, start=1):
-        description = md_escape(repo.description)
-        language = md_escape(repo.language)
+        description = md_escape(repo.description) or "説明なし"
+        language = md_escape(repo.language) or "不明"
+        updated_at = date_only(repo.updated_at)
+        topics = build_topics(repo.topics)
 
-        lines.append(
-            "| {rank} | [{full_name}]({url}) | {description} | {stars} | {forks} | {issues} | {language} | {updated_at} |".format(
-                rank=index,
-                full_name=md_escape(repo.full_name),
-                url=repo.html_url,
-                description=description,
-                stars=repo.stargazers_count,
-                forks=repo.forks_count,
-                issues=repo.open_issues_count,
-                language=language,
-                updated_at=date_only(repo.updated_at),
-            )
+        lines.extend(
+            [
+                f"## {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
+                "",
+                description,
+                "",
+                (
+                    f"◇ **{repo.stargazers_count:,} Stars**"
+                    f"　♡ **{repo.forks_count:,} Forks**"
+                    f"　/　**{repo.open_issues_count:,} Issues**"
+                    f"　/　{language}"
+                    f"　/　最終更新: {updated_at}"
+                ),
+                "",
+                topics,
+                "",
+                "---",
+                "",
+            ]
         )
 
     lines.extend(
         [
+            "# 最近更新されたMCP関連リポジトリ",
             "",
-            "## 最近更新されたリポジトリ",
+            "スター数ランキングとは別に、最近更新されたリポジトリを表示します。古いスター数だけではなく、現在もメンテナンスされていそうな候補を探すための一覧です。",
             "",
-            "| 順位 | リポジトリ | Star | Fork | 言語 | 最終更新 |",
-            "|---:|---|---:|---:|---|---|",
         ]
     )
 
@@ -288,22 +307,36 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     )[:30]
 
     for index, repo in enumerate(recently_updated, start=1):
-        lines.append(
-            "| {rank} | [{full_name}]({url}) | {stars} | {forks} | {language} | {updated_at} |".format(
-                rank=index,
-                full_name=md_escape(repo.full_name),
-                url=repo.html_url,
-                stars=repo.stargazers_count,
-                forks=repo.forks_count,
-                language=md_escape(repo.language),
-                updated_at=date_only(repo.updated_at),
-            )
+        description = md_escape(repo.description) or "説明なし"
+        language = md_escape(repo.language) or "不明"
+        updated_at = date_only(repo.updated_at)
+        topics = build_topics(repo.topics)
+
+        lines.extend(
+            [
+                f"## 更新順 {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
+                "",
+                description,
+                "",
+                (
+                    f"◇ **{repo.stargazers_count:,} Stars**"
+                    f"　♡ **{repo.forks_count:,} Forks**"
+                    f"　/　{language}"
+                    f"　/　最終更新: {updated_at}"
+                ),
+                "",
+                topics,
+                "",
+                "---",
+                "",
+            ]
         )
 
     lines.extend(
         [
+            "# 検索条件",
             "",
-            "## 検索条件",
+            "以下の検索条件でGitHubリポジトリを収集しています。",
             "",
             "```text",
             *get_search_queries(),
@@ -320,6 +353,7 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
 
     with path.open("w", encoding="utf-8", newline="") as file:
         writer = csv.writer(file)
+
         writer.writerow(
             [
                 "rank",
@@ -358,87 +392,29 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
             )
 
 
-def update_readme(markdown: str) -> None:
-    if not README_PATH.exists():
-        raise FileNotFoundError("README.md does not exist.")
+def build_default_readme() -> str:
+    return f"""# Claude Code向けMCPツール候補ランキング
 
-    readme = README_PATH.read_text(encoding="utf-8")
+GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。
 
-    pattern = re.compile(
-        f"{re.escape(START_MARKER)}.*?{re.escape(END_MARKER)}",
-        re.DOTALL,
-    )
+> 注意: この一覧は「Claude Codeでの動作」を保証するものではありません。  
+> GitHub上のリポジトリ名・説明文・Topicsなどに含まれる情報をもとに、MCP関連ツール候補を探すための入口として利用します。
 
-    replacement = f"{START_MARKER}\n{markdown}\n{END_MARKER}"
+{START_MARKER}
+まだランキングは生成されていません。
+{END_MARKER}
 
-    if pattern.search(readme):
-        updated = pattern.sub(replacement, readme)
-    else:
-        updated = readme.rstrip() + "\n\n" + replacement + "\n"
+## 仕組み
 
-    README_PATH.write_text(updated, encoding="utf-8")
-
-
-def cleanup_old_outputs(retention_days: int) -> None:
-    if retention_days <= 0:
-        return
-
-    dated_files = sorted(OUTPUT_DIR.glob("mcp_repositories_20??-??-??.*"))
-
-    # 日付付きファイルを最新N日分だけ残す。
-    date_to_files: dict[str, list[Path]] = {}
-
-    for file in dated_files:
-        match = re.search(r"mcp_repositories_(\d{4}-\d{2}-\d{2})\.", file.name)
-        if not match:
-            continue
-
-        date_to_files.setdefault(match.group(1), []).append(file)
-
-    keep_dates = set(sorted(date_to_files.keys(), reverse=True)[:retention_days])
-
-    for date, files in date_to_files.items():
-        if date in keep_dates:
-            continue
-
-        for file in files:
-            print(f"[INFO] Remove old output: {file}")
-            file.unlink(missing_ok=True)
-
-
-def main() -> int:
-    now = datetime.now(JST)
-    date_text = now.strftime("%Y-%m-%d")
-
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    repositories = search_repositories()
-
-    if not repositories:
-        print("[ERROR] No repositories found.")
-        return 1
-
-    markdown = build_markdown(repositories, now)
-
-    latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
-    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
-    dated_md_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.md"
-    dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.csv"
-
-    latest_md_path.write_text(markdown, encoding="utf-8")
-    dated_md_path.write_text(markdown, encoding="utf-8")
-
-    write_csv(repositories, latest_csv_path)
-    write_csv(repositories, dated_csv_path)
-
-    update_readme(markdown)
-
-    retention_days = get_env_int("OUTPUT_RETENTION_DAYS", 5)
-    cleanup_old_outputs(retention_days)
-
-    print(f"[INFO] Updated README and output files. repositories={len(repositories)}")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+```text
+GitHub Search API
+  ↓
+MCP / Claude Code / Model Context Protocol 関連リポジトリを検索
+  ↓
+スター数・更新日・Fork数・説明文を取得
+  ↓
+Markdown / CSV を生成
+  ↓
+GitHub Actionsで毎日自動実行
+  ↓
+READMEを自動更新
