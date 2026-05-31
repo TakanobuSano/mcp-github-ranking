@@ -66,6 +66,8 @@ def build_qiita_body(report_markdown: str) -> str:
         f"最終更新: **{now}**",
         "",
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールを、GitHub Search APIで毎日自動収集してランキング化しています。",
+        "",
+        "GitHubリポジトリ: [TakanobuSano/mcp-github-ranking](https://github.com/TakanobuSano/mcp-github-ranking)",
         ":::",
         "",
         ranking_markdown,
