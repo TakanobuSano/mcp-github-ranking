@@ -13,6 +13,7 @@ JST = ZoneInfo("Asia/Tokyo")
 REPORT_PATH = Path("output/mcp_repositories_latest.md")
 
 DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【毎日自動更新】"
+GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_TAGS = [
     {"name": "ClaudeCode", "versions": []},
@@ -66,8 +67,6 @@ def build_qiita_body(report_markdown: str) -> str:
         f"最終更新: **{now}**",
         "",
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールを、GitHub Search APIで毎日自動収集してランキング化しています。",
-        "",
-        "GitHubリポジトリ: [TakanobuSano/mcp-github-ranking](https://github.com/TakanobuSano/mcp-github-ranking)",
         ":::",
         "",
         ranking_markdown,
@@ -81,6 +80,10 @@ def build_qiita_body(report_markdown: str) -> str:
         "- GitHub Search APIで使用している検索条件",
         "",
         "# 仕組み",
+        "",
+        "このランキングの生成コードとGitHub Actionsの設定は、以下のリポジトリで管理しています。",
+        "",
+        GITHUB_REPOSITORY_URL,
         "",
         "1. GitHub Search APIでMCP関連リポジトリを検索",
         "2. Claude Code関連ツール候補を検索",
