@@ -1,534 +1,97 @@
-import csv
 import os
-import re
 import sys
-import time
-from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any
 
 import requests
 from zoneinfo import ZoneInfo
 
 
-GITHUB_SEARCH_API_URL = "https://api.github.com/search/repositories"
-GITHUB_REPO_API_URL = "https://api.github.com/repos/{full_name}"
-
-README_PATH = Path("README.md")
-OUTPUT_DIR = Path("output")
-
-START_MARKER = "<!-- MCP_REPOS_START -->"
-END_MARKER = "<!-- MCP_REPOS_END -->"
-
+QIITA_API_BASE_URL = "https://qiita.com/api/v2"
 JST = ZoneInfo("Asia/Tokyo")
 
-DEFAULT_SEARCH_QUERIES = [
-    '"model context protocol" in:name,description,readme stars:>10',
-    '"mcp server" in:name,description,readme stars:>10',
-    '"mcp" "claude" in:name,description,readme stars:>10',
-    '"mcp" "claude code" in:name,description,readme',
-    '"modelcontextprotocol" in:name,description,readme stars:>10',
-]
+REPORT_PATH = Path("output/mcp_repositories_latest.md")
 
-# GitHub Search APIの条件だけでは漏れる可能性がある重要候補を直接取得します。
-ALLOWLIST_REPOSITORIES = {
-    "thedotmack/claude-mem",
-}
+DEFAULT_TITLE = "Claude Code向けMCPツール候補ランキング【毎日自動更新】"
 
-MCP_KEYWORDS = [
-    "mcp",
-    "model context protocol",
-    "modelcontextprotocol",
-]
-
-EXCLUDE_KEYWORDS = [
-    "minecraft",
+DEFAULT_TAGS = [
+    {"name": "ClaudeCode", "versions": []},
+    {"name": "MCP", "versions": []},
+    {"name": "GitHubActions", "versions": []},
+    {"name": "Python", "versions": []},
+    {"name": "GitHub", "versions": []},
 ]
 
 
-@dataclass
-class Repository:
-    full_name: str
-    html_url: str
-    description: str
-    stargazers_count: int
-    forks_count: int
-    open_issues_count: int
-    language: str
-    topics: list[str]
-    created_at: str
-    updated_at: str
-    pushed_at: str
-    archived: bool
-
-
-def get_env_int(name: str, default: int) -> int:
+def require_env(name: str) -> str:
     value = os.getenv(name)
 
     if not value:
+        raise RuntimeError(f"{name} is required.")
+
+    return value
+
+
+def get_env_bool(name: str, default: bool) -> bool:
+    value = os.getenv(name)
+
+    if value is None:
         return default
 
-    try:
-        return int(value)
-    except ValueError:
-        print(f"[WARN] {name} must be integer. fallback to {default}.")
-        return default
+    return value.lower() in {"1", "true", "yes", "y", "on"}
 
 
-def get_search_queries() -> list[str]:
-    raw = os.getenv("SEARCH_QUERIES", "").strip()
+def trim_report_intro(report_markdown: str) -> str:
+    """
+    output/mcp_repositories_latest.md の冒頭説明を削り、
+    Qiita記事ではランキング本文から表示する。
 
-    if not raw:
-        return DEFAULT_SEARCH_QUERIES
+    これにより、Qiita側の概要と自動生成Markdown側の概要が重複しない。
+    """
+    ranking_heading = "# 注目MCPリポジトリランキング"
 
-    return [line.strip() for line in raw.splitlines() if line.strip()]
+    index = report_markdown.find(ranking_heading)
 
+    if index == -1:
+        return report_markdown.strip()
 
-def build_headers() -> dict[str, str]:
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-        "User-Agent": "mcp-github-ranking",
-    }
+    return report_markdown[index:].strip()
 
-    token = os.getenv("GITHUB_TOKEN")
 
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    else:
-        print("[WARN] GITHUB_TOKEN is not set. Unauthenticated rate limit will be used.")
-
-    return headers
-
-
-def request_json_with_retry(
-    session: requests.Session,
-    url: str,
-    params: dict[str, Any] | None,
-    headers: dict[str, str],
-    max_retries: int = 3,
-) -> dict[str, Any]:
-    for attempt in range(1, max_retries + 1):
-        response = session.get(
-            url,
-            params=params,
-            headers=headers,
-            timeout=30,
-        )
-
-        if response.status_code == 403:
-            reset_timestamp = response.headers.get("X-RateLimit-Reset")
-            remaining = response.headers.get("X-RateLimit-Remaining")
-
-            if remaining == "0" and reset_timestamp:
-                wait_seconds = max(int(reset_timestamp) - int(time.time()) + 5, 5)
-                print(f"[WARN] GitHub API rate limit reached. wait {wait_seconds} seconds.")
-                time.sleep(wait_seconds)
-                continue
-
-        if response.status_code in {500, 502, 503, 504}:
-            wait_seconds = attempt * 5
-            print(
-                f"[WARN] GitHub API temporary error: {response.status_code}. "
-                f"retry in {wait_seconds}s."
-            )
-            time.sleep(wait_seconds)
-            continue
-
-        if not response.ok:
-            print("[ERROR] GitHub API request failed.")
-            print(f"url: {url}")
-            print(f"status: {response.status_code}")
-            print(response.text)
-            response.raise_for_status()
-
-        return response.json()
-
-    raise RuntimeError("GitHub API request failed after retries.")
-
-
-def to_repository(item: dict[str, Any]) -> Repository:
-    return Repository(
-        full_name=item.get("full_name", ""),
-        html_url=item.get("html_url", ""),
-        description=item.get("description") or "",
-        stargazers_count=item.get("stargazers_count") or 0,
-        forks_count=item.get("forks_count") or 0,
-        open_issues_count=item.get("open_issues_count") or 0,
-        language=item.get("language") or "",
-        topics=item.get("topics") or [],
-        created_at=item.get("created_at") or "",
-        updated_at=item.get("updated_at") or "",
-        pushed_at=item.get("pushed_at") or "",
-        archived=item.get("archived") or False,
-    )
-
-
-def is_allowlisted_repository(repo: Repository) -> bool:
-    return repo.full_name in ALLOWLIST_REPOSITORIES
-
-
-def is_candidate_repository(repo: Repository) -> bool:
-    if repo.archived:
-        return False
-
-    if is_allowlisted_repository(repo):
-        return True
-
-    text = " ".join(
-        [
-            repo.full_name,
-            repo.description,
-            repo.language,
-            " ".join(repo.topics),
-        ]
-    ).lower()
-
-    if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
-        return False
-
-    return any(keyword in text for keyword in MCP_KEYWORDS)
-
-
-def fetch_repository_by_full_name(
-    session: requests.Session,
-    headers: dict[str, str],
-    full_name: str,
-) -> Repository | None:
-    url = GITHUB_REPO_API_URL.format(full_name=full_name)
-
-    try:
-        data = request_json_with_retry(
-            session=session,
-            url=url,
-            params=None,
-            headers=headers,
-        )
-    except requests.HTTPError:
-        print(f"[WARN] Failed to fetch allowlist repository: {full_name}")
-        return None
-
-    repo = to_repository(data)
-
-    if repo.archived:
-        print(f"[WARN] Allowlist repository is archived. skip: {full_name}")
-        return None
-
-    return repo
-
-
-def select_repositories(
-    repositories: dict[str, Repository],
-    max_results: int,
-) -> list[Repository]:
-    sorted_repositories = sorted(
-        repositories.values(),
-        key=lambda repo: repo.stargazers_count,
-        reverse=True,
-    )
-
-    selected = sorted_repositories[:max_results]
-    selected_names = {repo.full_name for repo in selected}
-
-    # allowlistのリポジトリは、スター数順位でmax_results外になっても出力に残します。
-    for full_name in sorted(ALLOWLIST_REPOSITORIES):
-        repo = repositories.get(full_name)
-
-        if repo is None:
-            continue
-
-        if repo.full_name not in selected_names:
-            selected.append(repo)
-            selected_names.add(repo.full_name)
-
-    return sorted(
-        selected,
-        key=lambda repo: repo.stargazers_count,
-        reverse=True,
-    )
-
-
-def search_repositories() -> list[Repository]:
-    queries = get_search_queries()
-    max_pages = get_env_int("MAX_PAGES_PER_QUERY", 2)
-    per_page = min(get_env_int("PER_PAGE", 100), 100)
-    max_results = get_env_int("MAX_RESULTS", 30)
-
-    headers = build_headers()
-    repositories: dict[str, Repository] = {}
-
-    with requests.Session() as session:
-        for query in queries:
-            print(f"[INFO] Search query: {query}")
-
-            for page in range(1, max_pages + 1):
-                params = {
-                    "q": query,
-                    "sort": "stars",
-                    "order": "desc",
-                    "per_page": per_page,
-                    "page": page,
-                }
-
-                data = request_json_with_retry(
-                    session=session,
-                    url=GITHUB_SEARCH_API_URL,
-                    params=params,
-                    headers=headers,
-                )
-
-                items = data.get("items", [])
-
-                print(f"[INFO] page={page}, items={len(items)}")
-
-                if not items:
-                    break
-
-                for item in items:
-                    repo = to_repository(item)
-
-                    if not is_candidate_repository(repo):
-                        continue
-
-                    repositories[repo.full_name] = repo
-
-                time.sleep(1)
-
-        for full_name in sorted(ALLOWLIST_REPOSITORIES):
-            if full_name in repositories:
-                print(f"[INFO] Allowlist repository already found: {full_name}")
-                continue
-
-            print(f"[INFO] Fetch allowlist repository directly: {full_name}")
-            repo = fetch_repository_by_full_name(session, headers, full_name)
-
-            if repo is not None:
-                repositories[repo.full_name] = repo
-
-            time.sleep(1)
-
-    return select_repositories(repositories, max_results)
-
-
-def md_escape(value: str) -> str:
-    return (
-        value.replace("\n", " ")
-        .replace("\r", " ")
-        .replace("|", "\\|")
-        .strip()
-    )
-
-
-def date_only(value: str) -> str:
-    if not value:
-        return ""
-
-    return value.split("T")[0]
-
-
-def build_topics(topics: list[str]) -> str:
-    if not topics:
-        return "`topicなし`"
-
-    return " ".join([f"`{md_escape(topic)}`" for topic in topics[:8]])
-
-
-def build_allowlist_note(repo: Repository) -> list[str]:
-    if not is_allowlisted_repository(repo):
-        return []
-
-    return [
-        "",
-        "> 手動追加候補: GitHub Search APIの検索条件から漏れる可能性があるため、allowlistで直接取得しています。",
-    ]
-
-
-def build_markdown(repositories: list[Repository], now: datetime) -> str:
-    generated_at = now.strftime("%Y-%m-%d %H:%M:%S JST")
+def build_qiita_body(report_markdown: str) -> str:
+    now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
+    ranking_markdown = trim_report_intro(report_markdown)
 
     lines = [
-        f"最終更新: **{generated_at}**",
+        "# 概要",
         "",
-        "GitHub Search APIでMCP関連リポジトリを検索し、Claude Code周辺で活用候補になりそうなリポジトリをランキング形式で表示しています。",
+        "Claude Code周辺で使えそうなMCP関連リポジトリを、GitHub Search APIで毎日自動収集してランキング化しています。",
         "",
-        "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
-        "> GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用してください。",
+        ":::note info",
+        "この記事はGitHub Actionsにより毎日自動更新されます。",
+        f"最終更新: **{now}**",
+        ":::",
         "",
-        "# 注目MCPリポジトリランキング",
+        ":::note warn",
+        "この一覧はClaude Codeでの動作を保証するものではありません。",
+        "GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用してください。",
+        ":::",
         "",
-    ]
-
-    for index, repo in enumerate(repositories, start=1):
-        description = md_escape(repo.description) or "説明なし"
-        language = md_escape(repo.language) or "不明"
-        updated_at = date_only(repo.updated_at)
-        topics = build_topics(repo.topics)
-
-        lines.extend(
-            [
-                f"## {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
-                "",
-                description,
-            ]
-        )
-
-        lines.extend(build_allowlist_note(repo))
-
-        lines.extend(
-            [
-                "",
-                (
-                    f"⭐ **{repo.stargazers_count:,} Stars**"
-                    f"　🍴 **{repo.forks_count:,} Forks**"
-                    f"　/　🟢 **{repo.open_issues_count:,} Open Issues**"
-                    f"　/　{language}"
-                    f"　/　最終更新: {updated_at}"
-                ),
-                "",
-                topics,
-                "",
-                "---",
-                "",
-            ]
-        )
-
-    lines.extend(
-        [
-            "# 最近更新されたMCP関連リポジトリ",
-            "",
-            "スター数ランキングとは別に、最近更新されたリポジトリを表示します。古いスター数だけではなく、現在もメンテナンスされていそうな候補を探すための一覧です。",
-            "",
-        ]
-    )
-
-    recently_updated = sorted(
-        repositories,
-        key=lambda repo: repo.updated_at,
-        reverse=True,
-    )[:30]
-
-    for index, repo in enumerate(recently_updated, start=1):
-        description = md_escape(repo.description) or "説明なし"
-        language = md_escape(repo.language) or "不明"
-        updated_at = date_only(repo.updated_at)
-        topics = build_topics(repo.topics)
-
-        lines.extend(
-            [
-                f"## 更新順 {index}位 [{md_escape(repo.full_name)}]({repo.html_url})",
-                "",
-                description,
-            ]
-        )
-
-        lines.extend(build_allowlist_note(repo))
-
-        lines.extend(
-            [
-                "",
-                (
-                    f"⭐ **{repo.stargazers_count:,} Stars**"
-                    f"　🍴 **{repo.forks_count:,} Forks**"
-                    f"　/　{language}"
-                    f"　/　最終更新: {updated_at}"
-                ),
-                "",
-                topics,
-                "",
-                "---",
-                "",
-            ]
-        )
-
-    lines.extend(
-        [
-            "# 検索条件",
-            "",
-            "以下の検索条件でGitHubリポジトリを収集しています。",
-            "",
-            "```text",
-            *get_search_queries(),
-            "```",
-            "",
-            "# 手動追加候補",
-            "",
-            "GitHub Search APIの検索条件から漏れる可能性がある重要候補は、allowlistで直接取得しています。",
-            "",
-        ]
-    )
-
-    if ALLOWLIST_REPOSITORIES:
-        for full_name in sorted(ALLOWLIST_REPOSITORIES):
-            lines.append(f"- `{full_name}`")
-    else:
-        lines.append("- なし")
-
-    lines.append("")
-
-    return "\n".join(lines)
-
-
-def write_csv(repositories: list[Repository], path: Path) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with path.open("w", encoding="utf-8", newline="") as file:
-        writer = csv.writer(file)
-
-        writer.writerow(
-            [
-                "rank",
-                "full_name",
-                "url",
-                "description",
-                "stars",
-                "forks",
-                "open_issues",
-                "language",
-                "topics",
-                "created_at",
-                "updated_at",
-                "pushed_at",
-                "archived",
-                "allowlisted",
-            ]
-        )
-
-        for index, repo in enumerate(repositories, start=1):
-            writer.writerow(
-                [
-                    index,
-                    repo.full_name,
-                    repo.html_url,
-                    repo.description,
-                    repo.stargazers_count,
-                    repo.forks_count,
-                    repo.open_issues_count,
-                    repo.language,
-                    ",".join(repo.topics),
-                    repo.created_at,
-                    repo.updated_at,
-                    repo.pushed_at,
-                    repo.archived,
-                    is_allowlisted_repository(repo),
-                ]
-            )
-
-
-def build_default_readme() -> str:
-    lines = [
-        "# Claude Code向けMCPツール候補ランキング【毎日自動更新】",
+        "---",
         "",
-        "GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。",
+        ranking_markdown,
         "",
-        "> 注意: この一覧は「Claude Codeでの動作」を保証するものではありません。  ",
-        "> GitHub上のリポジトリ名・説明文・Topicsなどに含まれる情報をもとに、MCP関連ツール候補を探すための入口として利用します。",
+        "---",
         "",
-        START_MARKER,
-        "まだランキングは生成されていません。",
-        END_MARKER,
+        "# このランキングで確認できること",
         "",
-        "## 仕組み",
+        "- MCP関連リポジトリのスター数ランキング",
+        "- 最近更新されたMCP関連リポジトリ",
+        "- Fork数、Open Issues、使用言語、Topics",
+        "- GitHub Search APIで使用している検索条件",
+        "- allowlistで手動追加した重要候補",
+        "",
+        "# 仕組み",
         "",
         "```text",
         "GitHub Search API",
@@ -543,112 +106,97 @@ def build_default_readme() -> str:
         "  ↓",
         "GitHub Actionsで毎日自動実行",
         "  ↓",
-        "READMEを自動更新",
+        "Qiita記事を自動更新",
         "```",
         "",
-        "## 生成ファイル",
+        "# 注意点",
         "",
-        "```text",
-        "output/mcp_repositories_latest.md",
-        "output/mcp_repositories_latest.csv",
-        "output/mcp_repositories_YYYY-MM-DD.md",
-        "output/mcp_repositories_YYYY-MM-DD.csv",
-        "```",
+        "このランキングは、GitHub Search APIの検索結果をもとにした自動集計です。",
+        "そのため、以下のようなリポジトリが混ざる可能性があります。",
+        "",
+        "- Claude Desktop向けのMCPサーバー",
+        "- Cursorなど他エディタ向けのMCPツール",
+        "- MCP関連のサンプルコード",
+        "- MCPに関するドキュメント用リポジトリ",
+        "- READMEにMCPと書かれているだけのリポジトリ",
+        "",
+        ":::note warn",
+        "このランキングは「導入推奨リスト」ではなく、あくまで「探索リスト」として利用する想定です。",
+        "実際に導入する場合は、README、最終更新日、Issues、Pull Requests、ライセンス、利用方法を確認してください。",
+        ":::",
+        "",
+        "# 補足",
+        "",
+        "GitHubのスター数は人気度の参考になりますが、実務で使う場合はスター数だけで判断しないほうが安全です。",
+        "",
+        "特にClaude Codeで利用する場合は、以下を確認することをおすすめします。",
+        "",
+        "- Claude Codeで利用できるMCPサーバーか",
+        "- Claude Desktop向け設定だけでなく、Claude Code向けの設定例があるか",
+        "- 最終更新日が古すぎないか",
+        "- IssuesやPull Requestsが放置されていないか",
+        "- 商用利用や社内利用に問題ないライセンスか",
         "",
     ]
 
     return "\n".join(lines)
 
 
-def ensure_readme_exists() -> None:
-    if README_PATH.exists():
-        return
+def update_qiita_item() -> None:
+    token = require_env("QIITA_TOKEN")
+    item_id = require_env("QIITA_ITEM_ID")
 
-    print("[WARN] README.md does not exist. Create default README.md.")
-    README_PATH.write_text(build_default_readme(), encoding="utf-8")
+    title = os.getenv("QIITA_TITLE", DEFAULT_TITLE)
 
+    # 最初は true 推奨。
+    # 公開する場合は GitHub Actions 側で QIITA_PRIVATE: "false" にする。
+    private = get_env_bool("QIITA_PRIVATE", True)
 
-def update_readme(markdown: str) -> None:
-    ensure_readme_exists()
+    if not REPORT_PATH.exists():
+        raise FileNotFoundError(
+            f"{REPORT_PATH} does not exist. Run scripts/update_mcp_repos.py first."
+        )
 
-    readme = README_PATH.read_text(encoding="utf-8")
+    report_markdown = REPORT_PATH.read_text(encoding="utf-8")
+    body = build_qiita_body(report_markdown)
 
-    pattern = re.compile(
-        f"{re.escape(START_MARKER)}.*?{re.escape(END_MARKER)}",
-        re.DOTALL,
+    payload = {
+        "title": title,
+        "body": body,
+        "tags": DEFAULT_TAGS,
+        "private": private,
+        "coediting": False,
+        "slide": False,
+    }
+
+    response = requests.patch(
+        f"{QIITA_API_BASE_URL}/items/{item_id}",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        json=payload,
+        timeout=30,
     )
 
-    replacement = f"{START_MARKER}\n{markdown}\n{END_MARKER}"
+    if not response.ok:
+        print("[ERROR] Qiita API request failed.")
+        print(f"status: {response.status_code}")
+        print(response.text)
+        response.raise_for_status()
 
-    if pattern.search(readme):
-        updated = pattern.sub(replacement, readme)
-    else:
-        updated = readme.rstrip() + "\n\n" + replacement + "\n"
+    data = response.json()
+    url = data.get("url", "")
 
-    README_PATH.write_text(updated, encoding="utf-8")
+    print("[INFO] Qiita item updated.")
+    print(f"[INFO] private: {private}")
 
-
-def cleanup_old_outputs(retention_days: int) -> None:
-    if retention_days <= 0:
-        return
-
-    if not OUTPUT_DIR.exists():
-        return
-
-    dated_files = sorted(OUTPUT_DIR.glob("mcp_repositories_20??-??-??.*"))
-
-    date_to_files: dict[str, list[Path]] = {}
-
-    for file in dated_files:
-        match = re.search(r"mcp_repositories_(\d{4}-\d{2}-\d{2})\.", file.name)
-
-        if not match:
-            continue
-
-        date_to_files.setdefault(match.group(1), []).append(file)
-
-    keep_dates = set(sorted(date_to_files.keys(), reverse=True)[:retention_days])
-
-    for date, files in date_to_files.items():
-        if date in keep_dates:
-            continue
-
-        for file in files:
-            print(f"[INFO] Remove old output: {file}")
-            file.unlink(missing_ok=True)
+    if url:
+        print(f"[INFO] URL: {url}")
 
 
 def main() -> int:
-    now = datetime.now(JST)
-    date_text = now.strftime("%Y-%m-%d")
-
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    repositories = search_repositories()
-
-    if not repositories:
-        print("[ERROR] No repositories found.")
-        return 1
-
-    markdown = build_markdown(repositories, now)
-
-    latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
-    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
-    dated_md_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.md"
-    dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.csv"
-
-    latest_md_path.write_text(markdown, encoding="utf-8")
-    dated_md_path.write_text(markdown, encoding="utf-8")
-
-    write_csv(repositories, latest_csv_path)
-    write_csv(repositories, dated_csv_path)
-
-    update_readme(markdown)
-
-    retention_days = get_env_int("OUTPUT_RETENTION_DAYS", 5)
-    cleanup_old_outputs(retention_days)
-
-    print(f"[INFO] Updated README and output files. repositories={len(repositories)}")
+    update_qiita_item()
     return 0
 
 
