@@ -24,23 +24,24 @@ END_MARKER = "<!-- MCP_REPOS_END -->"
 JST = ZoneInfo("Asia/Tokyo")
 
 DEFAULT_SEARCH_QUERIES = [
+    # MCP関連
     '"model context protocol" in:name,description,readme stars:>10',
     '"mcp server" in:name,description,readme stars:>10',
     '"mcp" "claude" in:name,description,readme stars:>10',
-    '"mcp" "claude code" in:name,description,readme',
     '"modelcontextprotocol" in:name,description,readme stars:>10',
+
+    # Claude Code関連ツール
+    '"claude code" in:name,description,readme stars:>10',
+    '"claude" "plugin" in:name,description,readme stars:>10',
+    '"claude" "memory" in:name,description,readme stars:>10',
+    '"claude" "agent" in:name,description,readme stars:>10',
+    '"claude" "tool" in:name,description,readme stars:>10',
 ]
 
-# GitHub Search APIの条件だけでは漏れる可能性がある重要候補を直接取得します。
+# GitHub Search APIの検索条件だけでは漏れる可能性がある重要候補を直接取得する。
 ALLOWLIST_REPOSITORIES = {
     "thedotmack/claude-mem",
 }
-
-MCP_KEYWORDS = [
-    "mcp",
-    "model context protocol",
-    "modelcontextprotocol",
-]
 
 EXCLUDE_KEYWORDS = [
     "minecraft",
@@ -165,8 +166,54 @@ def to_repository(item: dict[str, Any]) -> Repository:
     )
 
 
+def repository_text(repo: Repository) -> str:
+    return " ".join(
+        [
+            repo.full_name,
+            repo.description,
+            repo.language,
+            " ".join(repo.topics),
+        ]
+    ).lower()
+
+
 def is_allowlisted_repository(repo: Repository) -> bool:
     return repo.full_name in ALLOWLIST_REPOSITORIES
+
+
+def is_related_repository(repo: Repository) -> bool:
+    text = repository_text(repo)
+
+    if "mcp" in text:
+        return True
+
+    if "model context protocol" in text:
+        return True
+
+    if "modelcontextprotocol" in text:
+        return True
+
+    if "claude code" in text:
+        return True
+
+    if "claude-code" in text:
+        return True
+
+    if "claude" in text and any(
+        keyword in text
+        for keyword in [
+            "plugin",
+            "memory",
+            "agent",
+            "tool",
+            "context",
+            "code",
+            "cli",
+        ]
+    ):
+        return True
+
+    return False
 
 
 def is_candidate_repository(repo: Repository) -> bool:
@@ -176,19 +223,12 @@ def is_candidate_repository(repo: Repository) -> bool:
     if is_allowlisted_repository(repo):
         return True
 
-    text = " ".join(
-        [
-            repo.full_name,
-            repo.description,
-            repo.language,
-            " ".join(repo.topics),
-        ]
-    ).lower()
+    text = repository_text(repo)
 
     if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
         return False
 
-    return any(keyword in text for keyword in MCP_KEYWORDS)
+    return is_related_repository(repo)
 
 
 def fetch_repository_by_full_name(
@@ -231,7 +271,7 @@ def select_repositories(
     selected = sorted_repositories[:max_results]
     selected_names = {repo.full_name for repo in selected}
 
-    # allowlistのリポジトリは、スター数順位でmax_results外になっても出力に残します。
+    # allowlistのリポジトリは、スター数順位でmax_results外になっても出力に残す。
     for full_name in sorted(ALLOWLIST_REPOSITORIES):
         repo = repositories.get(full_name)
 
@@ -350,12 +390,12 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     lines = [
         f"最終更新: **{generated_at}**",
         "",
-        "GitHub Search APIでMCP関連リポジトリを検索し、Claude Code周辺で活用候補になりそうなリポジトリをランキング形式で表示しています。",
+        "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールをGitHub Search APIで毎日自動収集してランキング化しています。",
         "",
         "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
-        "> GitHub上のリポジトリ名・説明文・Topicsなどをもとに、MCP関連ツール候補を探すための入口として利用してください。",
+        "> MCP関連ツールまたはClaude Code関連ツール候補を探すための入口として利用してください。",
         "",
-        "# 注目MCPリポジトリランキング",
+        "# 注目MCP・関連ツール候補ランキング",
         "",
     ]
 
@@ -395,7 +435,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
 
     lines.extend(
         [
-            "# 最近更新されたMCP関連リポジトリ",
+            "# 最近更新されたMCP・関連ツール候補",
             "",
             "スター数ランキングとは別に、最近更新されたリポジトリを表示します。古いスター数だけではなく、現在もメンテナンスされていそうな候補を探すための一覧です。",
             "",
@@ -517,12 +557,12 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
 
 def build_default_readme() -> str:
     lines = [
-        "# Claude Code向けMCPツール候補ランキング【毎日自動更新】",
+        "# Claude Code向けMCP・関連ツール候補ランキング【毎日自動更新】",
         "",
-        "GitHub Search APIを使って、Claude Code周辺で活用候補になりそうなMCP関連リポジトリを定期収集するリポジトリです。",
+        "GitHub Search APIを使って、MCP関連リポジトリとClaude Code周辺で活用候補になりそうな関連ツールを定期収集するリポジトリです。",
         "",
         "> 注意: この一覧は「Claude Codeでの動作」を保証するものではありません。  ",
-        "> GitHub上のリポジトリ名・説明文・Topicsなどに含まれる情報をもとに、MCP関連ツール候補を探すための入口として利用します。",
+        "> MCP関連ツールまたはClaude Code関連ツール候補を探すための入口として利用します。",
         "",
         START_MARKER,
         "まだランキングは生成されていません。",
@@ -534,6 +574,8 @@ def build_default_readme() -> str:
         "GitHub Search API",
         "  ↓",
         "MCP / Claude Code / Model Context Protocol 関連リポジトリを検索",
+        "  ↓",
+        "Claude Code関連ツール候補を検索",
         "  ↓",
         "allowlistの重要候補を直接取得",
         "  ↓",
