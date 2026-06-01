@@ -584,7 +584,7 @@ def write_csv(
 
 def build_default_readme() -> str:
     lines = [
-        "# Claude Code向けMCP・関連ツール候補ランキング【毎日自動更新】",
+        "# Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動収集】",
         "",
         "GitHub Search APIを使って、MCP関連リポジトリとClaude Code周辺で活用候補になりそうな関連ツールを定期収集するリポジトリです。",
         "",
