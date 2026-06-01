@@ -12,7 +12,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 REPORT_PATH = Path("output/mcp_repositories_latest.md")
 
-DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【毎日自動更新】"
+DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動収集】"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_TAGS = [
