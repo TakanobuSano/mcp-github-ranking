@@ -65,6 +65,12 @@ class Repository:
     archived: bool
 
 
+@dataclass
+class MetricDelta:
+    star_delta: int | None
+    fork_delta: int | None
+
+
 def get_env_int(name: str, default: int) -> int:
     value = os.getenv(name)
 
@@ -325,7 +331,108 @@ def build_topics(topics: list[str]) -> str:
     return " / ".join([f"`{md_escape(topic)}`" for topic in topics[:8]])
 
 
-def build_markdown(repositories: list[Repository], now: datetime) -> str:
+def parse_int(value: str | None) -> int | None:
+    if value is None:
+        return None
+
+    try:
+        return int(value)
+    except ValueError:
+        return None
+
+
+def load_previous_metrics(path: Path) -> dict[str, dict[str, int]]:
+    if not path.exists():
+        print(f"[INFO] Previous CSV does not exist: {path}")
+        return {}
+
+    metrics: dict[str, dict[str, int]] = {}
+
+    with path.open("r", encoding="utf-8", newline="") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            full_name = row.get("full_name", "")
+            stars = parse_int(row.get("stars"))
+            forks = parse_int(row.get("forks"))
+
+            if not full_name or stars is None or forks is None:
+                continue
+
+            metrics[full_name] = {
+                "stars": stars,
+                "forks": forks,
+            }
+
+    print(f"[INFO] Loaded previous metrics. repositories={len(metrics)}")
+    return metrics
+
+
+def calculate_metric_deltas(
+    repositories: list[Repository],
+    previous_metrics: dict[str, dict[str, int]],
+) -> dict[str, MetricDelta]:
+    deltas: dict[str, MetricDelta] = {}
+
+    for repo in repositories:
+        previous = previous_metrics.get(repo.full_name)
+
+        if previous is None:
+            deltas[repo.full_name] = MetricDelta(
+                star_delta=None,
+                fork_delta=None,
+            )
+            continue
+
+        deltas[repo.full_name] = MetricDelta(
+            star_delta=repo.stargazers_count - previous["stars"],
+            fork_delta=repo.forks_count - previous["forks"],
+        )
+
+    return deltas
+
+
+def format_delta(delta: int | None) -> str:
+    if delta is None:
+        return "（New）"
+
+    if delta == 0:
+        return "（±0）"
+
+    if delta > 0:
+        return f"（+{delta:,}）"
+
+    return f"（{delta:,}）"
+
+
+def build_metric_line(
+    repo: Repository,
+    metric_delta: MetricDelta,
+    language: str,
+    include_open_issues: bool,
+    pushed_at: str | None = None,
+) -> str:
+    line = (
+        f"⭐ **{repo.stargazers_count:,} Stars**{format_delta(metric_delta.star_delta)}"
+        f"　🍴 **{repo.forks_count:,} Forks**{format_delta(metric_delta.fork_delta)}"
+    )
+
+    if include_open_issues:
+        line += f"　/　🟢 **{repo.open_issues_count:,} Open Issues**"
+
+    line += f"　/　{language}"
+
+    if pushed_at:
+        line += f"　/　最終プッシュ: {pushed_at}"
+
+    return line
+
+
+def build_markdown(
+    repositories: list[Repository],
+    now: datetime,
+    metric_deltas: dict[str, MetricDelta],
+) -> str:
     generated_at = now.strftime("%Y-%m-%d %H:%M:%S JST")
 
     lines = [
@@ -344,6 +451,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
         description = truncate_description(repo.description) or "説明なし"
         language = md_escape(repo.language) or "不明"
         topics = build_topics(repo.topics)
+        metric_delta = metric_deltas.get(repo.full_name, MetricDelta(None, None))
 
         lines.extend(
             [
@@ -351,11 +459,11 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 "",
                 description,
                 "",
-                (
-                    f"⭐ **{repo.stargazers_count:,} Stars**"
-                    f"　🍴 **{repo.forks_count:,} Forks**"
-                    f"　/　🟢 **{repo.open_issues_count:,} Open Issues**"
-                    f"　/　{language}"
+                build_metric_line(
+                    repo=repo,
+                    metric_delta=metric_delta,
+                    language=language,
+                    include_open_issues=True,
                 ),
                 "",
                 f"Topics: {topics}",
@@ -383,6 +491,7 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
         language = md_escape(repo.language) or "不明"
         pushed_at = date_only(repo.pushed_at or repo.updated_at)
         topics = build_topics(repo.topics)
+        metric_delta = metric_deltas.get(repo.full_name, MetricDelta(None, None))
 
         lines.extend(
             [
@@ -390,11 +499,12 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
                 "",
                 description,
                 "",
-                (
-                    f"⭐ **{repo.stargazers_count:,} Stars**"
-                    f"　🍴 **{repo.forks_count:,} Forks**"
-                    f"　/　{language}"
-                    f"　/　最終プッシュ: {pushed_at}"
+                build_metric_line(
+                    repo=repo,
+                    metric_delta=metric_delta,
+                    language=language,
+                    include_open_issues=False,
+                    pushed_at=pushed_at,
                 ),
                 "",
                 f"Topics: {topics}",
@@ -419,7 +529,11 @@ def build_markdown(repositories: list[Repository], now: datetime) -> str:
     return "\n".join(lines)
 
 
-def write_csv(repositories: list[Repository], path: Path) -> None:
+def write_csv(
+    repositories: list[Repository],
+    metric_deltas: dict[str, MetricDelta],
+    path: Path,
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
     with path.open("w", encoding="utf-8", newline="") as file:
@@ -432,7 +546,9 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
                 "url",
                 "description",
                 "stars",
+                "star_delta",
                 "forks",
+                "fork_delta",
                 "open_issues",
                 "language",
                 "topics",
@@ -444,6 +560,8 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
         )
 
         for index, repo in enumerate(repositories, start=1):
+            metric_delta = metric_deltas.get(repo.full_name, MetricDelta(None, None))
+
             writer.writerow(
                 [
                     index,
@@ -451,7 +569,9 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
                     repo.html_url,
                     repo.description,
                     repo.stargazers_count,
+                    "" if metric_delta.star_delta is None else metric_delta.star_delta,
                     repo.forks_count,
+                    "" if metric_delta.fork_delta is None else metric_delta.fork_delta,
                     repo.open_issues_count,
                     repo.language,
                     ",".join(repo.topics),
@@ -461,7 +581,6 @@ def write_csv(repositories: list[Repository], path: Path) -> None:
                     repo.archived,
                 ]
             )
-
 
 def build_default_readme() -> str:
     lines = [
@@ -480,10 +599,11 @@ def build_default_readme() -> str:
         "",
         "1. GitHub Search APIでMCP関連リポジトリを検索",
         "2. Claude Code関連ツール候補を検索",
-        "3. スター数・更新日・Fork数・説明文を取得",
-        "4. Markdown / CSV を生成",
-        "5. GitHub Actionsで毎日自動実行",
-        "6. READMEを自動更新",
+        "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
+        "4. 前回CSVと比較してStars/Forksの差分を計算",
+        "5. Markdown / CSV を生成",
+        "6. GitHub Actionsで毎日自動実行",
+        "7. READMEを自動更新",
         "",
         "## 生成ファイル",
         "",
@@ -561,24 +681,27 @@ def main() -> int:
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
+    previous_metrics = load_previous_metrics(latest_csv_path)
+
     repositories = search_repositories()
 
     if not repositories:
         print("[ERROR] No repositories found.")
         return 1
 
-    markdown = build_markdown(repositories, now)
+    metric_deltas = calculate_metric_deltas(repositories, previous_metrics)
+    markdown = build_markdown(repositories, now, metric_deltas)
 
     latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
-    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
     dated_md_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.md"
     dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.csv"
 
     latest_md_path.write_text(markdown, encoding="utf-8")
     dated_md_path.write_text(markdown, encoding="utf-8")
 
-    write_csv(repositories, latest_csv_path)
-    write_csv(repositories, dated_csv_path)
+    write_csv(repositories, metric_deltas, latest_csv_path)
+    write_csv(repositories, metric_deltas, dated_csv_path)
 
     update_readme(markdown)
 
