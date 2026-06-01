@@ -26,8 +26,8 @@ jobs:
       PER_PAGE: "100"
       MAX_RESULTS: "50"
 
-      # output/ 配下の日付付きファイルを最新5日分だけ残す
-      OUTPUT_RETENTION_DAYS: "5"
+      # output/ 配下の日付付きファイルを最新30日分だけ残す
+      OUTPUT_RETENTION_DAYS: "30"
 
     steps:
       - name: Checkout
