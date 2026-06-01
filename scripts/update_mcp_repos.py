@@ -705,7 +705,7 @@ def main() -> int:
 
     update_readme(markdown)
 
-    retention_days = get_env_int("OUTPUT_RETENTION_DAYS", 5)
+    retention_days = get_env_int("OUTPUT_RETENTION_DAYS", 30)
     cleanup_old_outputs(retention_days)
 
     print(f"[INFO] Updated README and output files. repositories={len(repositories)}")
