@@ -51,7 +51,7 @@ jobs:
         env:
           QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
           QIITA_ITEM_ID: ${{ secrets.QIITA_ITEM_ID }}
-          QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動収集】"
+          QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
 
           # 最初は true 推奨
           # Qiita記事の更新内容を確認して問題なければ false に変更
