@@ -5,7 +5,7 @@ import sys
 import time
 import unicodedata
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -365,7 +365,7 @@ def calculate_metric_deltas(
 
 def format_delta(delta: int | None) -> str:
     if delta is None:
-        return "（New）"
+        return "（前日なし）"
 
     if delta == 0:
         return "（±0）"
@@ -401,15 +401,19 @@ def build_metric_line(
 
 def build_markdown(
     repositories: list[Repository],
-    now: datetime,
+    now_jst: datetime,
     metric_deltas: dict[str, MetricDelta],
+    current_date_text: str,
+    previous_date_text: str,
 ) -> str:
-    generated_at = now.strftime("%Y-%m-%d %H:%M:%S JST")
+    generated_at = now_jst.strftime("%Y-%m-%d %H:%M:%S JST")
 
     lines = [
         f"最終更新: **{generated_at}**",
         "",
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールをGitHub Search APIで毎日自動収集してランキング化しています。",
+        "",
+        f"Stars / Forks の差分は、UTC基準の前日データ（{previous_date_text}）との差分です。",
         "",
         "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
         "> MCP関連ツールまたはClaude Code関連ツール候補を探すための入口として利用してください。",
@@ -517,9 +521,9 @@ def write_csv(
                 "url",
                 "description",
                 "stars",
-                "star_delta",
+                "star_delta_vs_previous_day",
                 "forks",
-                "fork_delta",
+                "fork_delta_vs_previous_day",
                 "open_issues",
                 "language",
                 "topics",
@@ -571,7 +575,7 @@ def build_default_readme() -> str:
         "1. GitHub Search APIでMCP関連リポジトリを検索",
         "2. Claude Code関連ツール候補を検索",
         "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
-        "4. 前回CSVと比較してStars/Forksの差分を計算",
+        "4. UTC基準の前日CSVと比較してStars/Forksの前日比を計算",
         "5. Markdown / CSV を生成",
         "6. GitHub Actionsで毎日自動実行",
         "7. READMEを自動更新",
@@ -647,13 +651,16 @@ def cleanup_old_outputs(retention_days: int) -> None:
 
 
 def main() -> int:
-    now = datetime.now(JST)
-    date_text = now.strftime("%Y-%m-%d")
+    now_utc = datetime.now(timezone.utc)
+    now_jst = now_utc.astimezone(JST)
+
+    current_date_text = now_utc.strftime("%Y-%m-%d")
+    previous_date_text = (now_utc - timedelta(days=1)).strftime("%Y-%m-%d")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
-    previous_metrics = load_previous_metrics(latest_csv_path)
+    previous_csv_path = OUTPUT_DIR / f"mcp_repositories_{previous_date_text}.csv"
+    previous_metrics = load_previous_metrics(previous_csv_path)
 
     repositories = search_repositories()
 
@@ -662,11 +669,18 @@ def main() -> int:
         return 1
 
     metric_deltas = calculate_metric_deltas(repositories, previous_metrics)
-    markdown = build_markdown(repositories, now, metric_deltas)
+    markdown = build_markdown(
+        repositories=repositories,
+        now_jst=now_jst,
+        metric_deltas=metric_deltas,
+        current_date_text=current_date_text,
+        previous_date_text=previous_date_text,
+    )
 
     latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
-    dated_md_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.md"
-    dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{date_text}.csv"
+    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
+    dated_md_path = OUTPUT_DIR / f"mcp_repositories_{current_date_text}.md"
+    dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{current_date_text}.csv"
 
     latest_md_path.write_text(markdown, encoding="utf-8")
     dated_md_path.write_text(markdown, encoding="utf-8")
@@ -679,7 +693,12 @@ def main() -> int:
     retention_days = get_env_int("OUTPUT_RETENTION_DAYS", 30)
     cleanup_old_outputs(retention_days)
 
-    print(f"[INFO] Updated README and output files. repositories={len(repositories)}")
+    print(
+        "[INFO] Updated README and output files. "
+        f"repositories={len(repositories)}, "
+        f"current_date={current_date_text}, "
+        f"previous_date={previous_date_text}"
+    )
     return 0
 
 
