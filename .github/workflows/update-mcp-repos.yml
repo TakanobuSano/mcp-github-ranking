@@ -2,10 +2,10 @@ name: Update MCP GitHub Repository Ranking
 
 on:
   workflow_dispatch:
-  schedule:
+  #schedule:
     # 毎日 JST 06:15 に実行
     # GitHub Actions の cron は UTC 基準なので、JST 06:15 = UTC 21:15
-    - cron: "15 21 * * *"
+    #- cron: "15 21 * * *"
 
 permissions:
   contents: write
