@@ -12,7 +12,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 REPORT_PATH = Path("output/mcp_repositories_latest.md")
 
-DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動収集】"
+DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_TAGS = [
@@ -58,9 +58,46 @@ def trim_report_intro(report_markdown: str) -> str:
     return report_markdown.strip()
 
 
+def build_search_policy_explanation() -> str:
+    lines = [
+        "# 検索条件の考え方",
+        "",
+        "このランキングでは、GitHub Search APIを使って、リポジトリ名・説明文・READMEに含まれるキーワードをもとに候補を収集しています。",
+        "",
+        "主に以下の2系統を対象にしています。",
+        "",
+        "- MCP関連リポジトリ",
+        "- Claude Code周辺で使われる可能性がある関連ツール",
+        "",
+        "具体的には、`model context protocol`、`mcp server`、`claude code`、`claude plugin`、`claude memory` などのキーワードを使って検索しています。",
+        "",
+        "一方で、`awesome`、`roadmap`、`interview`、`leetcode` など、ランキングの趣旨から外れやすいリポジトリは除外しています。",
+        "",
+        "なお、GitHub Search APIではREADME本文も検索対象にしているため、リポジトリの説明文やTopicsに `Claude Code` や `MCP` が含まれていなくても、README内に関連情報がある場合は候補に入ることがあります。",
+    ]
+
+    return "\n".join(lines)
+
+
+def insert_search_policy_explanation(report_markdown: str) -> str:
+    search_heading = "# 検索条件"
+
+    if search_heading not in report_markdown:
+        return report_markdown
+
+    explanation = build_search_policy_explanation()
+
+    return report_markdown.replace(
+        search_heading,
+        f"{explanation}\n\n{search_heading}",
+        1,
+    )
+
+
 def build_qiita_body(report_markdown: str) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     ranking_markdown = trim_report_intro(report_markdown)
+    ranking_markdown = insert_search_policy_explanation(ranking_markdown)
 
     lines = [
         ":::note info",
@@ -76,6 +113,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "- MCP関連リポジトリのスター数ランキング",
         "- Claude Code周辺で活用候補になりそうな関連ツール",
         "- 最近プッシュされたMCP・関連ツール候補",
+        "- Stars / Forks の前回取得時との差分",
         "- Fork数、Open Issues、使用言語、Topics",
         "- GitHub Search APIで使用している検索条件",
         "",
@@ -88,9 +126,10 @@ def build_qiita_body(report_markdown: str) -> str:
         "1. GitHub Search APIでMCP関連リポジトリを検索",
         "2. Claude Code関連ツール候補を検索",
         "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
-        "4. Markdown / CSV を生成",
-        "5. GitHub Actionsで毎日自動実行",
-        "6. Qiita記事を自動更新",
+        "4. 前回CSVと比較してStars / Forksの差分を計算",
+        "5. Markdown / CSV を生成",
+        "6. GitHub Actionsで毎日自動実行",
+        "7. Qiita記事を自動更新",
         "",
         "# 注意点",
         "",
