@@ -24,7 +24,7 @@ jobs:
       # GitHub Search API の取得設定
       MAX_PAGES_PER_QUERY: "2"
       PER_PAGE: "100"
-      MAX_RESULTS: "50"
+      MAX_RESULTS: "100"
 
       # output/ 配下の日付付きファイルを最新30日分だけ残す
       OUTPUT_RETENTION_DAYS: "30"
