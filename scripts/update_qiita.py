@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -10,7 +11,7 @@ from zoneinfo import ZoneInfo
 QIITA_API_BASE_URL = "https://qiita.com/api/v2"
 JST = ZoneInfo("Asia/Tokyo")
 
-REPORT_PATH = Path("output/mcp_repositories_latest.md")
+OUTPUT_DIR = Path("output")
 
 DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
@@ -40,6 +41,38 @@ def get_env_bool(name: str, default: bool) -> bool:
         return default
 
     return value.lower() in {"1", "true", "yes", "y", "on"}
+
+
+def extract_date_from_report_path(path: Path) -> str:
+    match = re.fullmatch(r"mcp_repositories_(\d{4}-\d{2}-\d{2})\.md", path.name)
+
+    if not match:
+        return ""
+
+    return match.group(1)
+
+
+def find_latest_report_path() -> Path:
+    candidates: list[tuple[str, Path]] = []
+
+    for path in OUTPUT_DIR.glob("mcp_repositories_20??-??-??.md"):
+        date_text = extract_date_from_report_path(path)
+
+        if not date_text:
+            continue
+
+        candidates.append((date_text, path))
+
+    if not candidates:
+        raise FileNotFoundError(
+            "No dated report file found. Expected output/mcp_repositories_YYYY-MM-DD.md."
+        )
+
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    latest_date, latest_path = candidates[0]
+
+    print(f"[INFO] Latest dated report: {latest_path} ({latest_date})")
+    return latest_path
 
 
 def trim_report_intro(report_markdown: str) -> str:
@@ -94,7 +127,7 @@ def insert_search_policy_explanation(report_markdown: str) -> str:
     )
 
 
-def build_qiita_body(report_markdown: str) -> str:
+def build_qiita_body(report_markdown: str, report_date: str) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     ranking_markdown = trim_report_intro(report_markdown)
     ranking_markdown = insert_search_policy_explanation(ranking_markdown)
@@ -102,6 +135,7 @@ def build_qiita_body(report_markdown: str) -> str:
     lines = [
         ":::note info",
         f"最終更新: **{now}**",
+        f"使用データ: **{report_date} UTC**",
         "",
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールを、GitHub Search APIで毎日自動収集してランキング化しています。",
         ":::",
@@ -113,7 +147,7 @@ def build_qiita_body(report_markdown: str) -> str:
         "- MCP関連リポジトリのスター数ランキング",
         "- Claude Code周辺で活用候補になりそうな関連ツール",
         "- 最近プッシュされたMCP・関連ツール候補",
-        "- Stars / Forks の前回取得時との差分",
+        "- Stars / Forks のUTC基準の前日比",
         "- Fork数、Open Issues、使用言語、Topics",
         "- GitHub Search APIで使用している検索条件",
         "",
@@ -126,10 +160,10 @@ def build_qiita_body(report_markdown: str) -> str:
         "1. GitHub Search APIでMCP関連リポジトリを検索",
         "2. Claude Code関連ツール候補を検索",
         "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
-        "4. 前回CSVと比較してStars / Forksの差分を計算",
-        "5. Markdown / CSV を生成",
+        "4. UTC基準の前日CSVと比較してStars / Forksの前日比を計算",
+        "5. 日付付きMarkdown / CSV を生成",
         "6. GitHub Actionsで毎日自動実行",
-        "7. Qiita記事を自動更新",
+        "7. 最新の日付付きMarkdownをもとにQiita記事を自動更新",
         "",
         "# 注意点",
         "",
@@ -173,13 +207,10 @@ def update_qiita_item() -> None:
     title = os.getenv("QIITA_TITLE", DEFAULT_TITLE)
     private = get_env_bool("QIITA_PRIVATE", True)
 
-    if not REPORT_PATH.exists():
-        raise FileNotFoundError(
-            f"{REPORT_PATH} does not exist. Run scripts/update_mcp_repos.py first."
-        )
-
-    report_markdown = REPORT_PATH.read_text(encoding="utf-8")
-    body = build_qiita_body(report_markdown)
+    report_path = find_latest_report_path()
+    report_date = extract_date_from_report_path(report_path)
+    report_markdown = report_path.read_text(encoding="utf-8")
+    body = build_qiita_body(report_markdown, report_date)
 
     payload = {
         "title": title,
@@ -211,6 +242,7 @@ def update_qiita_item() -> None:
 
     print("[INFO] Qiita item updated.")
     print(f"[INFO] private: {private}")
+    print(f"[INFO] report_path: {report_path}")
 
     if url:
         print(f"[INFO] URL: {url}")
