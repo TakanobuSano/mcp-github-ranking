@@ -184,38 +184,6 @@ def repository_text(repo: Repository) -> str:
     ).lower()
 
 
-def is_related_repository(repo: Repository) -> bool:
-    text = repository_text(repo)
-
-    if "mcp" in text:
-        return True
-
-    if "model context protocol" in text:
-        return True
-
-    if "modelcontextprotocol" in text:
-        return True
-
-    if "claude code" in text:
-        return True
-
-    if "claude-code" in text:
-        return True
-
-    if "claude" in text and any(
-        keyword in text
-        for keyword in [
-            "plugin",
-            "memory",
-            "context",
-            "mcp",
-        ]
-    ):
-        return True
-
-    return False
-
-
 def is_candidate_repository(repo: Repository) -> bool:
     if repo.archived:
         return False
@@ -225,7 +193,10 @@ def is_candidate_repository(repo: Repository) -> bool:
     if any(excluded.lower() in text for excluded in EXCLUDE_KEYWORDS):
         return False
 
-    return is_related_repository(repo)
+    # GitHub Search API の in:name,description,readme にヒットした結果を信頼する。
+    # READMEにだけClaude Code / MCP関連情報があるリポジトリも取りこぼさないため、
+    # ここでは明確なノイズ除外だけを行う。
+    return True
 
 
 def search_repositories() -> list[Repository]:
@@ -584,7 +555,7 @@ def write_csv(
 
 def build_default_readme() -> str:
     lines = [
-        "# Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動収集】",
+        "# Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】",
         "",
         "GitHub Search APIを使って、MCP関連リポジトリとClaude Code周辺で活用候補になりそうな関連ツールを定期収集するリポジトリです。",
         "",
