@@ -45,7 +45,7 @@ EXCLUDE_KEYWORDS = [
     "awesome-go",
     "awesome-mac",
     "awesome-llm-apps",
-    "funNLP",
+    "funnlp",
 ]
 
 
@@ -190,7 +190,7 @@ def is_candidate_repository(repo: Repository) -> bool:
 
     text = repository_text(repo)
 
-    if any(excluded.lower() in text for excluded in EXCLUDE_KEYWORDS):
+    if any(excluded in text for excluded in EXCLUDE_KEYWORDS):
         return False
 
     # GitHub Search API の in:name,description,readme にヒットした結果を信頼する。
@@ -314,7 +314,7 @@ def parse_int(value: str | None) -> int | None:
 
 def load_previous_metrics(path: Path) -> dict[str, dict[str, int]]:
     if not path.exists():
-        print(f"[INFO] Previous CSV does not exist: {path}")
+        print(f"[INFO] Previous day CSV does not exist: {path}")
         return {}
 
     metrics: dict[str, dict[str, int]] = {}
@@ -335,7 +335,7 @@ def load_previous_metrics(path: Path) -> dict[str, dict[str, int]]:
                 "forks": forks,
             }
 
-    print(f"[INFO] Loaded previous metrics. repositories={len(metrics)}")
+    print(f"[INFO] Loaded previous day metrics. repositories={len(metrics)}")
     return metrics
 
 
@@ -557,6 +557,7 @@ def write_csv(
                 ]
             )
 
+
 def build_default_readme() -> str:
     lines = [
         "# Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】",
@@ -576,14 +577,12 @@ def build_default_readme() -> str:
         "2. Claude Code関連ツール候補を検索",
         "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
         "4. UTC基準の前日CSVと比較してStars/Forksの前日比を計算",
-        "5. Markdown / CSV を生成",
+        "5. 日付付きMarkdown / CSV を生成",
         "6. GitHub Actionsで毎日自動実行",
         "7. READMEを自動更新",
         "",
         "## 生成ファイル",
         "",
-        "- output/mcp_repositories_latest.md",
-        "- output/mcp_repositories_latest.csv",
         "- output/mcp_repositories_YYYY-MM-DD.md",
         "- output/mcp_repositories_YYYY-MM-DD.csv",
         "",
@@ -677,15 +676,10 @@ def main() -> int:
         previous_date_text=previous_date_text,
     )
 
-    latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
-    latest_csv_path = OUTPUT_DIR / "mcp_repositories_latest.csv"
     dated_md_path = OUTPUT_DIR / f"mcp_repositories_{current_date_text}.md"
     dated_csv_path = OUTPUT_DIR / f"mcp_repositories_{current_date_text}.csv"
 
-    latest_md_path.write_text(markdown, encoding="utf-8")
     dated_md_path.write_text(markdown, encoding="utf-8")
-
-    write_csv(repositories, metric_deltas, latest_csv_path)
     write_csv(repositories, metric_deltas, dated_csv_path)
 
     update_readme(markdown)
@@ -694,7 +688,7 @@ def main() -> int:
     cleanup_old_outputs(retention_days)
 
     print(
-        "[INFO] Updated README and output files. "
+        "[INFO] Updated README and dated output files. "
         f"repositories={len(repositories)}, "
         f"current_date={current_date_text}, "
         f"previous_date={previous_date_text}"
