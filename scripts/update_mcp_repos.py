@@ -93,6 +93,14 @@ def get_search_queries() -> list[str]:
     return [line.strip() for line in raw.splitlines() if line.strip()]
 
 
+def get_display_results() -> int:
+    return get_env_int("DISPLAY_RESULTS", get_env_int("MAX_RESULTS", 100))
+
+
+def get_save_results(display_results: int) -> int:
+    return get_env_int("SAVE_RESULTS", max(display_results, 500))
+
+
 def build_headers() -> dict[str, str]:
     headers = {
         "Accept": "application/vnd.github+json",
@@ -199,11 +207,10 @@ def is_candidate_repository(repo: Repository) -> bool:
     return True
 
 
-def search_repositories() -> list[Repository]:
+def search_repositories(save_results: int) -> list[Repository]:
     queries = get_search_queries()
-    max_pages = get_env_int("MAX_PAGES_PER_QUERY", 2)
+    max_pages = get_env_int("MAX_PAGES_PER_QUERY", 5)
     per_page = min(get_env_int("PER_PAGE", 100), 100)
-    max_results = get_env_int("MAX_RESULTS", 100)
 
     headers = build_headers()
     repositories: dict[str, Repository] = {}
@@ -251,7 +258,7 @@ def search_repositories() -> list[Repository]:
         reverse=True,
     )
 
-    return sorted_repositories[:max_results]
+    return sorted_repositories[:save_results]
 
 
 def md_escape(value: str) -> str:
@@ -405,8 +412,10 @@ def build_markdown(
     metric_deltas: dict[str, MetricDelta],
     current_date_text: str,
     previous_date_text: str,
+    display_results: int,
 ) -> str:
     generated_at = now_jst.strftime("%Y-%m-%d %H:%M:%S JST")
+    display_repositories = repositories[:display_results]
 
     lines = [
         f"最終更新: **{generated_at}**",
@@ -414,6 +423,7 @@ def build_markdown(
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールをGitHub Search APIで毎日自動収集してランキング化しています。",
         "",
         f"Stars / Forks の差分は、UTC基準の前日データ（{previous_date_text}）との差分です。",
+        f"CSVには最大{len(repositories)}件を保存し、本文では上位{len(display_repositories)}件を表示しています。",
         "",
         "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
         "> MCP関連ツールまたはClaude Code関連ツール候補を探すための入口として利用してください。",
@@ -422,7 +432,7 @@ def build_markdown(
         "",
     ]
 
-    for index, repo in enumerate(repositories, start=1):
+    for index, repo in enumerate(display_repositories, start=1):
         description = truncate_description(repo.description) or "説明なし"
         language = md_escape(repo.language) or "不明"
         topics = build_topics(repo.topics)
@@ -577,9 +587,10 @@ def build_default_readme() -> str:
         "2. Claude Code関連ツール候補を検索",
         "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
         "4. UTC基準の前日CSVと比較してStars/Forksの前日比を計算",
-        "5. latest Markdown / CSV と日付付きMarkdown / CSV を生成",
-        "6. GitHub Actionsで毎日自動実行",
-        "7. READMEを自動更新",
+        "5. CSVには多めに保存し、Markdown本文では表示件数を制限",
+        "6. latest Markdown / CSV と日付付きMarkdown / CSV を生成",
+        "7. GitHub Actionsで毎日自動実行",
+        "8. READMEを自動更新",
         "",
         "## 生成ファイル",
         "",
@@ -658,12 +669,15 @@ def main() -> int:
     current_date_text = now_utc.strftime("%Y-%m-%d")
     previous_date_text = (now_utc - timedelta(days=1)).strftime("%Y-%m-%d")
 
+    display_results = get_display_results()
+    save_results = get_save_results(display_results)
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     previous_csv_path = OUTPUT_DIR / f"mcp_repositories_{previous_date_text}.csv"
     previous_metrics = load_previous_metrics(previous_csv_path)
 
-    repositories = search_repositories()
+    repositories = search_repositories(save_results)
 
     if not repositories:
         print("[ERROR] No repositories found.")
@@ -676,6 +690,7 @@ def main() -> int:
         metric_deltas=metric_deltas,
         current_date_text=current_date_text,
         previous_date_text=previous_date_text,
+        display_results=display_results,
     )
 
     latest_md_path = OUTPUT_DIR / "mcp_repositories_latest.md"
@@ -697,6 +712,8 @@ def main() -> int:
     print(
         "[INFO] Updated README, latest output files, and dated output files. "
         f"repositories={len(repositories)}, "
+        f"display_results={display_results}, "
+        f"save_results={save_results}, "
         f"current_date={current_date_text}, "
         f"previous_date={previous_date_text}"
     )
