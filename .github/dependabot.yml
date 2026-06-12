@@ -1,0 +1,13 @@
+# 依存パッケージと GitHub Actions の更新を週次でチェックする。
+# requests の脆弱性（CVE-2024-47081 など）のような更新漏れを自動検知するための設定。
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
