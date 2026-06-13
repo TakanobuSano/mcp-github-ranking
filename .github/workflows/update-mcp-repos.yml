@@ -1,77 +1,77 @@
-name: Update MCP GitHub Repository Ranking
+name: Update MCP repositories ranking
 
 on:
   workflow_dispatch:
-  #schedule:
-    # 毎日 JST 06:15 に実行
-    # GitHub Actions の cron は UTC 基準なので、JST 06:15 = UTC 21:15
-    #- cron: "15 21 * * *"
+  schedule:
+    - cron: "17 0 * * *"
 
 permissions:
   contents: write
-
-concurrency:
-  group: update-mcp-repos
-  cancel-in-progress: true
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # GitHub Search API の取得設定
-      MAX_PAGES_PER_QUERY: "2"
+      DISPLAY_RESULTS: "100"
+      SAVE_RESULTS: "500"
+      MAX_PAGES_PER_QUERY: "5"
       PER_PAGE: "100"
-      MAX_RESULTS: "100"
-
-      # output/ 配下の日付付きファイルを最新30日分だけ残す
       OUTPUT_RETENTION_DAYS: "30"
+      QIITA_PRIVATE: "true"
+      QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
+      QIITA_TRENDING_PRIVATE: "true"
+      QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール急上昇ランキング【7日間Stars増加数で毎日自動更新】"
+      TRENDING_PERIOD_DAYS: "7"
+      TRENDING_DISPLAY_RESULTS: "30"
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        run: python -m pip install --upgrade requests
 
-      - name: Update MCP repositories ranking
-        run: |
-          python scripts/update_mcp_repos.py
+      - name: Update MCP repository ranking files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_mcp_repos.py
 
-      - name: Update Qiita article
+      - name: Commit generated ranking files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md output
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Update MCP repository ranking"
+            git push
+          fi
+
+      - name: Update Qiita general ranking article
         env:
           QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
           QIITA_ITEM_ID: ${{ secrets.QIITA_ITEM_ID }}
-          QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
-
-          # 最初は true 推奨
-          # Qiita記事の更新内容を確認して問題なければ false に変更
-          QIITA_PRIVATE: "false"
         run: |
-          python scripts/update_qiita.py
-
-      - name: Commit and push changes
-        run: |
-          # git diff --quiet は未追跡ファイル（新規の日付付きファイル）を検知できないため、
-          # 先に git add してからステージ済み差分の有無で判定する。
-          git add README.md output/
-
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
+          if [ -z "${QIITA_TOKEN}" ] || [ -z "${QIITA_ITEM_ID}" ]; then
+            echo "Skip Qiita general ranking update because QIITA_TOKEN or QIITA_ITEM_ID is not set."
+          else
+            python scripts/update_qiita.py
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git commit -m "Update MCP repository ranking"
-          git push
+      - name: Update Qiita trending ranking article
+        env:
+          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+          QIITA_TRENDING_ITEM_ID: ${{ secrets.QIITA_TRENDING_ITEM_ID }}
+        run: |
+          if [ -z "${QIITA_TOKEN}" ] || [ -z "${QIITA_TRENDING_ITEM_ID}" ]; then
+            echo "Skip Qiita trending ranking update because QIITA_TOKEN or QIITA_TRENDING_ITEM_ID is not set."
+          else
+            python scripts/update_qiita_trending.py
+          fi
