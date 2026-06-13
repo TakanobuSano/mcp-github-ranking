@@ -8,9 +8,9 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
-from zoneinfo import ZoneInfo
 
 import requests
+from zoneinfo import ZoneInfo
 
 
 GITHUB_SEARCH_API_URL = "https://api.github.com/search/repositories"
@@ -26,23 +26,25 @@ JST = ZoneInfo("Asia/Tokyo")
 DEFAULT_SEARCH_QUERIES = [
     '"model context protocol" in:name,description,readme stars:>10',
     '"mcp server" in:name,description,readme stars:>10',
-    # GitHub検索では語順は結果に影響しないため、"claude" "mcp" との重複指定は不要。
     '"mcp" "claude" in:name,description,readme stars:>10',
+    '"claude" "mcp" in:name,description,readme stars:>10',
     '"modelcontextprotocol" in:name,description,readme stars:>10',
     '"claude code" in:name,description,readme stars:>10',
     '"claude" "plugin" in:name,description,readme stars:>10',
     '"claude" "memory" in:name,description,readme stars:>10',
 ]
 
-# 部分一致で除外する。
-# "awesome" は awesome-python / awesome-go などの awesome-* 系を包含し、
-# "interview" は coding-interview なども包含するため、個別指定は不要。
 EXCLUDE_KEYWORDS = [
     "minecraft",
     "awesome",
     "roadmap",
     "interview",
+    "coding-interview",
     "leetcode",
+    "awesome-python",
+    "awesome-go",
+    "awesome-mac",
+    "awesome-llm-apps",
     "funnlp",
 ]
 
@@ -116,28 +118,6 @@ def build_headers() -> dict[str, str]:
     return headers
 
 
-def rate_limit_wait_seconds(response: requests.Response) -> int | None:
-    """レートリミット応答なら待機すべき秒数を返す。レートリミット以外ならNone。"""
-    # セカンダリレートリミットはRetry-Afterヘッダで待機秒数が指定される。
-    retry_after = response.headers.get("Retry-After")
-
-    if retry_after and retry_after.isdigit():
-        return int(retry_after) + 1
-
-    # プライマリレートリミットはX-RateLimit-Resetまで待つ。
-    if response.headers.get("X-RateLimit-Remaining") == "0":
-        reset_timestamp = response.headers.get("X-RateLimit-Reset")
-
-        if reset_timestamp and reset_timestamp.isdigit():
-            return max(int(reset_timestamp) - int(time.time()) + 5, 5)
-
-    # 429、またはヘッダなしでも本文がレートリミットを示す403は一定時間待つ。
-    if response.status_code == 429 or "rate limit" in response.text.lower():
-        return 60
-
-    return None
-
-
 def request_json_with_retry(
     session: requests.Session,
     url: str,
@@ -153,10 +133,12 @@ def request_json_with_retry(
             timeout=30,
         )
 
-        if response.status_code in {403, 429}:
-            wait_seconds = rate_limit_wait_seconds(response)
+        if response.status_code == 403:
+            reset_timestamp = response.headers.get("X-RateLimit-Reset")
+            remaining = response.headers.get("X-RateLimit-Remaining")
 
-            if wait_seconds is not None:
+            if remaining == "0" and reset_timestamp:
+                wait_seconds = max(int(reset_timestamp) - int(time.time()) + 5, 5)
                 print(f"[WARN] GitHub API rate limit reached. wait {wait_seconds} seconds.")
                 time.sleep(wait_seconds)
                 continue
@@ -253,12 +235,6 @@ def search_repositories(save_results: int) -> list[Repository]:
                     headers=headers,
                 )
 
-                if data.get("incomplete_results"):
-                    print(
-                        f"[WARN] GitHub search returned incomplete results. "
-                        f"query={query}, page={page}"
-                    )
-
                 items = data.get("items", [])
 
                 print(f"[INFO] page={page}, items={len(items)}")
@@ -341,23 +317,6 @@ def parse_int(value: str | None) -> int | None:
         return int(value)
     except ValueError:
         return None
-
-
-def find_previous_csv(now_utc: datetime, lookback_days: int) -> tuple[Path, str] | None:
-    """比較対象となる直近の日付付きCSVを探す。
-
-    前日分が存在すれば前日分を返す。
-    ジョブが失敗した日があっても差分が全件消えないように、
-    前日分がなければlookback_days日前まで遡って直近のCSVを使う。
-    """
-    for days_back in range(1, lookback_days + 1):
-        date_text = (now_utc - timedelta(days=days_back)).strftime("%Y-%m-%d")
-        path = OUTPUT_DIR / f"mcp_repositories_{date_text}.csv"
-
-        if path.exists():
-            return path, date_text
-
-    return None
 
 
 def load_previous_metrics(path: Path) -> dict[str, dict[str, int]]:
@@ -447,41 +406,23 @@ def build_metric_line(
     return line
 
 
-def build_comparison_note(
-    previous_date_text: str | None,
-    yesterday_text: str,
-) -> str:
-    if previous_date_text is None:
-        return "比較対象となる過去データがないため、Stars / Forks の差分は表示していません。"
-
-    if previous_date_text == yesterday_text:
-        return f"Stars / Forks の差分は、UTC基準の前日データ（{previous_date_text}）との差分です。"
-
-    return (
-        f"Stars / Forks の差分は、UTC基準の直近データ（{previous_date_text}）との差分です"
-        "（前日データが存在しないため、直近に存在する日付と比較しています）。"
-    )
-
-
 def build_markdown(
     repositories: list[Repository],
     now_jst: datetime,
     metric_deltas: dict[str, MetricDelta],
-    previous_date_text: str | None,
+    current_date_text: str,
+    previous_date_text: str,
     display_results: int,
 ) -> str:
     generated_at = now_jst.strftime("%Y-%m-%d %H:%M:%S JST")
     display_repositories = repositories[:display_results]
-
-    now_utc = now_jst.astimezone(timezone.utc)
-    yesterday_text = (now_utc - timedelta(days=1)).strftime("%Y-%m-%d")
 
     lines = [
         f"最終更新: **{generated_at}**",
         "",
         "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールをGitHub Search APIで毎日自動収集してランキング化しています。",
         "",
-        build_comparison_note(previous_date_text, yesterday_text),
+        f"Stars / Forks の差分は、UTC基準の前日データ（{previous_date_text}）との差分です。",
         f"CSVには最大{len(repositories)}件を保存し、本文では上位{len(display_repositories)}件を表示しています。",
         "",
         "> 注意: この一覧はClaude Codeでの動作を保証するものではありません。  ",
@@ -684,10 +625,7 @@ def update_readme(markdown: str) -> None:
     replacement = f"{START_MARKER}\n{markdown}\n{END_MARKER}"
 
     if pattern.search(readme):
-        # re.subに文字列をそのまま渡すと、リポジトリの説明文に含まれる
-        # \d や \1 などがエスケープ・グループ参照として解釈されre.errorで落ちる。
-        # lambdaの戻り値はリテラル扱いになるため、これを置換に使う。
-        updated = pattern.sub(lambda _match: replacement, readme)
+        updated = pattern.sub(replacement, readme)
     else:
         updated = readme.rstrip() + "\n\n" + replacement + "\n"
 
@@ -729,22 +667,15 @@ def main() -> int:
     now_jst = now_utc.astimezone(JST)
 
     current_date_text = now_utc.strftime("%Y-%m-%d")
+    previous_date_text = (now_utc - timedelta(days=1)).strftime("%Y-%m-%d")
 
     display_results = get_display_results()
     save_results = get_save_results(display_results)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    lookback_days = get_env_int("PREVIOUS_LOOKBACK_DAYS", 7)
-    previous_csv = find_previous_csv(now_utc, lookback_days)
-
-    if previous_csv is None:
-        print(f"[INFO] No previous CSV found within {lookback_days} days.")
-        previous_metrics: dict[str, dict[str, int]] = {}
-        previous_date_text = None
-    else:
-        previous_csv_path, previous_date_text = previous_csv
-        previous_metrics = load_previous_metrics(previous_csv_path)
+    previous_csv_path = OUTPUT_DIR / f"mcp_repositories_{previous_date_text}.csv"
+    previous_metrics = load_previous_metrics(previous_csv_path)
 
     repositories = search_repositories(save_results)
 
@@ -757,6 +688,7 @@ def main() -> int:
         repositories=repositories,
         now_jst=now_jst,
         metric_deltas=metric_deltas,
+        current_date_text=current_date_text,
         previous_date_text=previous_date_text,
         display_results=display_results,
     )
@@ -783,7 +715,7 @@ def main() -> int:
         f"display_results={display_results}, "
         f"save_results={save_results}, "
         f"current_date={current_date_text}, "
-        f"previous_date={previous_date_text or 'none'}"
+        f"previous_date={previous_date_text}"
     )
     return 0
 
