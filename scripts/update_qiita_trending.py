@@ -631,8 +631,10 @@ def build_trending_body(
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     display_items = trending[:display_results]
 
-    # READMEキャッシュとClaude入力JSONは内部処理として生成する。
+    # READMEキャッシュとClaude入力JSON、CSV件数は内部処理として利用する。
     # Qiita記事本文には、運用者向けの内部情報を表示しない。
+    _ = current_count
+    _ = baseline_count
     _ = claude_input_path
     _ = claude_input_repository_count
 
@@ -642,11 +644,6 @@ def build_trending_body(
         f"比較期間: **{baseline_date_text} UTC → {latest_date_text} UTC**",
         f"ランキング指標: **{period_days}日間のStars増加数**",
         ":::",
-        "",
-        "# Claude Code向けMCP・関連ツール急上昇ランキング",
-        "",
-        f"比較対象CSVの件数は、最新日が **{current_count}件**、比較元が **{baseline_count}件** です。",
-        f"このうち、{period_days}日間でStarsが増加したリポジトリを上位 **{len(display_items)}件** 表示しています。",
         "",
     ]
 
@@ -686,14 +683,6 @@ def build_trending_body(
 
     lines.extend(
         [
-            "# 集計方法",
-            "",
-            f"- 最新CSV: `output/mcp_repositories_{latest_date_text}.csv`",
-            f"- 比較元CSV: `output/mcp_repositories_{baseline_date_text}.csv`",
-            f"- 比較期間: {period_days}日間",
-            "- 並び順: Stars増加数、Forks増加数、現在のStars数の順",
-            "- 除外条件: 7日間のStars増加数が0以下のリポジトリ",
-            "",
             "# 仕組み",
             "",
             "このランキングの生成コードとGitHub Actionsの設定は、以下のリポジトリで管理しています。",
