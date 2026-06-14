@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import csv
 import json
 import os
@@ -17,12 +18,16 @@ from zoneinfo import ZoneInfo
 
 QIITA_API_BASE_URL = "https://qiita.com/api/v2"
 GITHUB_API_BASE_URL = "https://api.github.com"
+ANTHROPIC_API_BASE_URL = "https://api.anthropic.com/v1/messages"
 JST = ZoneInfo("Asia/Tokyo")
 
 OUTPUT_DIR = Path("output")
 README_CACHE_DIR = OUTPUT_DIR / "readmes"
 CLAUDE_INPUT_DIR = OUTPUT_DIR / "claude_inputs"
+CLAUDE_EXPLANATION_DIR = OUTPUT_DIR / "claude_explanations"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
+
+DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 
 DEFAULT_TITLE = "Claude Code向けMCP・関連ツール急上昇ランキング【7日間Stars増加数で毎日自動更新】"
 
@@ -99,6 +104,19 @@ def get_env_int(name: str, default: int) -> int:
         return int(value)
     except ValueError:
         print(f"[WARN] {name} must be integer. fallback to {default}.")
+        return default
+
+
+def get_env_float(name: str, default: float) -> float:
+    value = os.getenv(name)
+
+    if not value:
+        return default
+
+    try:
+        return float(value)
+    except ValueError:
+        print(f"[WARN] {name} must be float. fallback to {default}.")
         return default
 
 
@@ -580,6 +598,260 @@ def build_claude_input_json(
     return output_path, payload
 
 
+
+def sha256_text(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def explanation_cache_paths(full_name: str) -> tuple[Path, Path]:
+    stem = safe_repo_file_stem(full_name)
+    return CLAUDE_EXPLANATION_DIR / f"{stem}.md", CLAUDE_EXPLANATION_DIR / f"{stem}.json"
+
+
+def normalize_explanation_text(value: str) -> str:
+    text = value.strip()
+    text = re.sub(r"^#+\s*", "", text)
+    text = re.sub(r"^\s*[-*]\s+", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text[:260].rstrip()
+
+
+def build_claude_prompt(repository: dict[str, Any]) -> tuple[str, str]:
+    repo_meta = {
+        "full_name": repository.get("full_name", ""),
+        "url": repository.get("url", ""),
+        "description": repository.get("description", ""),
+        "language": repository.get("language", ""),
+        "topics": repository.get("topics", []),
+        "stars": repository.get("stars", 0),
+        "star_delta_7d": repository.get("star_delta_7d", 0),
+        "forks": repository.get("forks", 0),
+        "fork_delta_7d": repository.get("fork_delta_7d", 0),
+    }
+
+    readme_text = repository.get("readme_text", "") or "README本文は取得できませんでした。"
+
+    system_prompt = (
+        "あなたはQiita向けにGitHubリポジトリを紹介する技術編集者です。"
+        "READMEとメタデータに基づき、事実を誇張せず、簡潔な日本語で説明してください。"
+    )
+
+    user_prompt = f"""
+以下のGitHubリポジトリについて、Qiitaのランキング記事に差し込む短い日本語解説を作成してください。
+
+出力条件:
+- 日本語で1段落のみ
+- 80〜140文字程度
+- Markdownの見出し、箇条書き、URLは不要
+- READMEで確認できない内容は断定しない
+- Claude Code対応、MCP対応はREADMEから読み取れる場合のみ断定する
+- 不明な場合は「〜に使えそう」「〜の確認に役立ちそう」のように表現する
+
+リポジトリ情報:
+{json.dumps(repo_meta, ensure_ascii=False, indent=2)}
+
+README:
+{readme_text}
+""".strip()
+
+    return system_prompt, user_prompt
+
+
+def request_claude_explanation(
+    session: requests.Session,
+    api_key: str,
+    model: str,
+    max_tokens: int,
+    repository: dict[str, Any],
+) -> tuple[str, dict[str, Any]]:
+    system_prompt, user_prompt = build_claude_prompt(repository)
+
+    response = session.post(
+        ANTHROPIC_API_BASE_URL,
+        headers={
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json",
+        },
+        json={
+            "model": model,
+            "max_tokens": max_tokens,
+            "temperature": 0.2,
+            "system": system_prompt,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": user_prompt,
+                }
+            ],
+        },
+        timeout=90,
+    )
+
+    if not response.ok:
+        print("[WARN] Anthropic API request failed.")
+        print(f"full_name: {repository.get('full_name', '')}")
+        print(f"status: {response.status_code}")
+        print(response.text[:1000])
+        return "", {}
+
+    data = response.json()
+    content_blocks = data.get("content", [])
+    text_parts = [
+        block.get("text", "")
+        for block in content_blocks
+        if isinstance(block, dict) and block.get("type") == "text"
+    ]
+    explanation = normalize_explanation_text(" ".join(text_parts))
+
+    return explanation, data
+
+
+def read_cached_explanation_if_valid(
+    full_name: str,
+    model: str,
+    prompt_version: str,
+    readme_text_hash: str,
+) -> str:
+    explanation_path, meta_path = explanation_cache_paths(full_name)
+
+    if not explanation_path.exists() or not meta_path.exists():
+        return ""
+
+    try:
+        metadata = json.loads(meta_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return ""
+
+    if metadata.get("model") != model:
+        return ""
+
+    if metadata.get("prompt_version") != prompt_version:
+        return ""
+
+    if metadata.get("readme_text_sha256") != readme_text_hash:
+        return ""
+
+    return explanation_path.read_text(encoding="utf-8", errors="replace").strip()
+
+
+def get_or_generate_claude_explanation(
+    repository: dict[str, Any],
+    session: requests.Session,
+    api_key: str,
+    model: str,
+    max_tokens: int,
+    prompt_version: str,
+    force_regenerate: bool,
+) -> str:
+    full_name = repository.get("full_name", "").strip()
+
+    if not full_name:
+        return ""
+
+    readme_text = repository.get("readme_text", "") or ""
+    readme_text_hash = sha256_text(readme_text)
+    explanation_path, meta_path = explanation_cache_paths(full_name)
+
+    if not force_regenerate:
+        cached_explanation = read_cached_explanation_if_valid(
+            full_name=full_name,
+            model=model,
+            prompt_version=prompt_version,
+            readme_text_hash=readme_text_hash,
+        )
+        if cached_explanation:
+            print(f"[INFO] Claude explanation cache hit: {full_name}")
+            return cached_explanation
+
+    if not api_key:
+        print(f"[WARN] ANTHROPIC_API_KEY is not set. Skip explanation generation: {full_name}")
+        return ""
+
+    explanation, response_data = request_claude_explanation(
+        session=session,
+        api_key=api_key,
+        model=model,
+        max_tokens=max_tokens,
+        repository=repository,
+    )
+
+    if not explanation:
+        return ""
+
+    CLAUDE_EXPLANATION_DIR.mkdir(parents=True, exist_ok=True)
+
+    explanation_path.write_text(explanation, encoding="utf-8")
+
+    metadata = {
+        "full_name": full_name,
+        "url": repository.get("url", ""),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "model": model,
+        "prompt_version": prompt_version,
+        "readme_text_sha256": readme_text_hash,
+        "readme_length": repository.get("readme_length", 0),
+        "readme_truncated_for_claude_input": repository.get("readme_truncated_for_claude_input", False),
+        "readme_cache_path": repository.get("readme_cache_path", ""),
+        "readme_meta_path": repository.get("readme_meta_path", ""),
+        "anthropic_response_id": response_data.get("id", ""),
+        "anthropic_stop_reason": response_data.get("stop_reason", ""),
+        "anthropic_usage": response_data.get("usage", {}),
+        "explanation_cache_path": str(explanation_path),
+    }
+
+    meta_path.write_text(
+        json.dumps(metadata, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    print(f"[INFO] Claude explanation generated: {full_name}")
+
+    return explanation
+
+
+def build_claude_explanations(
+    claude_payload: dict[str, Any],
+    target_count: int,
+    model: str,
+    max_tokens: int,
+    prompt_version: str,
+    force_regenerate: bool,
+    sleep_seconds: float,
+) -> dict[str, str]:
+    repositories = claude_payload.get("repositories", [])[:target_count]
+    api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+    explanations: dict[str, str] = {}
+
+    if not repositories:
+        return explanations
+
+    CLAUDE_EXPLANATION_DIR.mkdir(parents=True, exist_ok=True)
+
+    with requests.Session() as session:
+        for repository in repositories:
+            full_name = repository.get("full_name", "").strip()
+            explanation = get_or_generate_claude_explanation(
+                repository=repository,
+                session=session,
+                api_key=api_key,
+                model=model,
+                max_tokens=max_tokens,
+                prompt_version=prompt_version,
+                force_regenerate=force_regenerate,
+            )
+
+            if explanation:
+                explanations[full_name] = explanation
+
+            if sleep_seconds > 0:
+                time.sleep(sleep_seconds)
+
+    print(f"[INFO] Claude explanations available: {len(explanations)}")
+
+    return explanations
+
+
 def build_no_baseline_body(
     latest_date_text: str,
     baseline_date_text: str,
@@ -627,9 +899,11 @@ def build_trending_body(
     baseline_count: int,
     claude_input_path: Path | None,
     claude_input_repository_count: int,
+    explanations_by_full_name: dict[str, str] | None = None,
 ) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     display_items = trending[:display_results]
+    explanations = explanations_by_full_name or {}
 
     # READMEキャッシュとClaude入力JSON、CSV件数は内部処理として利用する。
     # Qiita記事本文には、運用者向けの内部情報を表示しない。
@@ -661,6 +935,7 @@ def build_trending_body(
             current = item.current
             description = truncate_description(current.description)
             topics = format_topics(current.topics)
+            explanation = explanations.get(current.full_name, "")
 
             lines.extend(
                 [
@@ -668,6 +943,19 @@ def build_trending_body(
                     "",
                     description,
                     "",
+                ]
+            )
+
+            if explanation:
+                lines.extend(
+                    [
+                        f"> {md_escape(explanation)}",
+                        "",
+                    ]
+                )
+
+            lines.extend(
+                [
                     f"⭐ **{current.stars:,} Stars**（{period_days}日間 {format_delta(item.star_delta_7d)}）　🍴 **{current.forks:,} Forks**（{period_days}日間 {format_delta(item.fork_delta_7d)}）",
                     f"順位: {current.rank}位（{format_rank_delta(item.rank_delta_7d)}）",
                     "",
@@ -705,9 +993,16 @@ def update_qiita_item() -> None:
     private = get_env_bool("QIITA_TRENDING_PRIVATE", True)
     period_days = get_env_int("TRENDING_PERIOD_DAYS", 7)
     display_results = get_env_int("TRENDING_DISPLAY_RESULTS", 30)
-    readme_target_count = get_env_int("README_TARGET_COUNT", 10)
+    readme_target_count = get_env_int("README_TARGET_COUNT", 30)
     readme_max_chars_for_claude_input = get_env_int("README_MAX_CHARS_FOR_CLAUDE_INPUT", 30000)
-    prepare_claude_input = get_env_bool("PREPARE_CLAUDE_INPUT", True)
+    generate_claude_explanations = get_env_bool("GENERATE_CLAUDE_EXPLANATIONS", False)
+    prepare_claude_input = get_env_bool("PREPARE_CLAUDE_INPUT", True) or generate_claude_explanations
+    explanation_target_count = get_env_int("EXPLANATION_TARGET_COUNT", display_results)
+    anthropic_model = os.getenv("ANTHROPIC_MODEL", DEFAULT_ANTHROPIC_MODEL)
+    anthropic_max_tokens = get_env_int("ANTHROPIC_MAX_TOKENS", 700)
+    explanation_prompt_version = os.getenv("EXPLANATION_PROMPT_VERSION", "v1")
+    force_regenerate_explanations = get_env_bool("FORCE_REGENERATE_EXPLANATIONS", False)
+    claude_api_sleep_seconds = get_env_float("CLAUDE_API_SLEEP_SECONDS", 1.0)
 
     latest_csv_path = find_latest_csv_path()
     latest_date_text = extract_date_from_csv_path(latest_csv_path)
@@ -727,6 +1022,7 @@ def update_qiita_item() -> None:
 
         claude_input_path: Path | None = None
         claude_input_repository_count = 0
+        explanations_by_full_name: dict[str, str] = {}
 
         if prepare_claude_input and trending:
             claude_input_path, claude_payload = build_claude_input_json(
@@ -739,6 +1035,17 @@ def update_qiita_item() -> None:
             )
             claude_input_repository_count = len(claude_payload.get("repositories", []))
 
+            if generate_claude_explanations:
+                explanations_by_full_name = build_claude_explanations(
+                    claude_payload=claude_payload,
+                    target_count=explanation_target_count,
+                    model=anthropic_model,
+                    max_tokens=anthropic_max_tokens,
+                    prompt_version=explanation_prompt_version,
+                    force_regenerate=force_regenerate_explanations,
+                    sleep_seconds=claude_api_sleep_seconds,
+                )
+
         body = build_trending_body(
             trending=trending,
             latest_date_text=latest_date_text,
@@ -749,6 +1056,7 @@ def update_qiita_item() -> None:
             baseline_count=len(baseline_snapshots),
             claude_input_path=claude_input_path,
             claude_input_repository_count=claude_input_repository_count,
+            explanations_by_full_name=explanations_by_full_name,
         )
 
     payload = {
@@ -783,6 +1091,9 @@ def update_qiita_item() -> None:
     print(f"[INFO] private: {private}")
     print(f"[INFO] latest_csv_path: {latest_csv_path}")
     print(f"[INFO] baseline_csv_path: {baseline_csv_path}")
+
+    if "explanations_by_full_name" in locals():
+        print(f"[INFO] claude_explanations: {len(explanations_by_full_name)}")
 
     if url:
         print(f"[INFO] URL: {url}")
