@@ -3,7 +3,7 @@ name: Update MCP repositories ranking
 on:
   workflow_dispatch:
   #schedule:
-  #  - cron: "17 0 * * *"
+  # - cron: "17 0 * * *"
 
 permissions:
   contents: write
@@ -18,15 +18,26 @@ jobs:
       MAX_PAGES_PER_QUERY: "5"
       PER_PAGE: "100"
       OUTPUT_RETENTION_DAYS: "30"
+
       QIITA_PRIVATE: "false"
       QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
+
       QIITA_TRENDING_PRIVATE: "false"
       QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール急上昇ランキング【7日間Stars増加数で毎日自動更新】"
       TRENDING_PERIOD_DAYS: "7"
       TRENDING_DISPLAY_RESULTS: "30"
+
       PREPARE_CLAUDE_INPUT: "true"
       README_TARGET_COUNT: "30"
       README_MAX_CHARS_FOR_CLAUDE_INPUT: "30000"
+
+      GENERATE_CLAUDE_EXPLANATIONS: "true"
+      EXPLANATION_TARGET_COUNT: "30"
+      ANTHROPIC_MODEL: "claude-haiku-4-5-20251001"
+      ANTHROPIC_MAX_TOKENS: "700"
+      EXPLANATION_PROMPT_VERSION: "v1"
+      FORCE_REGENERATE_EXPLANATIONS: "false"
+      CLAUDE_API_SLEEP_SECONDS: "1.0"
 
     steps:
       - name: Checkout
@@ -49,7 +60,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add README.md output
+
           if git diff --cached --quiet; then
             echo "No generated file changes."
           else
@@ -68,11 +81,12 @@ jobs:
             python scripts/update_qiita.py
           fi
 
-      - name: Update Qiita trending ranking article and prepare Claude input
+      - name: Update Qiita trending ranking article with Claude explanations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
           QIITA_TRENDING_ITEM_ID: ${{ secrets.QIITA_TRENDING_ITEM_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           if [ -z "${QIITA_TOKEN}" ] || [ -z "${QIITA_TRENDING_ITEM_ID}" ]; then
             echo "Skip Qiita trending ranking update because QIITA_TOKEN or QIITA_TRENDING_ITEM_ID is not set."
@@ -80,14 +94,16 @@ jobs:
             python scripts/update_qiita_trending.py
           fi
 
-      - name: Commit README cache and Claude input files
+      - name: Commit README cache, Claude input, and Claude explanations
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add output/readmes output/claude_inputs
+
+          git add output/readmes output/claude_inputs output/claude_explanations
+
           if git diff --cached --quiet; then
-            echo "No README cache or Claude input changes."
+            echo "No README cache, Claude input, or Claude explanation changes."
           else
-            git commit -m "Prepare README cache and Claude input"
+            git commit -m "Generate Claude explanation cache"
             git push
           fi
