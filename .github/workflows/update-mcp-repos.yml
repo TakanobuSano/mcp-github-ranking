@@ -3,7 +3,7 @@ name: Update MCP repositories ranking
 on:
   workflow_dispatch:
   #schedule:
-  # - cron: "17 0 * * *"
+  #  - cron: "17 0 * * *"
 
 permissions:
   contents: write
