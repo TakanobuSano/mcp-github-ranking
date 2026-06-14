@@ -1,0 +1,1 @@
+Google Notebook LMのオープンソース代替として、プライバシー重視で複数のAIモデル（OpenAI、Anthropic、Ollamaなど18以上）に対応。PDFや動画などの多様なコンテンツを整理でき、AIとの会話や複数話者のポッドキャスト生成、全文・ベクトル検索が可能です。Dockerで簡単にデプロイでき、REST APIも提供しています。

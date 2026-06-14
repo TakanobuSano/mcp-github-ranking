@@ -1,0 +1,1 @@
+PPT Master 任意のドキュメントからAIが編集可能なPowerPointを生成するツール。ネイティブな図形やアニメーション、スピーカーノートの音声ナレーション機能を備え、既存のテンプレートに従わせることも可能。Python環境とAI IDE（Claude Code、Cursorなど）で動作し、生成されたファイルはPowerPointで直接編集できる実のPPTXファイルとなります。

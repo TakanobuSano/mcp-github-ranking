@@ -1,0 +1,27 @@
+{
+  "full_name": "lfnovo/open-notebook",
+  "url": "https://github.com/lfnovo/open-notebook",
+  "generated_at": "2026-06-14T09:46:55.992792+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "8cd2c31a52c21a23e6a8c1abcec7b16e85d6631fdd71a9aa3b1828e1a61f0484",
+  "readme_length": 18092,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/lfnovo__open-notebook.md",
+  "readme_meta_path": "output/readmes/lfnovo__open-notebook.json",
+  "anthropic_response_id": "msg_0144cD5LJFELKqhBRGKM4x8G",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 6218,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 136,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/lfnovo__open-notebook.md"
+}

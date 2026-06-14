@@ -1,0 +1,27 @@
+{
+  "full_name": "NousResearch/hermes-agent",
+  "url": "https://github.com/NousResearch/hermes-agent",
+  "generated_at": "2026-06-14T09:41:36.618802+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "1be5064f53bc93d838b8bdaa6a6f55de995fa81d13441314e554001da50dd085",
+  "readme_length": 15353,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/NousResearch__hermes-agent.md",
+  "readme_meta_path": "output/readmes/NousResearch__hermes-agent.json",
+  "anthropic_response_id": "msg_01PaoQFxJJPYRs4joe2WaKgV",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4699,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 126,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/NousResearch__hermes-agent.md"
+}

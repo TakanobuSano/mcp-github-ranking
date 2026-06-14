@@ -1,0 +1,27 @@
+{
+  "full_name": "hugohe3/ppt-master",
+  "url": "https://github.com/hugohe3/ppt-master",
+  "generated_at": "2026-06-14T09:51:49.617281+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "2cad10fe47c6cfc959fa3886d5cf10aec709cc4164dc254af93243bb9bd32473",
+  "readme_length": 24599,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/hugohe3__ppt-master.md",
+  "readme_meta_path": "output/readmes/hugohe3__ppt-master.json",
+  "anthropic_response_id": "msg_016nLhdqKMZ5QbBHTdu2ryKy",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8160,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 141,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/hugohe3__ppt-master.md"
+}

@@ -1,0 +1,1 @@
+Agent Reach AI AgentがTwitter、Reddit、YouTube、GitHub、Bilibili、小红書など複数のプラットフォームを一つのCLIで無料アクセスできるツール。Claude Code、Cursor、OpenClawなど主流のAIコーディングエージェント対応で、複雑なAPI認証やスクレイピング設定を自動化。インストール後は`agent-reach doctor`で各プラットフォームの接続状態を診断でき、プラットフォーム側の仕様変更時も自動で代替手段に切り替わる設計。MCP対応で全網検

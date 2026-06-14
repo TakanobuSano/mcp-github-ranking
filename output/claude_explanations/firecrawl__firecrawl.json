@@ -1,0 +1,27 @@
+{
+  "full_name": "firecrawl/firecrawl",
+  "url": "https://github.com/firecrawl/firecrawl",
+  "generated_at": "2026-06-14T09:49:39.106953+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "25476cb981dce4618e947fd27ad64be2b5434865ad18f0eff54069849b33a324",
+  "readme_length": 20564,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/firecrawl__firecrawl.md",
+  "readme_meta_path": "output/readmes/firecrawl__firecrawl.json",
+  "anthropic_response_id": "msg_018j2vW3C7EUfN7Lo4reJXTw",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 7564,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 114,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/firecrawl__firecrawl.md"
+}

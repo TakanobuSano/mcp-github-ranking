@@ -1,0 +1,27 @@
+{
+  "full_name": "github/spec-kit",
+  "url": "https://github.com/github/spec-kit",
+  "generated_at": "2026-06-14T09:52:18.226771+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "8fd915d555da5e3d7d5197c85328dd4df78e40a01a059b7a3adc835b9073ea1f",
+  "readme_length": 33051,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/github__spec-kit.md",
+  "readme_meta_path": "output/readmes/github__spec-kit.json",
+  "anthropic_response_id": "msg_01TVpwrebYhJmEN4CLjVYM2x",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 7787,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 155,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/github__spec-kit.md"
+}

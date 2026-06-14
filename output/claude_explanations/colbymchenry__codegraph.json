@@ -1,0 +1,27 @@
+{
+  "full_name": "colbymchenry/codegraph",
+  "url": "https://github.com/colbymchenry/codegraph",
+  "generated_at": "2026-06-14T09:44:46.096867+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "d71df1d8deb22142344de2e55770cf93eeb0e254e9fded329a1cc216b7ceb62c",
+  "readme_length": 43210,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/colbymchenry__codegraph.md",
+  "readme_meta_path": "output/readmes/colbymchenry__codegraph.json",
+  "anthropic_response_id": "msg_01LEebgULmJKNFLjHJgknbko",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9661,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 155,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/colbymchenry__codegraph.md"
+}

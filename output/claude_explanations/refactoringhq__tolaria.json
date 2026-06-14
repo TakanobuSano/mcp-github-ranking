@@ -1,0 +1,27 @@
+{
+  "full_name": "refactoringhq/tolaria",
+  "url": "https://github.com/refactoringhq/tolaria",
+  "generated_at": "2026-06-14T09:47:23.111100+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "b976aa83d93ff74b1086868bca6b2803e51d101682bfd1afe373b0c78a3ec8e6",
+  "readme_length": 6094,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/refactoringhq__tolaria.md",
+  "readme_meta_path": "output/readmes/refactoringhq__tolaria.json",
+  "anthropic_response_id": "msg_019N1eFLrM57d9sG2UMbLMjD",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 2311,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 141,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/refactoringhq__tolaria.md"
+}
