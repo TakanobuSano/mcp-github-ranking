@@ -1,20 +1,27 @@
+import base64
 import csv
+import json
 import os
 import re
 import sys
+import time
 import unicodedata
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import Any
 
 import requests
 from zoneinfo import ZoneInfo
 
 
 QIITA_API_BASE_URL = "https://qiita.com/api/v2"
+GITHUB_API_BASE_URL = "https://api.github.com"
 JST = ZoneInfo("Asia/Tokyo")
 
 OUTPUT_DIR = Path("output")
+README_CACHE_DIR = OUTPUT_DIR / "readmes"
+CLAUDE_INPUT_DIR = OUTPUT_DIR / "claude_inputs"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_TITLE = "Claude Code向けMCP・関連ツール急上昇ランキング【7日間Stars増加数で毎日自動更新】"
@@ -51,6 +58,17 @@ class TrendingRepository:
     star_delta_7d: int
     fork_delta_7d: int
     rank_delta_7d: int | None
+
+
+@dataclass
+class ReadmeCacheResult:
+    full_name: str
+    readme_cache_path: str
+    readme_meta_path: str
+    readme_length: int
+    readme_truncated_for_claude_input: bool
+    readme_text_for_claude_input: str
+    cache_status: str
 
 
 def require_env(name: str) -> str:
@@ -287,6 +305,281 @@ def format_topics(value: str) -> str:
     return " / ".join([f"`{md_escape(topic)}`" for topic in topics[:8]])
 
 
+def build_github_headers() -> dict[str, str]:
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "mcp-github-ranking",
+    }
+
+    token = os.getenv("GITHUB_TOKEN")
+
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+
+    return headers
+
+
+def safe_repo_file_stem(full_name: str) -> str:
+    return full_name.replace("/", "__").replace(" ", "_")
+
+
+def readme_cache_paths(full_name: str) -> tuple[Path, Path]:
+    stem = safe_repo_file_stem(full_name)
+    return README_CACHE_DIR / f"{stem}.md", README_CACHE_DIR / f"{stem}.json"
+
+
+def request_json_with_retry(
+    session: requests.Session,
+    url: str,
+    headers: dict[str, str],
+    max_retries: int = 3,
+) -> dict[str, Any]:
+    for attempt in range(1, max_retries + 1):
+        response = session.get(
+            url,
+            headers=headers,
+            timeout=30,
+        )
+
+        if response.status_code == 403:
+            reset_timestamp = response.headers.get("X-RateLimit-Reset")
+            remaining = response.headers.get("X-RateLimit-Remaining")
+
+            if remaining == "0" and reset_timestamp:
+                wait_seconds = max(int(reset_timestamp) - int(time.time()) + 5, 5)
+                print(f"[WARN] GitHub API rate limit reached. wait {wait_seconds} seconds.")
+                time.sleep(wait_seconds)
+                continue
+
+        if response.status_code == 404:
+            print(f"[WARN] README not found: {url}")
+            return {}
+
+        if response.status_code in {500, 502, 503, 504}:
+            wait_seconds = attempt * 5
+            print(
+                f"[WARN] GitHub API temporary error: {response.status_code}. "
+                f"retry in {wait_seconds}s."
+            )
+            time.sleep(wait_seconds)
+            continue
+
+        if not response.ok:
+            print("[ERROR] GitHub API request failed.")
+            print(f"url: {url}")
+            print(f"status: {response.status_code}")
+            print(response.text)
+            response.raise_for_status()
+
+        return response.json()
+
+    raise RuntimeError("GitHub API request failed after retries.")
+
+
+def decode_readme_content(data: dict[str, Any]) -> str:
+    encoded_content = data.get("content")
+
+    if not encoded_content:
+        return ""
+
+    encoding = data.get("encoding", "")
+
+    if encoding != "base64":
+        return ""
+
+    normalized = encoded_content.replace("\n", "")
+
+    try:
+        return base64.b64decode(normalized).decode("utf-8", errors="replace")
+    except Exception as error:
+        print(f"[WARN] Failed to decode README content: {error}")
+        return ""
+
+
+def fetch_readme_from_github(
+    session: requests.Session,
+    full_name: str,
+    headers: dict[str, str],
+) -> tuple[str, dict[str, Any]]:
+    url = f"{GITHUB_API_BASE_URL}/repos/{full_name}/readme"
+    data = request_json_with_retry(session=session, url=url, headers=headers)
+
+    if not data:
+        return "", {}
+
+    readme_text = decode_readme_content(data)
+
+    metadata = {
+        "github_api_url": url,
+        "readme_name": data.get("name", ""),
+        "readme_path": data.get("path", ""),
+        "readme_html_url": data.get("html_url", ""),
+        "readme_download_url": data.get("download_url", ""),
+        "readme_sha": data.get("sha", ""),
+        "readme_size": data.get("size", 0),
+    }
+
+    return readme_text, metadata
+
+
+def get_or_fetch_readme(
+    item: TrendingRepository,
+    session: requests.Session,
+    headers: dict[str, str],
+    max_chars_for_claude_input: int,
+) -> ReadmeCacheResult:
+    current = item.current
+    readme_path, meta_path = readme_cache_paths(current.full_name)
+
+    README_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+    if readme_path.exists() and meta_path.exists():
+        readme_text = readme_path.read_text(encoding="utf-8", errors="replace")
+        cache_status = "cache_hit"
+
+        try:
+            existing_meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing_meta = {}
+
+        readme_meta = {
+            **existing_meta,
+            "last_used_at": datetime.now(timezone.utc).isoformat(),
+        }
+    else:
+        readme_text, github_meta = fetch_readme_from_github(
+            session=session,
+            full_name=current.full_name,
+            headers=headers,
+        )
+        cache_status = "fetched"
+
+        readme_path.write_text(readme_text, encoding="utf-8")
+
+        readme_meta = {
+            "full_name": current.full_name,
+            "url": current.url,
+            "readme_cache_path": str(readme_path),
+            "fetched_at": datetime.now(timezone.utc).isoformat(),
+            "repo_pushed_at_when_fetched": current.pushed_at,
+            "readme_length": len(readme_text),
+            "readme_available": bool(readme_text),
+            **github_meta,
+        }
+
+    readme_text_for_claude_input = readme_text[:max_chars_for_claude_input]
+    readme_truncated = len(readme_text) > max_chars_for_claude_input
+
+    readme_meta.update(
+        {
+            "last_used_at": datetime.now(timezone.utc).isoformat(),
+            "readme_length": len(readme_text),
+            "readme_truncated_for_claude_input": readme_truncated,
+            "claude_input_max_chars": max_chars_for_claude_input,
+            "cache_status": cache_status,
+        }
+    )
+
+    meta_path.write_text(
+        json.dumps(readme_meta, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    return ReadmeCacheResult(
+        full_name=current.full_name,
+        readme_cache_path=str(readme_path),
+        readme_meta_path=str(meta_path),
+        readme_length=len(readme_text),
+        readme_truncated_for_claude_input=readme_truncated,
+        readme_text_for_claude_input=readme_text_for_claude_input,
+        cache_status=cache_status,
+    )
+
+
+def build_claude_input_json(
+    trending: list[TrendingRepository],
+    latest_date_text: str,
+    baseline_date_text: str,
+    period_days: int,
+    readme_target_count: int,
+    readme_max_chars_for_claude_input: int,
+) -> tuple[Path, dict[str, Any]]:
+    CLAUDE_INPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    selected_items = trending[:readme_target_count]
+    headers = build_github_headers()
+    repositories: list[dict[str, Any]] = []
+
+    with requests.Session() as session:
+        for index, item in enumerate(selected_items, start=1):
+            readme_result = get_or_fetch_readme(
+                item=item,
+                session=session,
+                headers=headers,
+                max_chars_for_claude_input=readme_max_chars_for_claude_input,
+            )
+
+            current = item.current
+
+            repositories.append(
+                {
+                    "trending_rank": index,
+                    "full_name": current.full_name,
+                    "url": current.url,
+                    "description": current.description,
+                    "language": current.language,
+                    "topics": [topic.strip() for topic in current.topics.split(",") if topic.strip()],
+                    "stars": current.stars,
+                    "star_delta_7d": item.star_delta_7d,
+                    "forks": current.forks,
+                    "fork_delta_7d": item.fork_delta_7d,
+                    "open_issues": current.open_issues,
+                    "rank": current.rank,
+                    "rank_delta_7d": item.rank_delta_7d,
+                    "pushed_at": current.pushed_at,
+                    "readme_cache_path": readme_result.readme_cache_path,
+                    "readme_meta_path": readme_result.readme_meta_path,
+                    "readme_length": readme_result.readme_length,
+                    "readme_truncated_for_claude_input": readme_result.readme_truncated_for_claude_input,
+                    "readme_cache_status": readme_result.cache_status,
+                    "readme_text": readme_result.readme_text_for_claude_input,
+                }
+            )
+
+            time.sleep(0.5)
+
+    payload = {
+        "purpose": "Claude API input for generating Japanese explanations for Qiita trending ranking article.",
+        "ranking_date": latest_date_text,
+        "baseline_date": baseline_date_text,
+        "period_days": period_days,
+        "readme_target_count": readme_target_count,
+        "readme_max_chars_for_claude_input": readme_max_chars_for_claude_input,
+        "prompt_policy": {
+            "language": "Japanese",
+            "style": "Qiita向けの簡潔で実務寄りの解説",
+            "avoid_overclaiming": True,
+            "notes": [
+                "CSVとREADMEに書かれていない事実は断定しない。",
+                "Claude Code対応やMCP対応はREADMEで確認できる場合のみ断定する。",
+                "不明な場合は、対応している可能性、確認が必要、という表現にする。",
+            ],
+        },
+        "repositories": repositories,
+    }
+
+    output_path = CLAUDE_INPUT_DIR / f"trending_readme_context_{latest_date_text}.json"
+    output_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    print(f"[INFO] Claude input JSON written: {output_path}")
+
+    return output_path, payload
+
+
 def build_no_baseline_body(
     latest_date_text: str,
     baseline_date_text: str,
@@ -332,6 +625,8 @@ def build_trending_body(
     display_results: int,
     current_count: int,
     baseline_count: int,
+    claude_input_path: Path | None,
+    claude_input_repository_count: int,
 ) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     display_items = trending[:display_results]
@@ -351,6 +646,21 @@ def build_trending_body(
         f"このうち、{period_days}日間でStarsが増加したリポジトリを上位 **{len(display_items)}件** 表示しています。",
         "",
     ]
+
+    if claude_input_path is not None:
+        lines.extend(
+            [
+                "# Claude API向け下準備",
+                "",
+                f"急上昇ランキング上位 **{claude_input_repository_count}件** について、READMEを初回のみ取得し、Claude APIに渡しやすいJSONを生成しています。",
+                "",
+                f"- Claude入力用JSON: `{claude_input_path}`",
+                "- README本文キャッシュ: `output/readmes/`",
+                "",
+                "現時点ではClaude APIによる日本語解説生成はまだ実行していません。次の段階で、このJSONをClaude APIに渡すことで、READMEに基づく日本語解説を記事に追加できます。",
+                "",
+            ]
+        )
 
     if not display_items:
         lines.extend(
@@ -423,6 +733,9 @@ def update_qiita_item() -> None:
     private = get_env_bool("QIITA_TRENDING_PRIVATE", True)
     period_days = get_env_int("TRENDING_PERIOD_DAYS", 7)
     display_results = get_env_int("TRENDING_DISPLAY_RESULTS", 30)
+    readme_target_count = get_env_int("README_TARGET_COUNT", 10)
+    readme_max_chars_for_claude_input = get_env_int("README_MAX_CHARS_FOR_CLAUDE_INPUT", 30000)
+    prepare_claude_input = get_env_bool("PREPARE_CLAUDE_INPUT", True)
 
     latest_csv_path = find_latest_csv_path()
     latest_date_text = extract_date_from_csv_path(latest_csv_path)
@@ -440,6 +753,20 @@ def update_qiita_item() -> None:
         baseline_snapshots = read_snapshots(baseline_csv_path)
         trending = calculate_trending(current_snapshots, baseline_snapshots)
 
+        claude_input_path: Path | None = None
+        claude_input_repository_count = 0
+
+        if prepare_claude_input and trending:
+            claude_input_path, claude_payload = build_claude_input_json(
+                trending=trending,
+                latest_date_text=latest_date_text,
+                baseline_date_text=baseline_date_text,
+                period_days=period_days,
+                readme_target_count=readme_target_count,
+                readme_max_chars_for_claude_input=readme_max_chars_for_claude_input,
+            )
+            claude_input_repository_count = len(claude_payload.get("repositories", []))
+
         body = build_trending_body(
             trending=trending,
             latest_date_text=latest_date_text,
@@ -448,6 +775,8 @@ def update_qiita_item() -> None:
             display_results=display_results,
             current_count=len(current_snapshots),
             baseline_count=len(baseline_snapshots),
+            claude_input_path=claude_input_path,
+            claude_input_repository_count=claude_input_repository_count,
         )
 
     payload = {
