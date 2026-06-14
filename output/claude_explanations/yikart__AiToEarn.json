@@ -1,0 +1,27 @@
+{
+  "full_name": "yikart/AiToEarn",
+  "url": "https://github.com/yikart/AiToEarn",
+  "generated_at": "2026-06-14T08:58:11.442109+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a69bbcc34018c1f6e096e35704f8063971a32aacb152268f1959cbc0f01c0fae",
+  "readme_length": 9320,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/yikart__AiToEarn.md",
+  "readme_meta_path": "output/readmes/yikart__AiToEarn.json",
+  "anthropic_response_id": "msg_014nNfWNNXNeZnBk8GkEPvEv",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 6058,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 140,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/yikart__AiToEarn.md"
+}
