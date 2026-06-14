@@ -660,8 +660,6 @@ def build_trending_body(
         for index, item in enumerate(display_items, start=1):
             current = item.current
             description = truncate_description(current.description)
-            language = md_escape(current.language) or "不明"
-            pushed_at = date_only(current.pushed_at or current.updated_at)
             topics = format_topics(current.topics)
 
             lines.extend(
@@ -670,11 +668,8 @@ def build_trending_body(
                     "",
                     description,
                     "",
-                    f"⭐ **{current.stars:,} Stars**（{period_days}日間 {format_delta(item.star_delta_7d)}）",
-                    f"🍴 **{current.forks:,} Forks**（{period_days}日間 {format_delta(item.fork_delta_7d)}）",
+                    f"⭐ **{current.stars:,} Stars**（{period_days}日間 {format_delta(item.star_delta_7d)}）　🍴 **{current.forks:,} Forks**（{period_days}日間 {format_delta(item.fork_delta_7d)}）",
                     f"順位: {current.rank}位（{format_rank_delta(item.rank_delta_7d)}）",
-                    f"言語: {language}",
-                    f"最終プッシュ: {pushed_at}",
                     "",
                     f"Topics: {topics}",
                     "",
