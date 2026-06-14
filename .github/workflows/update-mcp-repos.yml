@@ -37,7 +37,7 @@ jobs:
       ANTHROPIC_MAX_TOKENS: "700"
       EXPLANATION_PROMPT_VERSION: "v1"
       FORCE_REGENERATE_EXPLANATIONS: "false"
-      CLAUDE_API_SLEEP_SECONDS: "1.0"
+      CLAUDE_API_SLEEP_SECONDS: "25.0"
 
     steps:
       - name: Checkout
