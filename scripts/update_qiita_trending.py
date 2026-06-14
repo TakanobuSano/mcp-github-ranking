@@ -631,13 +631,16 @@ def build_trending_body(
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     display_items = trending[:display_results]
 
+    # READMEキャッシュとClaude入力JSONは内部処理として生成する。
+    # Qiita記事本文には、運用者向けの内部情報を表示しない。
+    _ = claude_input_path
+    _ = claude_input_repository_count
+
     lines = [
         ":::note info",
         f"最終更新: **{now}**",
         f"比較期間: **{baseline_date_text} UTC → {latest_date_text} UTC**",
         f"ランキング指標: **{period_days}日間のStars増加数**",
-        "",
-        "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールのうち、直近7日間でStarsが増えたものをランキング化しています。",
         ":::",
         "",
         "# Claude Code向けMCP・関連ツール急上昇ランキング",
@@ -646,21 +649,6 @@ def build_trending_body(
         f"このうち、{period_days}日間でStarsが増加したリポジトリを上位 **{len(display_items)}件** 表示しています。",
         "",
     ]
-
-    if claude_input_path is not None:
-        lines.extend(
-            [
-                "# Claude API向け下準備",
-                "",
-                f"急上昇ランキング上位 **{claude_input_repository_count}件** について、READMEを初回のみ取得し、Claude APIに渡しやすいJSONを生成しています。",
-                "",
-                f"- Claude入力用JSON: `{claude_input_path}`",
-                "- README本文キャッシュ: `output/readmes/`",
-                "",
-                "現時点ではClaude APIによる日本語解説生成はまだ実行していません。次の段階で、このJSONをClaude APIに渡すことで、READMEに基づく日本語解説を記事に追加できます。",
-                "",
-            ]
-        )
 
     if not display_items:
         lines.extend(
