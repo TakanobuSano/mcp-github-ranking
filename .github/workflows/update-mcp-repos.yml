@@ -18,12 +18,15 @@ jobs:
       MAX_PAGES_PER_QUERY: "5"
       PER_PAGE: "100"
       OUTPUT_RETENTION_DAYS: "30"
-      QIITA_PRIVATE: "false"
+      QIITA_PRIVATE: "true"
       QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
-      QIITA_TRENDING_PRIVATE: "false"
+      QIITA_TRENDING_PRIVATE: "true"
       QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール急上昇ランキング【7日間Stars増加数で毎日自動更新】"
       TRENDING_PERIOD_DAYS: "7"
       TRENDING_DISPLAY_RESULTS: "30"
+      PREPARE_CLAUDE_INPUT: "true"
+      README_TARGET_COUNT: "10"
+      README_MAX_CHARS_FOR_CLAUDE_INPUT: "30000"
 
     steps:
       - name: Checkout
@@ -65,8 +68,9 @@ jobs:
             python scripts/update_qiita.py
           fi
 
-      - name: Update Qiita trending ranking article
+      - name: Update Qiita trending ranking article and prepare Claude input
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
           QIITA_TRENDING_ITEM_ID: ${{ secrets.QIITA_TRENDING_ITEM_ID }}
         run: |
@@ -74,4 +78,16 @@ jobs:
             echo "Skip Qiita trending ranking update because QIITA_TOKEN or QIITA_TRENDING_ITEM_ID is not set."
           else
             python scripts/update_qiita_trending.py
+          fi
+
+      - name: Commit README cache and Claude input files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/readmes output/claude_inputs
+          if git diff --cached --quiet; then
+            echo "No README cache or Claude input changes."
+          else
+            git commit -m "Prepare README cache and Claude input"
+            git push
           fi
