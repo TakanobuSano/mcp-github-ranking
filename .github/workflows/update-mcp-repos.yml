@@ -2,8 +2,12 @@ name: Update MCP repositories ranking
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 0 * * *"
+  #schedule:
+  #  - cron: "17 0 * * *"
+
+concurrency:
+  group: update-mcp-repositories-ranking
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -39,9 +43,16 @@ jobs:
       FORCE_REGENERATE_EXPLANATIONS: "false"
       CLAUDE_API_SLEEP_SECONDS: "25.0"
 
+      TEAMS_DISPLAY_RESULTS: "10"
+      TEAMS_TITLE: "Claude Code向けMCP・関連ツール急上昇ランキング Top10"
+      QIITA_TRENDING_URL: "https://qiita.com/4q_sano/items/cc27d3564a657046242a"
+      GITHUB_REPOSITORY_URL: "https://github.com/TakanobuSano/mcp-github-ranking"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -67,7 +78,8 @@ jobs:
             echo "No generated file changes."
           else
             git commit -m "Update MCP repository ranking"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
 
       - name: Update Qiita general ranking article
@@ -105,5 +117,29 @@ jobs:
             echo "No README cache, Claude input, or Claude explanation changes."
           else
             git commit -m "Generate Claude explanation cache"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Check Teams posting day
+        id: teams_day
+        run: |
+          day_of_week=$(TZ=Asia/Tokyo date +%u)
+          echo "JST day_of_week=${day_of_week}"
+
+          if [ "${day_of_week}" = "1" ]; then
+            echo "should_post=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "should_post=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Post MCP trending ranking summary to Teams
+        if: steps.teams_day.outputs.should_post == 'true'
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: |
+          if [ -z "${TEAMS_WEBHOOK_URL}" ]; then
+            echo "Skip Teams post because TEAMS_WEBHOOK_URL is not set."
+          else
+            python scripts/post_to_teams.py
           fi
