@@ -1,0 +1,27 @@
+{
+  "full_name": "rohitg00/ai-engineering-from-scratch",
+  "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+  "generated_at": "2026-06-14T10:18:31.976626+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "9c72a65d72050b4926ce243aae250902146c0368d4c045ca663428715136d6c8",
+  "readme_length": 87810,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/rohitg00__ai-engineering-from-scratch.md",
+  "readme_meta_path": "output/readmes/rohitg00__ai-engineering-from-scratch.json",
+  "anthropic_response_id": "msg_01YJZzMabDFbKTFWzm4zckyn",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 11266,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 177,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/rohitg00__ai-engineering-from-scratch.md"
+}

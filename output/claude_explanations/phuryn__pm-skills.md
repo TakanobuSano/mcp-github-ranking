@@ -1,0 +1,1 @@
+PM Skills Marketplaceは、プロダクト管理の全工程に対応した100以上のAIスキルとコマンドを集約したプラグイン集です。発見から戦略、実行、ローンチ、成長まで、Teresa Torres、Marty Cagan、Alberto Savoia等の実証済みフレームワークを組み込んだ構造化されたワークフローで、より良いプロダクト判断を支援します。Claude CodeおよびCoworkに対応しており、他のAIアシスタントでもスキルの利用が可能です。
