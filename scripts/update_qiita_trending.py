@@ -743,11 +743,16 @@ def get_or_generate_claude_explanation(
     max_tokens: int,
     prompt_version: str,
     force_regenerate: bool,
-) -> str:
+) -> tuple[str, bool]:
+    """Return the explanation and whether the Anthropic API was actually called.
+
+    api_called is False for cache hits and skipped repositories.
+    This lets the caller sleep only after real API requests.
+    """
     full_name = repository.get("full_name", "").strip()
 
     if not full_name:
-        return ""
+        return "", False
 
     readme_text = repository.get("readme_text", "") or ""
     readme_text_hash = sha256_text(readme_text)
@@ -762,11 +767,11 @@ def get_or_generate_claude_explanation(
         )
         if cached_explanation:
             print(f"[INFO] Claude explanation cache hit: {full_name}")
-            return cached_explanation
+            return cached_explanation, False
 
     if not api_key:
         print(f"[WARN] ANTHROPIC_API_KEY is not set. Skip explanation generation: {full_name}")
-        return ""
+        return "", False
 
     explanation, response_data = request_claude_explanation(
         session=session,
@@ -775,9 +780,10 @@ def get_or_generate_claude_explanation(
         max_tokens=max_tokens,
         repository=repository,
     )
+    api_called = True
 
     if not explanation:
-        return ""
+        return "", api_called
 
     CLAUDE_EXPLANATION_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -807,7 +813,7 @@ def get_or_generate_claude_explanation(
 
     print(f"[INFO] Claude explanation generated: {full_name}")
 
-    return explanation
+    return explanation, api_called
 
 
 def build_claude_explanations(
@@ -831,7 +837,7 @@ def build_claude_explanations(
     with requests.Session() as session:
         for repository in repositories:
             full_name = repository.get("full_name", "").strip()
-            explanation = get_or_generate_claude_explanation(
+            explanation, api_called = get_or_generate_claude_explanation(
                 repository=repository,
                 session=session,
                 api_key=api_key,
@@ -844,7 +850,8 @@ def build_claude_explanations(
             if explanation:
                 explanations[full_name] = explanation
 
-            if sleep_seconds > 0:
+            if api_called and sleep_seconds > 0:
+                print(f"[INFO] Sleep {sleep_seconds} seconds after Anthropic API request.")
                 time.sleep(sleep_seconds)
 
     print(f"[INFO] Claude explanations available: {len(explanations)}")
