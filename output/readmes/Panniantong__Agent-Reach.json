@@ -1,0 +1,20 @@
+{
+  "full_name": "Panniantong/Agent-Reach",
+  "url": "https://github.com/Panniantong/Agent-Reach",
+  "readme_cache_path": "output/readmes/Panniantong__Agent-Reach.md",
+  "fetched_at": "2026-06-14T05:08:50.666982+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-12T14:55:09Z",
+  "readme_length": 14237,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/Panniantong/Agent-Reach/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/Panniantong/Agent-Reach/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/Panniantong/Agent-Reach/main/README.md",
+  "readme_sha": "64fee8249d013601281102a4bf7fdf2410f72671",
+  "readme_size": 21625,
+  "last_used_at": "2026-06-14T05:08:50.666999+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

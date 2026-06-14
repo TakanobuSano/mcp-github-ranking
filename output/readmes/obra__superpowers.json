@@ -1,0 +1,20 @@
+{
+  "full_name": "obra/superpowers",
+  "url": "https://github.com/obra/superpowers",
+  "readme_cache_path": "output/readmes/obra__superpowers.md",
+  "fetched_at": "2026-06-14T05:08:46.826296+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-13T22:17:11Z",
+  "readme_length": 8354,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/obra/superpowers/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/obra/superpowers/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/obra/superpowers/main/README.md",
+  "readme_sha": "ea17e30e0a31f4a0b1079007b88384e29ec03b62",
+  "readme_size": 8354,
+  "last_used_at": "2026-06-14T05:08:46.826312+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

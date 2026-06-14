@@ -1,0 +1,20 @@
+{
+  "full_name": "safishamsi/graphify",
+  "url": "https://github.com/safishamsi/graphify",
+  "readme_cache_path": "output/readmes/safishamsi__graphify.md",
+  "fetched_at": "2026-06-14T05:08:48.100377+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-13T18:44:37Z",
+  "readme_length": 41423,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/safishamsi/graphify/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/safishamsi/graphify/blob/v8/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/safishamsi/graphify/v8/README.md",
+  "readme_sha": "3cc22bec2539518b0e9227d509b1d55a9cafd21c",
+  "readme_size": 41876,
+  "last_used_at": "2026-06-14T05:08:48.100399+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

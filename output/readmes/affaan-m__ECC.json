@@ -1,0 +1,20 @@
+{
+  "full_name": "affaan-m/ECC",
+  "url": "https://github.com/affaan-m/ECC",
+  "readme_cache_path": "output/readmes/affaan-m__ECC.md",
+  "fetched_at": "2026-06-14T05:08:48.740483+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-11T20:24:32Z",
+  "readme_length": 87221,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/affaan-m/ECC/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/affaan-m/ECC/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/affaan-m/ECC/main/README.md",
+  "readme_sha": "7b2d7f7df7dd9d3c9e4fbb0672a3229f23b7fa96",
+  "readme_size": 87567,
+  "last_used_at": "2026-06-14T05:08:48.740503+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

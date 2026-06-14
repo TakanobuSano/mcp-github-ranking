@@ -1,0 +1,20 @@
+{
+  "full_name": "refactoringhq/tolaria",
+  "url": "https://github.com/refactoringhq/tolaria",
+  "readme_cache_path": "output/readmes/refactoringhq__tolaria.md",
+  "fetched_at": "2026-06-14T05:08:54.007583+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-14T02:42:08Z",
+  "readme_length": 6094,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/refactoringhq/tolaria/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/refactoringhq/tolaria/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/refactoringhq/tolaria/main/README.md",
+  "readme_sha": "c02f39dc64cab1613c498cf0b85e52eac7c324c4",
+  "readme_size": 6175,
+  "last_used_at": "2026-06-14T05:08:54.007631+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

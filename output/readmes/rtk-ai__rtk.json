@@ -1,0 +1,20 @@
+{
+  "full_name": "rtk-ai/rtk",
+  "url": "https://github.com/rtk-ai/rtk",
+  "readme_cache_path": "output/readmes/rtk-ai__rtk.md",
+  "fetched_at": "2026-06-14T05:08:57.959885+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-12T16:59:06Z",
+  "readme_length": 21662,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/rtk-ai/rtk/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/rtk-ai/rtk/blob/develop/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/rtk-ai/rtk/develop/README.md",
+  "readme_sha": "d91e21b246124a60edd25b5b6907056740dca25f",
+  "readme_size": 21710,
+  "last_used_at": "2026-06-14T05:08:57.959901+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

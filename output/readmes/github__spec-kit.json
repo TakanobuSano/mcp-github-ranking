@@ -1,0 +1,20 @@
+{
+  "full_name": "github/spec-kit",
+  "url": "https://github.com/github/spec-kit",
+  "readme_cache_path": "output/readmes/github__spec-kit.md",
+  "fetched_at": "2026-06-14T05:09:01.297923+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-11T21:53:40Z",
+  "readme_length": 33051,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/github/spec-kit/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/github/spec-kit/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/github/spec-kit/main/README.md",
+  "readme_sha": "0a0b4119b2fa90c6b2365693abb9fe444dcc1a7f",
+  "readme_size": 33544,
+  "last_used_at": "2026-06-14T05:09:01.297979+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

@@ -1,0 +1,20 @@
+{
+  "full_name": "yikart/AiToEarn",
+  "url": "https://github.com/yikart/AiToEarn",
+  "readme_cache_path": "output/readmes/yikart__AiToEarn.md",
+  "fetched_at": "2026-06-14T05:08:59.284899+00:00",
+  "repo_pushed_at_when_fetched": "2026-05-21T02:55:15Z",
+  "readme_length": 9320,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/yikart/AiToEarn/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/yikart/AiToEarn/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/yikart/AiToEarn/main/README.md",
+  "readme_sha": "d0b7f4c059a42fd8533eacf9ad77d0692b3c15d6",
+  "readme_size": 13640,
+  "last_used_at": "2026-06-14T05:08:59.284915+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

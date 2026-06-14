@@ -1,0 +1,20 @@
+{
+  "full_name": "phuryn/pm-skills",
+  "url": "https://github.com/phuryn/pm-skills",
+  "readme_cache_path": "output/readmes/phuryn__pm-skills.md",
+  "fetched_at": "2026-06-14T05:08:50.046528+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-06T14:12:26Z",
+  "readme_length": 26920,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/phuryn/pm-skills/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/phuryn/pm-skills/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/phuryn/pm-skills/main/README.md",
+  "readme_sha": "2ec1a8925b58d61652479490e1eae2a7ac299faf",
+  "readme_size": 27278,
+  "last_used_at": "2026-06-14T05:08:50.046544+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

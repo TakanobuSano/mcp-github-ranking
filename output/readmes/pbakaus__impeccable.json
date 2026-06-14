@@ -1,0 +1,20 @@
+{
+  "full_name": "pbakaus/impeccable",
+  "url": "https://github.com/pbakaus/impeccable",
+  "readme_cache_path": "output/readmes/pbakaus__impeccable.md",
+  "fetched_at": "2026-06-14T05:08:56.576268+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-14T04:19:52Z",
+  "readme_length": 12744,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/pbakaus/impeccable/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/pbakaus/impeccable/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/pbakaus/impeccable/main/README.md",
+  "readme_sha": "cdc42181b832e2bd182e8b97856779f9e5a6702e",
+  "readme_size": 12748,
+  "last_used_at": "2026-06-14T05:08:56.576286+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

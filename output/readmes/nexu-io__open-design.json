@@ -1,0 +1,20 @@
+{
+  "full_name": "nexu-io/open-design",
+  "url": "https://github.com/nexu-io/open-design",
+  "readme_cache_path": "output/readmes/nexu-io__open-design.md",
+  "fetched_at": "2026-06-14T05:08:52.619830+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-14T04:03:18Z",
+  "readme_length": 50622,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/nexu-io/open-design/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/nexu-io/open-design/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/nexu-io/open-design/main/README.md",
+  "readme_sha": "9a6a3cbb500883594295b10a366064e1e7853630",
+  "readme_size": 52138,
+  "last_used_at": "2026-06-14T05:08:52.619853+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

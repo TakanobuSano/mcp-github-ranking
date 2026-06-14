@@ -1,0 +1,20 @@
+{
+  "full_name": "mvanhorn/last30days-skill",
+  "url": "https://github.com/mvanhorn/last30days-skill",
+  "readme_cache_path": "output/readmes/mvanhorn__last30days-skill.md",
+  "fetched_at": "2026-06-14T05:08:42.304524+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-10T00:33:31Z",
+  "readme_length": 24654,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/mvanhorn/last30days-skill/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/mvanhorn/last30days-skill/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/mvanhorn/last30days-skill/main/README.md",
+  "readme_sha": "18bc474b961e18385bd7f70a7438d54d9a53f845",
+  "readme_size": 24675,
+  "last_used_at": "2026-06-14T05:08:42.304546+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
