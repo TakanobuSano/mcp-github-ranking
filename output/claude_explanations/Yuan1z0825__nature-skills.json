@@ -1,0 +1,27 @@
+{
+  "full_name": "Yuan1z0825/nature-skills",
+  "url": "https://github.com/Yuan1z0825/nature-skills",
+  "generated_at": "2026-06-15T00:19:42.688408+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "76129fccd0a1f565d75c218abf60120dae7c8735fb105111535f9440e5559cfa",
+  "readme_length": 35034,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/Yuan1z0825__nature-skills.md",
+  "readme_meta_path": "output/readmes/Yuan1z0825__nature-skills.json",
+  "anthropic_response_id": "msg_01KmaftWvZq46HAkqJEEaTCs",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9057,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 119,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/Yuan1z0825__nature-skills.md"
+}
