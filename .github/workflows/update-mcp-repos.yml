@@ -24,7 +24,7 @@ jobs:
       OUTPUT_RETENTION_DAYS: "30"
 
       QIITA_PRIVATE: "false"
-      QIITA_TITLE: "Claude Code向けMCP・関連ツール候補人気ランキング【GitHub Search APIで毎日自動更新】"
+      QIITA_TITLE: "Claude Code向けMCP・関連ツール人気ランキング【GitHub Starsで見る定番候補を毎日自動更新】"
 
       QIITA_TRENDING_PRIVATE: "false"
       QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール週間トレンドランキング【GitHubで今伸びているものを毎日自動更新】"
