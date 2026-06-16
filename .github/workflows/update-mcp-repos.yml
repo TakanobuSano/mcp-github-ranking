@@ -27,7 +27,7 @@ jobs:
       QIITA_TITLE: "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
 
       QIITA_TRENDING_PRIVATE: "false"
-      QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール週間トレンド【7日間Stars増加数で毎日自動更新】"
+      QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール週間トレンドランキング【GitHubで今伸びているものを毎日自動更新】"
       TRENDING_PERIOD_DAYS: "7"
       TRENDING_DISPLAY_RESULTS: "30"
 
@@ -44,7 +44,7 @@ jobs:
       CLAUDE_API_SLEEP_SECONDS: "25.0"
 
       TEAMS_DISPLAY_RESULTS: "10"
-      TEAMS_TITLE: "Claude Code向けMCP・関連ツール週間トレンド Top10"
+      TEAMS_TITLE: "Claude Code向けMCP・関連ツール週間トレンドランキング Top10"
       QIITA_TRENDING_URL: "https://qiita.com/4q_sano/items/cc27d3564a657046242a"
       GITHUB_REPOSITORY_URL: "https://github.com/TakanobuSano/mcp-github-ranking"
 
