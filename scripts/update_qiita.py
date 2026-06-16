@@ -12,8 +12,9 @@ QIITA_API_BASE_URL = "https://qiita.com/api/v2"
 JST = ZoneInfo("Asia/Tokyo")
 
 OUTPUT_DIR = Path("output")
+CLAUDE_EXPLANATION_DIR = OUTPUT_DIR / "claude_explanations"
 
-DEFAULT_TITLE = "Claude Code向けMCP・関連ツール候補ランキング【GitHub Search APIで毎日自動更新】"
+DEFAULT_TITLE = "Claude Code向けMCP・関連ツール人気ランキング【GitHubスターで見る定番候補を毎日自動更新】"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_TAGS = [
@@ -91,6 +92,100 @@ def trim_report_intro(report_markdown: str) -> str:
     return report_markdown.strip()
 
 
+def normalize_ranking_heading(report_markdown: str) -> str:
+    heading_candidates = [
+        "# 注目MCP・関連ツール候補ランキング",
+        "# 注目MCPリポジトリランキング",
+        "# 注目MCPリポジトリ一覧",
+    ]
+
+    for heading in heading_candidates:
+        if heading in report_markdown:
+            return report_markdown.replace(
+                heading,
+                "# Claude Code向けMCP・関連ツール人気ランキング",
+                1,
+            )
+
+    return report_markdown
+
+
+def safe_repo_file_stem(full_name: str) -> str:
+    return full_name.replace("/", "__").replace(":", "_")
+
+
+def normalize_explanation_text(text: str, max_length: int = 260) -> str:
+    normalized = re.sub(r"\s+", " ", text).strip()
+
+    if len(normalized) <= max_length:
+        return normalized
+
+    return normalized[: max_length - 1].rstrip() + "…"
+
+
+def read_cached_explanation(full_name: str) -> str:
+    path = CLAUDE_EXPLANATION_DIR / f"{safe_repo_file_stem(full_name)}.md"
+
+    if not path.exists():
+        return ""
+
+    return normalize_explanation_text(
+        path.read_text(encoding="utf-8", errors="replace")
+    )
+
+
+def inject_cached_explanations(report_markdown: str) -> str:
+    """Insert cached Japanese summaries into ranking sections when available.
+
+    The weekly trend article creates:
+      output/claude_explanations/owner__repo.md
+
+    This popular ranking article reuses those files only when they already exist.
+    It does not call the Claude API.
+    """
+    heading_pattern = re.compile(
+        r"##\s+\d+位\s+\[([^\]]+)\]\([^)]+\)"
+    )
+    matches = list(heading_pattern.finditer(report_markdown))
+
+    if not matches:
+        return report_markdown
+
+    result_parts: list[str] = []
+    cursor = 0
+    inserted_count = 0
+
+    for index, match in enumerate(matches):
+        section_start = match.start()
+        section_end = matches[index + 1].start() if index + 1 < len(matches) else len(report_markdown)
+
+        result_parts.append(report_markdown[cursor:section_start])
+
+        section = report_markdown[section_start:section_end]
+        full_name = match.group(1).strip()
+        explanation = read_cached_explanation(full_name)
+
+        if explanation and explanation not in section:
+            summary_block = f"\n\n> {explanation}\n\n"
+            star_index = section.find("⭐")
+
+            if star_index != -1:
+                section = section[:star_index].rstrip() + summary_block + section[star_index:].lstrip()
+            else:
+                section = section.rstrip() + summary_block
+
+            inserted_count += 1
+
+        result_parts.append(section)
+        cursor = section_end
+
+    result_parts.append(report_markdown[cursor:])
+
+    print(f"[INFO] Cached explanations inserted into popular ranking: {inserted_count}")
+
+    return "".join(result_parts)
+
+
 def build_search_policy_explanation() -> str:
     lines = [
         "# 検索条件の考え方",
@@ -130,6 +225,8 @@ def insert_search_policy_explanation(report_markdown: str) -> str:
 def build_qiita_body(report_markdown: str, report_date: str) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     ranking_markdown = trim_report_intro(report_markdown)
+    ranking_markdown = normalize_ranking_heading(ranking_markdown)
+    ranking_markdown = inject_cached_explanations(ranking_markdown)
     ranking_markdown = insert_search_policy_explanation(ranking_markdown)
 
     lines = [
@@ -137,16 +234,18 @@ def build_qiita_body(report_markdown: str, report_date: str) -> str:
         f"最終更新: **{now}**",
         f"使用データ: **{report_date} UTC**",
         "",
-        "MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールを、GitHub Search APIで毎日自動収集してランキング化しています。",
+        "Claude Code向けMCP・関連ツール候補を、GitHubスター数をもとに毎日自動収集して人気ランキング化しています。",
+        "週間トレンド記事で生成済みの日本語要約がある場合は、この人気ランキング記事にも再利用して表示します。",
         ":::",
         "",
         ranking_markdown,
         "",
         "# このランキングで確認できること",
         "",
-        "- MCP関連リポジトリのスター数ランキング",
+        "- GitHubスター数で見たClaude Code向けMCP・関連ツールの定番候補",
+        "- MCP関連リポジトリの人気ランキング",
         "- Claude Code周辺で活用候補になりそうな関連ツール",
-        "- 最近プッシュされたMCP・関連ツール候補",
+        "- 週間トレンド記事で生成済みの日本語要約",
         "- Stars / Forks のUTC基準の前日比",
         "- Fork数、Open Issues、使用言語、Topics",
         "- GitHub Search APIで使用している検索条件",
@@ -162,8 +261,9 @@ def build_qiita_body(report_markdown: str, report_date: str) -> str:
         "3. スター数・Fork数・Open Issues・説明文・Topicsを取得",
         "4. UTC基準の前日CSVと比較してStars / Forksの前日比を計算",
         "5. 日付付きMarkdown / CSV を生成",
-        "6. GitHub Actionsで毎日自動実行",
-        "7. 最新の日付付きMarkdownをもとにQiita記事を自動更新",
+        "6. 週間トレンド記事で生成済みの日本語要約キャッシュがあれば再利用",
+        "7. GitHub Actionsで毎日自動実行",
+        "8. 最新の日付付きMarkdownをもとにQiita記事を自動更新",
         "",
         "# 注意点",
         "",
@@ -184,7 +284,7 @@ def build_qiita_body(report_markdown: str, report_date: str) -> str:
         "",
         "# 補足",
         "",
-        "GitHubのスター数は人気度の参考になりますが、実務で使う場合はスター数だけで判断しないほうが安全です。",
+        "GitHubスター数は人気度の参考になりますが、実務で使う場合はスター数だけで判断しないほうが安全です。",
         "",
         "特にClaude Codeで利用する場合は、以下を確認することをおすすめします。",
         "",
