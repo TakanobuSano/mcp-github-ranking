@@ -44,7 +44,7 @@ jobs:
       CLAUDE_API_SLEEP_SECONDS: "25.0"
 
       TEAMS_DISPLAY_RESULTS: "10"
-      TEAMS_TITLE: "Claude Code向けMCP・関連ツール週間トレンドランキング Top10"
+      TEAMS_TITLE: "Claude Code向けMCP・関連ツール週間トレンド Top10"
       QIITA_TRENDING_URL: "https://qiita.com/4q_sano/items/cc27d3564a657046242a"
       GITHUB_REPOSITORY_URL: "https://github.com/TakanobuSano/mcp-github-ranking"
 
