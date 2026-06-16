@@ -3,7 +3,7 @@ name: Update MCP repositories ranking
 on:
   workflow_dispatch:
   #schedule:
-  #  - cron: "17 0 * * *"
+  # - cron: "17 0 * * *"
 
 concurrency:
   group: update-mcp-repositories-ranking
@@ -24,7 +24,7 @@ jobs:
       OUTPUT_RETENTION_DAYS: "30"
 
       QIITA_PRIVATE: "false"
-      QIITA_TITLE: "Claude Code向けMCP・関連ツール人気ランキング【GitHubスターで定番候補を毎日自動更新】"
+      QIITA_TITLE: "Claude Code向けMCP・関連ツール人気ランキング【GitHubスターで見る定番候補を毎日自動更新】"
 
       QIITA_TRENDING_PRIVATE: "false"
       QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール週間トレンドランキング【GitHubで今伸びているものを毎日自動更新】"
@@ -82,17 +82,6 @@ jobs:
             git push origin HEAD:main
           fi
 
-      - name: Update Qiita general ranking article
-        env:
-          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
-          QIITA_ITEM_ID: ${{ secrets.QIITA_ITEM_ID }}
-        run: |
-          if [ -z "${QIITA_TOKEN}" ] || [ -z "${QIITA_ITEM_ID}" ]; then
-            echo "Skip Qiita general ranking update because QIITA_TOKEN or QIITA_ITEM_ID is not set."
-          else
-            python scripts/update_qiita.py
-          fi
-
       - name: Update Qiita trending ranking article with Claude explanations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -119,6 +108,17 @@ jobs:
             git commit -m "Generate Claude explanation cache"
             git pull --rebase origin main
             git push origin HEAD:main
+          fi
+
+      - name: Update Qiita popular ranking article
+        env:
+          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+          QIITA_ITEM_ID: ${{ secrets.QIITA_ITEM_ID }}
+        run: |
+          if [ -z "${QIITA_TOKEN}" ] || [ -z "${QIITA_ITEM_ID}" ]; then
+            echo "Skip Qiita popular ranking update because QIITA_TOKEN or QIITA_ITEM_ID is not set."
+          else
+            python scripts/update_qiita.py
           fi
 
       - name: Check Teams posting day
