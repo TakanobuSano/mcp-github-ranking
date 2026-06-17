@@ -2,8 +2,24 @@ name: Update MCP repositories ranking
 
 on:
   workflow_dispatch:
-  #schedule:
-  # - cron: "17 0 * * *"
+    inputs:
+      post_teams:
+        description: "Teamsに投稿するか"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      trigger_source:
+        description: "起動元"
+        required: false
+        default: "manual"
+
+  # GitHub Actions単体で毎日更新したい場合は、以下のコメントアウトを外してください。
+  # 外部cronサービスだけで起動する場合は、このままで問題ありません。
+  # schedule:
+  #   - cron: "17 0 * * *"
 
 concurrency:
   group: update-mcp-repositories-ranking
@@ -24,10 +40,10 @@ jobs:
       OUTPUT_RETENTION_DAYS: "30"
 
       QIITA_PRIVATE: "false"
-      QIITA_TITLE: "Claude Code向けMCP・関連ツール人気ランキング【GitHubスターで見る定番候補を毎日自動更新】"
+      QIITA_TITLE: "【毎日更新】Claude Code向けスキル・MCP・関連ツール人気ランキングTOP100をGitHubスターで自動集計"
 
       QIITA_TRENDING_PRIVATE: "false"
-      QIITA_TRENDING_TITLE: "Claude Code向けMCP・関連ツール週間トレンドランキング【GitHubで今伸びているものを毎日自動更新】"
+      QIITA_TRENDING_TITLE: "【毎日更新】Claude Code向けスキル・MCP・関連ツール週間トレンドTOP30をGitHubから自動集計"
       TRENDING_PERIOD_DAYS: "7"
       TRENDING_DISPLAY_RESULTS: "30"
 
@@ -44,7 +60,7 @@ jobs:
       CLAUDE_API_SLEEP_SECONDS: "25.0"
 
       TEAMS_DISPLAY_RESULTS: "10"
-      TEAMS_TITLE: "Claude Code向けMCP・関連ツール週間トレンド Top10"
+      TEAMS_TITLE: "Claude Code向けスキル・MCP・関連ツール週間トレンド Top10"
       QIITA_TRENDING_URL: "https://qiita.com/4q_sano/items/cc27d3564a657046242a"
       GITHUB_REPOSITORY_URL: "https://github.com/TakanobuSano/mcp-github-ranking"
 
@@ -134,7 +150,7 @@ jobs:
           fi
 
       - name: Post MCP trending ranking summary to Teams
-        if: steps.teams_day.outputs.should_post == 'true'
+        if: steps.teams_day.outputs.should_post == 'true' && (github.event_name == 'schedule' || github.event.inputs.post_teams == 'true')
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
         run: |
