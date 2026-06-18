@@ -29,7 +29,7 @@ GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 
-DEFAULT_TITLE = "Claude Code向けMCP・関連ツール急上昇ランキング【7日間Stars増加数で毎日自動更新】"
+DEFAULT_TITLE = "【毎日更新】Claude Code向けスキル・MCP・関連ツール週間トレンドTOP30をGitHubから自動集計"
 
 DEFAULT_TAGS = [
     {"name": "ClaudeCode", "versions": []},
@@ -616,6 +616,32 @@ def normalize_explanation_text(value: str) -> str:
     return text[:260].rstrip()
 
 
+def extract_heading_summary(explanation: str, max_length: int = 64) -> str:
+    """Return the first Japanese sentence for use in ranking headings.
+
+    The body still keeps the full cached explanation. The heading uses only the
+    first sentence up to the first Japanese full stop so readers can understand
+    each repository at a glance.
+    """
+    text = re.sub(r"\s+", " ", explanation).strip()
+
+    if not text:
+        return ""
+
+    # The prompt asks for the first sentence up to the first "。".
+    # If no Japanese full stop exists, fall back to the whole explanation.
+    end_index = text.find("。")
+    if end_index != -1:
+        text = text[:end_index]
+
+    text = text.strip(" 。")
+
+    if len(text) <= max_length:
+        return text
+
+    return text[: max_length - 1].rstrip() + "…"
+
+
 def build_claude_prompt(repository: dict[str, Any]) -> tuple[str, str]:
     repo_meta = {
         "full_name": repository.get("full_name", ""),
@@ -943,10 +969,16 @@ def build_trending_body(
             description = truncate_description(current.description)
             topics = format_topics(current.topics)
             explanation = explanations.get(current.full_name, "")
+            heading_summary = extract_heading_summary(explanation)
+            heading = (
+                f"## {index}位 {md_escape(heading_summary)} - [{md_escape(current.full_name)}]({current.url})"
+                if heading_summary
+                else f"## {index}位 [{md_escape(current.full_name)}]({current.url})"
+            )
 
             lines.extend(
                 [
-                    f"## {index}位 [{md_escape(current.full_name)}]({current.url})",
+                    heading,
                     "",
                     description,
                     "",
