@@ -14,7 +14,7 @@ JST = ZoneInfo("Asia/Tokyo")
 OUTPUT_DIR = Path("output")
 CLAUDE_EXPLANATION_DIR = OUTPUT_DIR / "claude_explanations"
 
-DEFAULT_TITLE = "Claude Code向けMCP・関連ツール人気ランキング【GitHubスターで見る定番候補を毎日自動更新】"
+DEFAULT_TITLE = "【毎日更新】Claude Code向けスキル・MCP・関連ツール人気ランキングTOP100をGitHubスターで自動集計"
 GITHUB_REPOSITORY_URL = "https://github.com/TakanobuSano/mcp-github-ranking"
 
 DEFAULT_TAGS = [
@@ -103,11 +103,35 @@ def normalize_ranking_heading(report_markdown: str) -> str:
         if heading in report_markdown:
             return report_markdown.replace(
                 heading,
-                "# Claude Code向けMCP・関連ツール人気ランキング",
+                "# Claude Code向けスキル・MCP・関連ツール人気ランキング",
                 1,
             )
 
     return report_markdown
+
+
+def md_escape(value: str) -> str:
+    """Escape square brackets used by Markdown link syntax."""
+    return value.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
+
+
+def extract_heading_summary(explanation: str, max_length: int = 64) -> str:
+    """Return the first Japanese sentence for use in ranking headings."""
+    text = re.sub(r"\s+", " ", explanation).strip()
+
+    if not text:
+        return ""
+
+    end_index = text.find("。")
+    if end_index != -1:
+        text = text[:end_index]
+
+    text = text.strip(" 。")
+
+    if len(text) <= max_length:
+        return text
+
+    return text[: max_length - 1].rstrip() + "…"
 
 
 def safe_repo_file_stem(full_name: str) -> str:
@@ -142,9 +166,12 @@ def inject_cached_explanations(report_markdown: str) -> str:
 
     This popular ranking article reuses those files only when they already exist.
     It does not call the Claude API.
+
+    If an explanation exists, the H2 heading is also rewritten to:
+      ## N位 First Japanese sentence - [owner/repo](url)
     """
     heading_pattern = re.compile(
-        r"##\s+\d+位\s+\[([^\]]+)\]\([^)]+\)"
+        r"##\s+(\d+位)\s+\[([^\]]+)\]\(([^)]+)\)"
     )
     matches = list(heading_pattern.finditer(report_markdown))
 
@@ -154,6 +181,7 @@ def inject_cached_explanations(report_markdown: str) -> str:
     result_parts: list[str] = []
     cursor = 0
     inserted_count = 0
+    heading_rewrite_count = 0
 
     for index, match in enumerate(matches):
         section_start = match.start()
@@ -162,11 +190,27 @@ def inject_cached_explanations(report_markdown: str) -> str:
         result_parts.append(report_markdown[cursor:section_start])
 
         section = report_markdown[section_start:section_end]
-        full_name = match.group(1).strip()
+        rank_text = match.group(1).strip()
+        full_name = match.group(2).strip()
+        url = match.group(3).strip()
         explanation = read_cached_explanation(full_name)
 
+        if explanation:
+            heading_summary = extract_heading_summary(explanation)
+            if heading_summary:
+                line_end = section.find("\n")
+                if line_end == -1:
+                    line_end = len(section)
+
+                rewritten_heading = (
+                    f"## {rank_text} {md_escape(heading_summary)} - "
+                    f"[{md_escape(full_name)}]({url})"
+                )
+                section = rewritten_heading + section[line_end:]
+                heading_rewrite_count += 1
+
         if explanation and explanation not in section:
-            summary_block = f"\n\n> {explanation}\n\n"
+            summary_block = f"\n\n> {md_escape(explanation)}\n\n"
             star_index = section.find("⭐")
 
             if star_index != -1:
@@ -182,9 +226,9 @@ def inject_cached_explanations(report_markdown: str) -> str:
     result_parts.append(report_markdown[cursor:])
 
     print(f"[INFO] Cached explanations inserted into popular ranking: {inserted_count}")
+    print(f"[INFO] Popular ranking headings rewritten from cached explanations: {heading_rewrite_count}")
 
     return "".join(result_parts)
-
 
 def build_search_policy_explanation() -> str:
     lines = [
@@ -234,7 +278,7 @@ def build_qiita_body(report_markdown: str, report_date: str) -> str:
         f"最終更新: **{now}**",
         f"使用データ: **{report_date} UTC**",
         "",
-        "Claude Code向けMCP・関連ツール候補を、GitHubスター数をもとに毎日自動収集して人気ランキング化しています。",
+        "Claude Code向けスキル・MCP・関連ツール候補を、GitHubスター数をもとに毎日自動収集して人気ランキング化しています。",
         "週間トレンド記事で生成済みの日本語要約がある場合は、この人気ランキング記事にも再利用して表示します。",
         ":::",
         "",
