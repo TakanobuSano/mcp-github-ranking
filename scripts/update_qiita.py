@@ -115,7 +115,7 @@ def md_escape(value: str) -> str:
     return value.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
 
 
-def extract_heading_summary(explanation: str, max_length: int = 64) -> str:
+def extract_heading_summary(explanation: str, max_length: int = 80) -> str:
     """Return the first Japanese sentence for use in ranking headings."""
     text = re.sub(r"\s+", " ", explanation).strip()
 
@@ -203,8 +203,8 @@ def inject_cached_explanations(report_markdown: str) -> str:
                     line_end = len(section)
 
                 rewritten_heading = (
-                    f"## {rank_text} {md_escape(heading_summary)} - "
-                    f"[{md_escape(full_name)}]({url})"
+                    f"## {rank_text} [{md_escape(full_name)}]({url}) - "
+                    f"{md_escape(heading_summary)}"
                 )
                 section = rewritten_heading + section[line_end:]
                 heading_rewrite_count += 1
