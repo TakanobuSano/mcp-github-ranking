@@ -616,7 +616,7 @@ def normalize_explanation_text(value: str) -> str:
     return text[:260].rstrip()
 
 
-def extract_heading_summary(explanation: str, max_length: int = 80) -> str:
+def extract_heading_summary(explanation: str, max_length: int = 100) -> str:
     """Return the first Japanese sentence for use in ranking headings.
 
     The body still keeps the full cached explanation. The heading uses only the
