@@ -115,7 +115,7 @@ def md_escape(value: str) -> str:
     return value.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
 
 
-def extract_heading_summary(explanation: str, max_length: int = 80) -> str:
+def extract_heading_summary(explanation: str, max_length: int = 100) -> str:
     """Return the first Japanese sentence for use in ranking headings."""
     text = re.sub(r"\s+", " ", explanation).strip()
 
