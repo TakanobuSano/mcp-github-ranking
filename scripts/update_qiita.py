@@ -353,6 +353,7 @@ def update_qiita_item() -> None:
 
     title = os.getenv("QIITA_TITLE", DEFAULT_TITLE)
     private = get_env_bool("QIITA_PRIVATE", True)
+    organization_url_name = os.getenv("QIITA_ORGANIZATION_URL_NAME", "").strip()
 
     report_path = find_latest_report_path()
     report_date = extract_date_from_report_path(report_path)
@@ -367,6 +368,9 @@ def update_qiita_item() -> None:
         "coediting": False,
         "slide": False,
     }
+
+    if organization_url_name:
+        payload["organization_url_name"] = organization_url_name
 
     response = requests.patch(
         f"{QIITA_API_BASE_URL}/items/{item_id}",
@@ -389,6 +393,7 @@ def update_qiita_item() -> None:
 
     print("[INFO] Qiita item updated.")
     print(f"[INFO] private: {private}")
+    print(f"[INFO] organization_url_name: {organization_url_name or '(not set)'}")
     print(f"[INFO] report_path: {report_path}")
 
     if url:
