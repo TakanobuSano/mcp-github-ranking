@@ -282,7 +282,7 @@ def build_qiita_body(report_markdown: str, report_date: str) -> str:
         f"使用データ: **{report_date} UTC**",
         "",
         "Claude Code向けスキル・MCP・関連ツール候補を、GitHubスター数をもとに毎日自動収集して人気ランキング化しています。",
-        "週間トレンド記事で生成済みの日本語要約がある場合は、この人気ランキング記事にも再利用して表示します。",
+        "[週間トレンド記事](https://qiita.com/4q_sano/items/cc27d3564a657046242a)で生成済みの日本語要約がある場合は、この人気ランキング記事にも再利用して表示します。",
         ":::",
         "",
         ranking_markdown,
