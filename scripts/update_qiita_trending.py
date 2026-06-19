@@ -1030,6 +1030,7 @@ def update_qiita_item() -> None:
 
     title = os.getenv("QIITA_TRENDING_TITLE", DEFAULT_TITLE)
     private = get_env_bool("QIITA_TRENDING_PRIVATE", True)
+    organization_url_name = os.getenv("QIITA_ORGANIZATION_URL_NAME", "").strip()
     period_days = get_env_int("TRENDING_PERIOD_DAYS", 7)
     display_results = get_env_int("TRENDING_DISPLAY_RESULTS", 30)
     readme_target_count = get_env_int("README_TARGET_COUNT", 30)
@@ -1107,6 +1108,9 @@ def update_qiita_item() -> None:
         "slide": False,
     }
 
+    if organization_url_name:
+        payload["organization_url_name"] = organization_url_name
+
     response = requests.patch(
         f"{QIITA_API_BASE_URL}/items/{item_id}",
         headers={
@@ -1128,6 +1132,7 @@ def update_qiita_item() -> None:
 
     print("[INFO] Qiita trending item updated.")
     print(f"[INFO] private: {private}")
+    print(f"[INFO] organization_url_name: {organization_url_name or '(not set)'}")
     print(f"[INFO] latest_csv_path: {latest_csv_path}")
     print(f"[INFO] baseline_csv_path: {baseline_csv_path}")
 
