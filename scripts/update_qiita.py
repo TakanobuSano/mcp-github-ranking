@@ -205,7 +205,7 @@ def inject_cached_explanations(report_markdown: str) -> str:
                     line_end = len(section)
 
                 rewritten_heading = (
-                    f"## {rank_text} [{md_escape(full_name)}]({url}) - "
+                    f"## {rank_text} [{md_escape(full_name)}]({url})："
                     f"{md_escape(heading_summary)}"
                 )
                 section = rewritten_heading + section[line_end:]
