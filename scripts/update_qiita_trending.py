@@ -950,6 +950,8 @@ def build_trending_body(
         f"最終更新: **{now}**",
         f"比較期間: **{baseline_date_text} UTC → {latest_date_text} UTC**",
         f"ランキング指標: **{period_days}日間のStars増加数**",
+        "",
+        "定番候補をGitHubスター数順で確認したい場合は、[人気ランキングTOP100](https://qiita.com/4q_sano/items/1d98dd5fb49ce99bd288)もあわせて確認できます。",
         ":::",
         "",
     ]
