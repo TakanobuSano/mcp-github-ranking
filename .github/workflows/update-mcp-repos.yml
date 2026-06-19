@@ -40,6 +40,7 @@ jobs:
       OUTPUT_RETENTION_DAYS: "30"
 
       QIITA_PRIVATE: "false"
+      QIITA_ORGANIZATION_URL_NAME: "4qualia"
       QIITA_TITLE: "【毎日更新】Claude Code向けスキル・MCP・関連ツール人気ランキングTOP100をGitHubスターで自動集計"
 
       QIITA_TRENDING_PRIVATE: "false"
