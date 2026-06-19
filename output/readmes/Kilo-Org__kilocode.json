@@ -1,0 +1,20 @@
+{
+  "full_name": "Kilo-Org/kilocode",
+  "url": "https://github.com/Kilo-Org/kilocode",
+  "readme_cache_path": "output/readmes/Kilo-Org__kilocode.md",
+  "fetched_at": "2026-06-19T00:19:32.543245+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-18T20:04:07Z",
+  "readme_length": 7712,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/Kilo-Org/kilocode/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/Kilo-Org/kilocode/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/Kilo-Org/kilocode/main/README.md",
+  "readme_sha": "f61baf7c88ae4f1b7542f8fb0305346495366bba",
+  "readme_size": 7799,
+  "last_used_at": "2026-06-19T00:19:32.543259+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

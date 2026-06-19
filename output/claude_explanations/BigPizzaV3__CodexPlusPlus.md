@@ -1,0 +1,1 @@
+Codex++ は Codex App 向けの外部増強ツールで、Rust と Tauri で構築されています。元のアプリを改変せず、外部ランチャーから起動して Chromium DevTools Protocol で機能を注入。API キーモード時のプラグイン解除、セッション削除、Markdown エクスポート、カスタム API 中継対応など、使いやすさを大幅に向上させます。Windows/macOS に対応し、自動更新機能も備えています。

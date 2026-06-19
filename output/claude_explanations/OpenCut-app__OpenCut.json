@@ -1,0 +1,27 @@
+{
+  "full_name": "OpenCut-app/OpenCut",
+  "url": "https://github.com/OpenCut-app/OpenCut",
+  "generated_at": "2026-06-19T00:20:30.142802+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "363401e56146b90895d1fb374e610de41a69865ef7a23efe76f0507acf3014d5",
+  "readme_length": 2029,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/OpenCut-app__OpenCut.md",
+  "readme_meta_path": "output/readmes/OpenCut-app__OpenCut.json",
+  "anthropic_response_id": "msg_01BJex4p2WUE3EvfWYaAJbAv",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 1054,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 132,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/OpenCut-app__OpenCut.md"
+}
