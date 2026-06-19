@@ -93,21 +93,23 @@ def trim_report_intro(report_markdown: str) -> str:
 
 
 def normalize_ranking_heading(report_markdown: str) -> str:
-    heading_candidates = [
-        "# 注目MCP・関連ツール候補ランキング",
-        "# 注目MCPリポジトリランキング",
-        "# 注目MCPリポジトリ一覧",
-    ]
-
-    for heading in heading_candidates:
-        if heading in report_markdown:
-            return report_markdown.replace(
-                heading,
-                "# Claude Code向けスキル・MCP・関連ツール人気ランキング",
-                1,
-            )
-
+    # Qiitaの記事タイトルと重複するため、ランキング本文内のH1見出しは表示しません。
     return report_markdown
+
+
+def remove_leading_ranking_h1(report_markdown: str) -> str:
+    lines = report_markdown.splitlines()
+
+    while lines and not lines[0].strip():
+        lines.pop(0)
+
+    if lines and lines[0].startswith("# "):
+        lines.pop(0)
+
+        while lines and not lines[0].strip():
+            lines.pop(0)
+
+    return "\n".join(lines).strip()
 
 
 def md_escape(value: str) -> str:
@@ -270,6 +272,7 @@ def build_qiita_body(report_markdown: str, report_date: str) -> str:
     now = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     ranking_markdown = trim_report_intro(report_markdown)
     ranking_markdown = normalize_ranking_heading(ranking_markdown)
+    ranking_markdown = remove_leading_ranking_h1(ranking_markdown)
     ranking_markdown = inject_cached_explanations(ranking_markdown)
     ranking_markdown = insert_search_policy_explanation(ranking_markdown)
 
