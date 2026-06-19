@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/OpenCut-app/OpenCut/main/README.md",
   "readme_sha": "81538cf3d42c2aa7d4a4f5b5893dac4e38736721",
   "readme_size": 2029,
-  "last_used_at": "2026-06-19T00:19:33.190815+00:00",
+  "last_used_at": "2026-06-19T02:00:35.995028+00:00",
   "readme_truncated_for_claude_input": false,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
