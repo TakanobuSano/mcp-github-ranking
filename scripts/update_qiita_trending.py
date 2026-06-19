@@ -971,7 +971,7 @@ def build_trending_body(
             explanation = explanations.get(current.full_name, "")
             heading_summary = extract_heading_summary(explanation)
             heading = (
-                f"## {index}位 [{md_escape(current.full_name)}]({current.url}) - {md_escape(heading_summary)}"
+                f"## {index}位 [{md_escape(current.full_name)}]({current.url})：{md_escape(heading_summary)}"
                 if heading_summary
                 else f"## {index}位 [{md_escape(current.full_name)}]({current.url})"
             )
