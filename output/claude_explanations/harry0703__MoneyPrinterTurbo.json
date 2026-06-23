@@ -1,0 +1,27 @@
+{
+  "full_name": "harry0703/MoneyPrinterTurbo",
+  "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+  "generated_at": "2026-06-23T00:20:22.399403+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "1991ece358c46560dd6ebcd1309fa9b1785bd201818a967c243cb2001d2d3cc9",
+  "readme_length": 14163,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/harry0703__MoneyPrinterTurbo.md",
+  "readme_meta_path": "output/readmes/harry0703__MoneyPrinterTurbo.json",
+  "anthropic_response_id": "msg_01PbWnaF9i9WCkS6ZRjfMqDi",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8282,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 107,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/harry0703__MoneyPrinterTurbo.md"
+}

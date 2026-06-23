@@ -1,0 +1,1 @@
+Tursoは、Rustで実装されたSQLite互換のインプロセスSQL データベースです。MVCC対応の`BEGIN CONCURRENT`、変更データキャプチャ、ベクトル検索、複数言語バインディング（Rust、JavaScript、Python、Go、Java、.NET）に対応し、MCP経由でAIアシスタントとの連携にも使えそうです。

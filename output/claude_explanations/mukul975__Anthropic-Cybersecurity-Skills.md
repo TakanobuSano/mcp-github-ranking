@@ -1,0 +1,1 @@
+Anthropic Cybersecurity Skills AIエージェント向けの817個の構造化サイバーセキュリティスキルライブラリ。MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND、NIST AI RMF、MITRE F3の6つのフレームワークにマッピングされており、29のセキュリティドメインをカバー。Claude Code、GitHub Copilot、Cursorなど26以上のプラットフォームで即座に利用でき、AIエージェントにシニアアナリスト級のセキュリティ知識を

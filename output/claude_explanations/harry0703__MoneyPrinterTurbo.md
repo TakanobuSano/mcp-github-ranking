@@ -1,0 +1,1 @@
+MoneyPrinterTurbo AIを活用して、テーマやキーワードを入力するだけで、脚本・素材・字幕・BGMを自動生成し、高清短動画を一括作成できるPythonツール。Web UIとAPI両対応で、TikTok・Instagram・YouTubeへの自動アップロード機能も備えています。
