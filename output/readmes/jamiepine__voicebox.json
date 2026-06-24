@@ -1,0 +1,20 @@
+{
+  "full_name": "jamiepine/voicebox",
+  "url": "https://github.com/jamiepine/voicebox",
+  "readme_cache_path": "output/readmes/jamiepine__voicebox.md",
+  "fetched_at": "2026-06-24T00:19:38.875343+00:00",
+  "repo_pushed_at_when_fetched": "2026-04-26T20:29:17Z",
+  "readme_length": 24715,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/jamiepine/voicebox/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/jamiepine/voicebox/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/jamiepine/voicebox/main/README.md",
+  "readme_sha": "34ef1c0c8d37ea17406bac396bffe7b8ae6b83e3",
+  "readme_size": 24909,
+  "last_used_at": "2026-06-24T00:19:38.875361+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
