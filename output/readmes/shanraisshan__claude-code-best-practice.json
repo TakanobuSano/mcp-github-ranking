@@ -1,0 +1,20 @@
+{
+  "full_name": "shanraisshan/claude-code-best-practice",
+  "url": "https://github.com/shanraisshan/claude-code-best-practice",
+  "readme_cache_path": "output/readmes/shanraisshan__claude-code-best-practice.md",
+  "fetched_at": "2026-06-26T00:19:43.682799+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-25T06:35:30Z",
+  "readme_length": 75395,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/shanraisshan/claude-code-best-practice/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/shanraisshan/claude-code-best-practice/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/shanraisshan/claude-code-best-practice/main/README.md",
+  "readme_sha": "43bed42825a336cc01ba097fc707d2f93fc4cc90",
+  "readme_size": 75970,
+  "last_used_at": "2026-06-26T00:19:43.682820+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

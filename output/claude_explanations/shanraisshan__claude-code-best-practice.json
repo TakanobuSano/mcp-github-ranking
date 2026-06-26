@@ -1,0 +1,27 @@
+{
+  "full_name": "shanraisshan/claude-code-best-practice",
+  "url": "https://github.com/shanraisshan/claude-code-best-practice",
+  "generated_at": "2026-06-26T00:20:13.133636+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "d75fd5406ad7a511374c96fd4c5e0fbb371edf223bce09135852effb6bde145c",
+  "readme_length": 75395,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/shanraisshan__claude-code-best-practice.md",
+  "readme_meta_path": "output/readmes/shanraisshan__claude-code-best-practice.json",
+  "anthropic_response_id": "msg_014jYTUcAw7k8CNSFNV2S883",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 11392,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 119,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/shanraisshan__claude-code-best-practice.md"
+}
