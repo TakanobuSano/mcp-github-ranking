@@ -1,0 +1,20 @@
+{
+  "full_name": "DeusData/codebase-memory-mcp",
+  "url": "https://github.com/DeusData/codebase-memory-mcp",
+  "readme_cache_path": "output/readmes/DeusData__codebase-memory-mcp.md",
+  "fetched_at": "2026-06-28T00:19:17.784902+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-28T00:02:11Z",
+  "readme_length": 35518,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/DeusData/codebase-memory-mcp/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/DeusData/codebase-memory-mcp/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/README.md",
+  "readme_sha": "cb5e90aa203942d21c3309da96a320777b788de0",
+  "readme_size": 35690,
+  "last_used_at": "2026-06-28T00:19:17.784923+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

@@ -1,0 +1,27 @@
+{
+  "full_name": "opendatalab/MinerU",
+  "url": "https://github.com/opendatalab/MinerU",
+  "generated_at": "2026-06-28T00:20:02.685219+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "ff03c0f94a9644a56815999324fbbd090750ad6c97e23d14b89fa707e242d586",
+  "readme_length": 40356,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/opendatalab__MinerU.md",
+  "readme_meta_path": "output/readmes/opendatalab__MinerU.json",
+  "anthropic_response_id": "msg_011Rt3dgjqVGTyVw8xfgs83Y",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 15839,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 116,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/opendatalab__MinerU.md"
+}

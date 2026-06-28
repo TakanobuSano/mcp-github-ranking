@@ -1,0 +1,27 @@
+{
+  "full_name": "DeusData/codebase-memory-mcp",
+  "url": "https://github.com/DeusData/codebase-memory-mcp",
+  "generated_at": "2026-06-28T00:19:35.195190+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a63de27c6939f227ba46a7f9094d51d9210001b96c758bd137040f05c8996842",
+  "readme_length": 35518,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/DeusData__codebase-memory-mcp.md",
+  "readme_meta_path": "output/readmes/DeusData__codebase-memory-mcp.json",
+  "anthropic_response_id": "msg_01V5iuHMM653WmvaPxowjmXx",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9710,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 164,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/DeusData__codebase-memory-mcp.md"
+}

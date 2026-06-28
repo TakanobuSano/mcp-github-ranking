@@ -1,0 +1,20 @@
+{
+  "full_name": "opendatalab/MinerU",
+  "url": "https://github.com/opendatalab/MinerU",
+  "readme_cache_path": "output/readmes/opendatalab__MinerU.md",
+  "fetched_at": "2026-06-28T00:19:29.470528+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-27T07:38:39Z",
+  "readme_length": 40356,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/opendatalab/MinerU/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/opendatalab/MinerU/blob/master/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/opendatalab/MinerU/master/README.md",
+  "readme_sha": "d056e5ca21a9f45504cbdecf74e6d25c3bb750b8",
+  "readme_size": 40453,
+  "last_used_at": "2026-06-28T00:19:29.470555+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

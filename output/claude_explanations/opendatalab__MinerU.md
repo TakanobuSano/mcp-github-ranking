@@ -1,0 +1,1 @@
+PDFやOfficeドキュメントをLLM向けのMarkdown/JSONに変換するツール。複雑なレイアウト、スキャン文書、手書きに対応し、109言語のOCR、数式のLaTeX変換、表のHTML変換に対応。Python/Go/TypeScript SDKやCLI、REST API、MCP Serverで提供され、CPU環境でも動作します。
