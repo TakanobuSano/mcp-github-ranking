@@ -1,1 +1,1 @@
-Andrej Karpathyの指摘に基づいた、Claude Codeの動作を改善するための`CLAUDE.md`ファイルです。「実装前に考える」「シンプル性を優先」「必要な変更のみ」「目標駆動実行」の4原則で、LLMの過度な複雑化や不要な変更を防ぎ、より正確で効率的なコード生成を実現します。
+Andrej Karpathyの指摘に基づいた、Claude Codeの動作を改善するための`CLAUDE.md`ファイルです。「実装前に考える」「シンプル性を優先」「必要な変更のみ」「目標駆動実行」の4原則で、LLMの過度な複雑化や不要な変更を防ぎ、より正確で効率的なコード生成を実現します。 ■Qiita記事：[CLAUDE.mdに学ぶ、Claude Codeを暴走させない運用術](https://qiita.com/4q_sano/items/dc26f7468dcd39fbe62f)
