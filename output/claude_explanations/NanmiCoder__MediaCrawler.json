@@ -1,0 +1,27 @@
+{
+  "full_name": "NanmiCoder/MediaCrawler",
+  "url": "https://github.com/NanmiCoder/MediaCrawler",
+  "generated_at": "2026-06-30T23:20:53.398467+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "6d30c690cec0ec06ab3609673b093d0070bbcccf9a5092d61f382625800a2cdf",
+  "readme_length": 9927,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/NanmiCoder__MediaCrawler.md",
+  "readme_meta_path": "output/readmes/NanmiCoder__MediaCrawler.json",
+  "anthropic_response_id": "msg_015o7EXJ2WZKBMcToddVxPZM",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 6598,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 151,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/NanmiCoder__MediaCrawler.md"
+}

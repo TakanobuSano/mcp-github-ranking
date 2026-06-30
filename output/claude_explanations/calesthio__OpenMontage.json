@@ -1,0 +1,27 @@
+{
+  "full_name": "calesthio/OpenMontage",
+  "url": "https://github.com/calesthio/OpenMontage",
+  "generated_at": "2026-06-30T23:19:58.180544+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "e242db76eee387c3eaf389ba4af2e9985966c7bfc60063180dadba869749cdb8",
+  "readme_length": 36403,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/calesthio__OpenMontage.md",
+  "readme_meta_path": "output/readmes/calesthio__OpenMontage.json",
+  "anthropic_response_id": "msg_01HbDjnvjuEeTSfpX4eXazHa",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9035,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 152,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/calesthio__OpenMontage.md"
+}

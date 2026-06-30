@@ -1,0 +1,27 @@
+{
+  "full_name": "headroomlabs-ai/headroom",
+  "url": "https://github.com/headroomlabs-ai/headroom",
+  "generated_at": "2026-06-30T23:20:25.394457+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "3b40f2455f4d27873507de96fc9857e0de80ade6fc5e7831d0779587c7387a83",
+  "readme_length": 28121,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/headroomlabs-ai__headroom.md",
+  "readme_meta_path": "output/readmes/headroomlabs-ai__headroom.json",
+  "anthropic_response_id": "msg_01B2u7syvUYpThmZ3fTMsnX2",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9046,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 134,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/headroomlabs-ai__headroom.md"
+}

@@ -1,0 +1,20 @@
+{
+  "full_name": "NanmiCoder/MediaCrawler",
+  "url": "https://github.com/NanmiCoder/MediaCrawler",
+  "readme_cache_path": "output/readmes/NanmiCoder__MediaCrawler.md",
+  "fetched_at": "2026-06-30T23:19:54.002515+00:00",
+  "repo_pushed_at_when_fetched": "2026-06-18T09:22:51Z",
+  "readme_length": 9927,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/NanmiCoder/MediaCrawler/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/NanmiCoder/MediaCrawler/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/NanmiCoder/MediaCrawler/main/README.md",
+  "readme_sha": "00a23141aa26d889c695f1fe357942b062373a05",
+  "readme_size": 15636,
+  "last_used_at": "2026-06-30T23:19:54.002536+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
