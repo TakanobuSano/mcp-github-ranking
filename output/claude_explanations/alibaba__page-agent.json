@@ -1,0 +1,27 @@
+{
+  "full_name": "alibaba/page-agent",
+  "url": "https://github.com/alibaba/page-agent",
+  "generated_at": "2026-07-04T23:19:24.368392+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "d58d11a5014c7791194a7883f53bff2571e5f4698fb3453c6d1c6b8f2fb18bea",
+  "readme_length": 5578,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/alibaba__page-agent.md",
+  "readme_meta_path": "output/readmes/alibaba__page-agent.json",
+  "anthropic_response_id": "msg_01Wzf97caYXNYnDFpXaHYRWM",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 2123,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 121,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/alibaba__page-agent.md"
+}
