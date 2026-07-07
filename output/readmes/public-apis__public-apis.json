@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/public-apis/public-apis/master/README.md",
   "readme_sha": "6e5e2f00172bcd06878274d36b760b6184cda119",
   "readme_size": 219070,
-  "last_used_at": "2026-07-06T23:19:37.748654+00:00",
+  "last_used_at": "2026-07-07T23:19:38.525426+00:00",
   "readme_truncated_for_claude_input": true,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
