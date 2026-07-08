@@ -1,0 +1,27 @@
+{
+  "full_name": "diegosouzapw/OmniRoute",
+  "url": "https://github.com/diegosouzapw/OmniRoute",
+  "generated_at": "2026-07-08T23:19:40.315597+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "81bd27b467f38ff3d02bba6811dc3a3c1438c8a7e489cdab0308d55d56aaba48",
+  "readme_length": 89597,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/diegosouzapw__OmniRoute.md",
+  "readme_meta_path": "output/readmes/diegosouzapw__OmniRoute.json",
+  "anthropic_response_id": "msg_011CcqSrgnaRoNx1C7rK3cc8",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 10749,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 131,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/diegosouzapw__OmniRoute.md"
+}
