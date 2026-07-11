@@ -1,0 +1,27 @@
+{
+  "full_name": "xbtlin/ai-berkshire",
+  "url": "https://github.com/xbtlin/ai-berkshire",
+  "generated_at": "2026-07-11T23:19:59.276640+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "e8ba3bb801d3c7d67e96b5186dae83dc61c3decf088a5d97dc0300178f2a1356",
+  "readme_length": 17914,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/xbtlin__ai-berkshire.md",
+  "readme_meta_path": "output/readmes/xbtlin__ai-berkshire.json",
+  "anthropic_response_id": "msg_011Ccw8Jm2rPH64a7eyokoXf",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 13752,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 184,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/xbtlin__ai-berkshire.md"
+}
