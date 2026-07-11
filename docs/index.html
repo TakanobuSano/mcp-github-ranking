@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>定常自律運転ステータス | mcp-github-ranking</title>
+<meta name="description" content="mcp-github-ranking は cron-job.org → GitHub Actions → Claude API → Qiita/Teams のパイプラインで毎日無人更新されています。このページは GitHub API からライブ稼働状況を表示します。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<style>
+:root {
+  --bg: #f7f7f5; --card: #ffffff; --text: #1f2328; --muted: #59636e;
+  --border: #d1d9e0; --accent: #0f6e56; --accent-bg: #e1f5ee;
+  --warn: #854f0b; --warn-bg: #faeeda; --err: #a32d2d; --err-bg: #fcebeb;
+  --link: #185fa5; --code-bg: #eef1f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117; --card: #161b22; --text: #e6edf3; --muted: #9198a1;
+    --border: #30363d; --accent: #5dcaa5; --accent-bg: #0f2e26;
+    --warn: #fac775; --warn-bg: #3a2c10; --err: #f09595; --err-bg: #3a1618;
+    --link: #85b7eb; --code-bg: #21262d;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  line-height: 1.7;
+}
+main { max-width: 880px; margin: 0 auto; padding: 40px 20px 64px; }
+h1 { font-size: 1.7rem; margin: 0 0 4px; }
+h2 { font-size: 1.2rem; margin: 48px 0 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+p.lead { color: var(--muted); margin-top: 0; }
+a { color: var(--link); }
+code { background: var(--code-bg); padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+
+.banner {
+  margin: 24px 0; padding: 14px 18px; border-radius: 10px; font-weight: 600;
+  background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent);
+}
+.banner.warn { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.banner.err  { background: var(--err-bg);  color: var(--err);  border-color: var(--err); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
+}
+.card .label { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); flex: none; }
+.dot.ok { background: #1d9e75; } .dot.warn { background: #ef9f27; } .dot.err { background: #e24b4a; }
+.card .value { font-size: 1.05rem; font-weight: 600; margin-top: 6px; }
+.card .sub { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+.pipeline { list-style: none; margin: 0; padding: 0; }
+.pipeline > li {
+  position: relative; padding: 0 0 22px 52px;
+}
+.pipeline > li::before {
+  content: attr(data-step); position: absolute; left: 0; top: 0;
+  width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: var(--accent-bg); color: var(--accent); border: 1.5px solid var(--accent); font-weight: 700; font-size: 0.9rem;
+}
+.pipeline > li:not(:last-child)::after {
+  content: ""; position: absolute; left: 16.5px; top: 38px; bottom: 2px; width: 1.5px; background: var(--border);
+}
+.pipeline .step-title { font-weight: 600; }
+.pipeline .step-desc { color: var(--muted); font-size: 0.92rem; }
+.fanout { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.fanout span {
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 12px; font-size: 0.88rem;
+}
+ul.notes { color: var(--muted); font-size: 0.95rem; padding-left: 1.3em; }
+ul.links { padding-left: 1.3em; }
+footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>🤖 定常自律運転ステータス</h1>
+  <p class="lead"><a href="https://github.com/TakanobuSano/mcp-github-ranking">mcp-github-ranking</a> は、人手ゼロで毎日更新される Claude Code 向け MCP 関連リポジトリのランキングです。このページの稼働状況は、GitHub API からリアルタイムに取得しています。</p>
+
+  <div id="banner" class="banner">⏳ 稼働状況を取得中…</div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="label"><span id="dot-ranking" class="dot"></span>ランキング更新(毎日)</div>
+      <div class="value" id="val-ranking">—</div>
+      <div class="sub" id="sub-ranking">GitHub Search API による収集・集計</div>
+    </div>
+    <div class="card">
+      <div class="label"><span id="dot-explain" class="dot"></span>Claude 日本語解説の生成(毎日)</div>
+      <div class="value" id="val-explain">—</div>
+      <div class="sub" id="sub-explain">Claude API・キャッシュ付き</div>
+    </div>
+    <div class="card">
+      <div class="label"><span id="dot-run" class="dot"></span>直近のワークフロー実行</div>
+      <div class="value" id="val-run">—</div>
+      <div class="sub" id="sub-run">GitHub Actions</div>
+    </div>
+  </div>
+
+  <h2>パイプライン(毎日・完全無人)</h2>
+  <ol class="pipeline">
+    <li data-step="1">
+      <div class="step-title">cron-job.org が毎日 JST 定時に起動</div>
+      <div class="step-desc">GitHub Actions の <code>schedule</code> は実行時刻が不安定なため、外部 cron から <code>workflow_dispatch</code> を REST API で叩いて起動します(Fine-grained PAT 使用)。</div>
+    </li>
+    <li data-step="2">
+      <div class="step-title">GitHub Actions がランキングを再集計</div>
+      <div class="step-desc">GitHub Search API で MCP / Claude Code 関連リポジトリを最大500件収集し、7日前の CSV と比較して「7日間の Stars 増加数」で急上昇を算出します。</div>
+    </li>
+    <li data-step="3">
+      <div class="step-title">Claude API が日本語解説を生成</div>
+      <div class="step-desc">上位リポジトリの README を要約して日本語解説を生成します。解説はプロンプトバージョン付きでキャッシュし、キャッシュヒット時は API を呼びません(コストとレート制御)。応答の usage・response id も記録します。</div>
+    </li>
+    <li data-step="4">
+      <div class="step-title">3経路へ自動配信</div>
+      <div class="step-desc">生成結果をコミットし、以下へ配信して1サイクルが完了します。</div>
+      <div class="fanout">
+        <span>📊 Qiita「人気TOP100」記事を毎日更新</span>
+        <span>🚀 Qiita「週間トレンドTOP30」記事を毎日更新</span>
+        <span>💬 Teams へ毎週月曜 Top10 を投稿</span>
+        <span>📝 README / output を自動コミット</span>
+      </div>
+    </li>
+  </ol>
+
+  <h2>設計上の工夫</h2>
+  <ul class="notes">
+    <li>GitHub Actions の <code>schedule</code> 不安定問題は、外部 cron(cron-job.org)からの起動で回避しています。</li>
+    <li>Claude API の呼び出しはキャッシュ優先・リクエスト間スリープつきで、日次運用でもコストとレート制限を制御しています。</li>
+    <li>PAT・Qiita トークン・Teams Webhook はすべて GitHub Secrets 管理で、リポジトリにもこのページにも認証情報は含まれません。</li>
+    <li>このページ自体も静的ファイル1枚で、稼働状況は閲覧時にブラウザから GitHub の公開 API を直接参照しています。</li>
+  </ul>
+
+  <h2>成果物と作り方</h2>
+  <ul class="links">
+    <li>成果物: <a href="https://qiita.com/4q_sano/items/1d98dd5fb49ce99bd288">【毎日更新】人気ランキングTOP100</a> / <a href="https://qiita.com/4q_sano/items/cc27d3564a657046242a">【毎日更新】週間トレンドTOP30</a></li>
+    <li>作り方(パイプライン編): <a href="https://qiita.com/4q_sano/items/913e93ee5cc2731561fc">GitHub Actions・Qiita・Claude APIで急上昇ランキングを自動生成した</a></li>
+    <li>作り方(完全自動化編): <a href="https://qiita.com/4q_sano/items/1bc5e0669a8f0166936c">cron-job.org で GitHub Actions を毎日確実に起動する</a></li>
+  </ul>
+
+  <footer>
+    運用: <a href="https://qiita.com/4q_sano">@4q_sano</a> ／ ソース: <a href="https://github.com/TakanobuSano/mcp-github-ranking">TakanobuSano/mcp-github-ranking</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var REPO = 'TakanobuSano/mcp-github-ranking';
+  var WORKFLOW_NAME = 'Update MCP repositories ranking';
+
+  function jst(iso) {
+    return new Date(iso).toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) + ' JST';
+  }
+  function hoursAgo(iso) {
+    return (Date.now() - new Date(iso).getTime()) / 3600000;
+  }
+  function setCard(key, iso, subText) {
+    var dot = document.getElementById('dot-' + key);
+    var val = document.getElementById('val-' + key);
+    var sub = document.getElementById('sub-' + key);
+    if (!iso) { val.textContent = '記録が見つかりません'; dot.className = 'dot err'; return; }
+    var h = hoursAgo(iso);
+    val.textContent = jst(iso);
+    dot.className = 'dot ' + (h < 26 ? 'ok' : h < 50 ? 'warn' : 'err');
+    if (subText) sub.textContent = subText;
+    else sub.textContent = h < 1 ? '1時間以内に実行' : '約' + Math.round(h) + '時間前に実行';
+  }
+  function fetchJson(url) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+  }
+
+  Promise.all([
+    fetchJson('https://api.github.com/repos/' + REPO + '/commits?per_page=30'),
+    fetchJson('https://api.github.com/repos/' + REPO + '/actions/runs?per_page=10')
+  ]).then(function (res) {
+    var commits = res[0], runs = res[1];
+    var find = function (prefix) {
+      for (var i = 0; i < commits.length; i++) {
+        if (commits[i].commit.message.indexOf(prefix) === 0) return commits[i].commit.author.date;
+      }
+      return null;
+    };
+    var rankingDate = find('Update MCP repository ranking');
+    var explainDate = find('Generate Claude explanation cache');
+    setCard('ranking', rankingDate);
+    setCard('explain', explainDate);
+
+    var run = null;
+    var list = runs.workflow_runs || [];
+    for (var j = 0; j < list.length; j++) {
+      if (list[j].name === WORKFLOW_NAME) { run = list[j]; break; }
+    }
+    if (run) {
+      var okRun = run.conclusion === 'success';
+      setCard('run', run.run_started_at, (okRun ? '✅ success' : '❌ ' + (run.conclusion || run.status)) + '(GitHub Actions)');
+      if (!okRun) document.getElementById('dot-run').className = 'dot err';
+    } else {
+      setCard('run', null);
+    }
+
+    var banner = document.getElementById('banner');
+    if (rankingDate && hoursAgo(rankingDate) < 26) {
+      banner.textContent = '✅ 本日も無人で更新済みです(最終更新: ' + jst(rankingDate) + ')';
+      banner.className = 'banner';
+    } else if (rankingDate) {
+      banner.textContent = '⚠️ 最終更新から約' + Math.round(hoursAgo(rankingDate)) + '時間が経過しています';
+      banner.className = 'banner warn';
+    } else {
+      banner.textContent = '❌ 更新コミットが確認できません';
+      banner.className = 'banner err';
+    }
+  }).catch(function (e) {
+    var banner = document.getElementById('banner');
+    banner.textContent = '稼働状況を取得できませんでした(GitHub API のレート制限の可能性があります)。コミット履歴から直接確認できます。';
+    banner.className = 'banner warn';
+  });
+})();
+</script>
+</body>
+</html>
