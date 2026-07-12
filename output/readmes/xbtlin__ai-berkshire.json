@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/xbtlin/ai-berkshire/main/README.md",
   "readme_sha": "31b43b0f0f985a4e7245a30c8280d67df4836d94",
   "readme_size": 31725,
-  "last_used_at": "2026-07-11T23:19:21.594105+00:00",
+  "last_used_at": "2026-07-12T23:19:23.962302+00:00",
   "readme_truncated_for_claude_input": false,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
