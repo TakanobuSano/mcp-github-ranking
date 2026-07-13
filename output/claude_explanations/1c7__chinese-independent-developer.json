@@ -1,0 +1,27 @@
+{
+  "full_name": "1c7/chinese-independent-developer",
+  "url": "https://github.com/1c7/chinese-independent-developer",
+  "generated_at": "2026-07-13T23:19:34.924527+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "5f42f2261cd468059280dfad818fb4da92dcb0a104f02ea3d09825af07b6db92",
+  "readme_length": 302039,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/1c7__chinese-independent-developer.md",
+  "readme_meta_path": "output/readmes/1c7__chinese-independent-developer.json",
+  "anthropic_response_id": "msg_011CczutrzUTFs5g4HnGYeog",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 17972,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 144,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/1c7__chinese-independent-developer.md"
+}
