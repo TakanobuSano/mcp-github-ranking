@@ -1,0 +1,20 @@
+{
+  "full_name": "router-for-me/CLIProxyAPI",
+  "url": "https://github.com/router-for-me/CLIProxyAPI",
+  "readme_cache_path": "output/readmes/router-for-me__CLIProxyAPI.md",
+  "fetched_at": "2026-07-14T23:19:32.900625+00:00",
+  "repo_pushed_at_when_fetched": "2026-07-14T20:50:07Z",
+  "readme_length": 26685,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/router-for-me/CLIProxyAPI/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/router-for-me/CLIProxyAPI/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/router-for-me/CLIProxyAPI/main/README.md",
+  "readme_sha": "a07ab776fa6b6f22f2feed1c0fad2e0791452975",
+  "readme_size": 26715,
+  "last_used_at": "2026-07-14T23:19:32.900642+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

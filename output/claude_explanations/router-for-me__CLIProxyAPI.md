@@ -1,0 +1,1 @@
+CLIProxyAPI は、OpenAI・Gemini・Claude・Grok などの複数の AI モデルを OpenAI/Gemini/Claude 互換の API として統一的に利用できるプロキシサーバーです。複数アカウントのロードバランシングや OAuth ログイン対応により、CLI ツールから各種 AI モデルに簡単にアクセスできます。
