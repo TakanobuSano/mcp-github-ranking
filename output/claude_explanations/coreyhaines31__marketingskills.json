@@ -1,0 +1,27 @@
+{
+  "full_name": "coreyhaines31/marketingskills",
+  "url": "https://github.com/coreyhaines31/marketingskills",
+  "generated_at": "2026-07-15T23:19:33.895935+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "8764f07bbed09c959ebaffabc2cc849bc76bdfabd9f4917bf2d777d685c87505",
+  "readme_length": 18973,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/coreyhaines31__marketingskills.md",
+  "readme_meta_path": "output/readmes/coreyhaines31__marketingskills.json",
+  "anthropic_response_id": "msg_011Cd4hWeLE3Lgs72BHAHLDu",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 5784,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 115,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/coreyhaines31__marketingskills.md"
+}
