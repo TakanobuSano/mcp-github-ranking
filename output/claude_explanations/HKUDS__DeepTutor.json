@@ -1,0 +1,27 @@
+{
+  "full_name": "HKUDS/DeepTutor",
+  "url": "https://github.com/HKUDS/DeepTutor",
+  "generated_at": "2026-07-18T23:20:03.639464+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "d6436898ed4d47ef530dab8e5a716a70c505800f434c69bb60c4dac1dd53af99",
+  "readme_length": 57173,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/HKUDS__DeepTutor.md",
+  "readme_meta_path": "output/readmes/HKUDS__DeepTutor.json",
+  "anthropic_response_id": "msg_011CdANyYtcbWKvxB3xPd4nf",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 10751,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 145,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/HKUDS__DeepTutor.md"
+}
