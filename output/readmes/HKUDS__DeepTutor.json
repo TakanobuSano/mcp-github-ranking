@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/HKUDS/DeepTutor/main/README.md",
   "readme_sha": "f68888f7cdc44495ba722b2c6f63fc33ea786c01",
   "readme_size": 57681,
-  "last_used_at": "2026-07-18T23:19:32.417267+00:00",
+  "last_used_at": "2026-07-19T23:19:23.768338+00:00",
   "readme_truncated_for_claude_input": true,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
