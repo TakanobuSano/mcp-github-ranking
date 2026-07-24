@@ -1,0 +1,27 @@
+{
+  "full_name": "xai-org/grok-build",
+  "url": "https://github.com/xai-org/grok-build",
+  "generated_at": "2026-07-24T23:19:31.453832+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "322066de9f5bc136295bd0ae4f1752cef3d8dcb1a8f9d88044609e7b6d7abcf7",
+  "readme_length": 5724,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/xai-org__grok-build.md",
+  "readme_meta_path": "output/readmes/xai-org__grok-build.json",
+  "anthropic_response_id": "msg_011CdMjnhAdBg3eMELiSwyu3",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 2253,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 121,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/xai-org__grok-build.md"
+}

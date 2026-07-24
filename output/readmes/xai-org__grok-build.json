@@ -1,0 +1,20 @@
+{
+  "full_name": "xai-org/grok-build",
+  "url": "https://github.com/xai-org/grok-build",
+  "readme_cache_path": "output/readmes/xai-org__grok-build.md",
+  "fetched_at": "2026-07-24T23:19:16.569747+00:00",
+  "repo_pushed_at_when_fetched": "2026-07-24T16:59:47Z",
+  "readme_length": 5724,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/xai-org/grok-build/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/xai-org/grok-build/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/xai-org/grok-build/main/README.md",
+  "readme_sha": "4569db83fe4fee02ba656f8eaa52db22e43e8e63",
+  "readme_size": 5757,
+  "last_used_at": "2026-07-24T23:19:16.569766+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
