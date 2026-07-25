@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/Nutlope/hallmark/main/README.md",
   "readme_sha": "a615a8007804ee0912c2a94a4d987acdd75c3cbe",
   "readme_size": 6313,
-  "last_used_at": "2026-07-24T23:19:17.190987+00:00",
+  "last_used_at": "2026-07-25T23:19:18.050972+00:00",
   "readme_truncated_for_claude_input": false,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
