@@ -1,0 +1,27 @@
+{
+  "full_name": "1jehuang/jcode",
+  "url": "https://github.com/1jehuang/jcode",
+  "generated_at": "2026-07-28T23:20:01.368988+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "ec5e86ba781c5f107cf524946900c40f60bebf43769e285b6e767085daf48d1a",
+  "readme_length": 38973,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/1jehuang__jcode.md",
+  "readme_meta_path": "output/readmes/1jehuang__jcode.json",
+  "anthropic_response_id": "msg_011CdVK4YY2ZGNqdwWHGvLgk",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9495,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 134,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/1jehuang__jcode.md"
+}

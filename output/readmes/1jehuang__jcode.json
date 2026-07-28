@@ -1,0 +1,20 @@
+{
+  "full_name": "1jehuang/jcode",
+  "url": "https://github.com/1jehuang/jcode",
+  "readme_cache_path": "output/readmes/1jehuang__jcode.md",
+  "fetched_at": "2026-07-28T23:19:25.544756+00:00",
+  "repo_pushed_at_when_fetched": "2026-07-28T21:55:07Z",
+  "readme_length": 38973,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/1jehuang/jcode/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/1jehuang/jcode/blob/master/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/1jehuang/jcode/master/README.md",
+  "readme_sha": "9ddf9c064a8d4181a89913219b2396558ab9ed37",
+  "readme_size": 39066,
+  "last_used_at": "2026-07-28T23:19:25.544775+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
