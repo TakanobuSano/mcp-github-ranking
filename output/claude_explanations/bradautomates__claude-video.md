@@ -1,0 +1,1 @@
+claude-video Claudeに動画を「視聴」させるPythonツール。YouTube、TikTok、ローカルファイルなどのURLを渡すと、フレーム抽出と字幕取得を自動化し、Claudeが実際に映像と音声を確認した上で質問に答えられるようにします。Claude Code対応で、マーケットプレイスから直接インストール可能。

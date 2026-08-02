@@ -1,0 +1,27 @@
+{
+  "full_name": "ayghri/i-have-adhd",
+  "url": "https://github.com/ayghri/i-have-adhd",
+  "generated_at": "2026-08-02T23:19:30.476840+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "d1aee809e698998f72768eea10ea5ac46ce53683f0262d2d0cd21cc109edb04e",
+  "readme_length": 3600,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/ayghri__i-have-adhd.md",
+  "readme_meta_path": "output/readmes/ayghri__i-have-adhd.json",
+  "anthropic_response_id": "msg_011Cden4soptfhuU333LikuA",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 1620,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 128,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/ayghri__i-have-adhd.md"
+}

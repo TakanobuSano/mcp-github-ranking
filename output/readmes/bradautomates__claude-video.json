@@ -1,0 +1,20 @@
+{
+  "full_name": "bradautomates/claude-video",
+  "url": "https://github.com/bradautomates/claude-video",
+  "readme_cache_path": "output/readmes/bradautomates__claude-video.md",
+  "fetched_at": "2026-08-02T23:19:23.458059+00:00",
+  "repo_pushed_at_when_fetched": "2026-07-01T01:26:49Z",
+  "readme_length": 19227,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/bradautomates/claude-video/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/bradautomates/claude-video/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/bradautomates/claude-video/main/README.md",
+  "readme_sha": "8c44cf24840ea019edbe1f26dcab823bb3a8844f",
+  "readme_size": 19510,
+  "last_used_at": "2026-08-02T23:19:23.458076+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
