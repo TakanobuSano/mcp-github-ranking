@@ -1,0 +1,20 @@
+{
+  "full_name": "can1357/oh-my-pi",
+  "url": "https://github.com/can1357/oh-my-pi",
+  "readme_cache_path": "output/readmes/can1357__oh-my-pi.md",
+  "fetched_at": "2026-08-08T23:19:25.217960+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-08T19:10:39Z",
+  "readme_length": 42817,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/can1357/oh-my-pi/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/can1357/oh-my-pi/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/README.md",
+  "readme_sha": "8b6d36a9b08598a6b80ecc09fd15f57ed4a1c387",
+  "readme_size": 43185,
+  "last_used_at": "2026-08-08T23:19:25.217983+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

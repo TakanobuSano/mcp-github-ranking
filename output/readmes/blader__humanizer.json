@@ -1,0 +1,20 @@
+{
+  "full_name": "blader/humanizer",
+  "url": "https://github.com/blader/humanizer",
+  "readme_cache_path": "output/readmes/blader__humanizer.md",
+  "fetched_at": "2026-08-08T23:19:26.376356+00:00",
+  "repo_pushed_at_when_fetched": "2026-07-22T06:26:25Z",
+  "readme_length": 13901,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/blader/humanizer/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/blader/humanizer/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/blader/humanizer/main/README.md",
+  "readme_sha": "ee250be686dc809d67d0bf9f1ee8171abacb611b",
+  "readme_size": 13938,
+  "last_used_at": "2026-08-08T23:19:26.376374+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

@@ -1,0 +1,27 @@
+{
+  "full_name": "can1357/oh-my-pi",
+  "url": "https://github.com/can1357/oh-my-pi",
+  "generated_at": "2026-08-08T23:19:57.290763+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a66893d29d4bbe06b098b13495678a58c3e38644194fa3c4dfa248c3cb63e926",
+  "readme_length": 42817,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/can1357__oh-my-pi.md",
+  "readme_meta_path": "output/readmes/can1357__oh-my-pi.json",
+  "anthropic_response_id": "msg_011Cdr8xHSRo8SC7NLFybxas",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9211,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 151,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/can1357__oh-my-pi.md"
+}
