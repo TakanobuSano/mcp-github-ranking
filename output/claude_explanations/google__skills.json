@@ -1,0 +1,27 @@
+{
+  "full_name": "google/skills",
+  "url": "https://github.com/google/skills",
+  "generated_at": "2026-08-10T23:19:40.853064+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "c880df3d7e2bfd413e89760aaa48eccb190b7c77f8c4038d75181d1c7322125f",
+  "readme_length": 12318,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/google__skills.md",
+  "readme_meta_path": "output/readmes/google__skills.json",
+  "anthropic_response_id": "msg_011CduvYxoV8jhndHHeGZk4m",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4270,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 144,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/google__skills.md"
+}

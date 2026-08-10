@@ -1,0 +1,1 @@
+GoogleのAgent Skillsリポジトリは、Google CloudやGemini APIなどのGoogle製品・技術向けのエージェントスキルを集約したコレクションです。認証、インフラ構築、AI/ML、データベース、セキュリティなど幅広い領域をカバーしており、`npx skills add`コマンドで必要なスキルを選択インストール可能。Claude CodeやCodexなどのエージェントハーネスにプラグインとして統合できます。

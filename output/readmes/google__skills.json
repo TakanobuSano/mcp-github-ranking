@@ -1,0 +1,20 @@
+{
+  "full_name": "google/skills",
+  "url": "https://github.com/google/skills",
+  "readme_cache_path": "output/readmes/google__skills.md",
+  "fetched_at": "2026-08-10T23:19:34.839937+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-10T19:32:05Z",
+  "readme_length": 12318,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/google/skills/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/google/skills/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/google/skills/main/README.md",
+  "readme_sha": "e1f357d09ba57b3a80a29b8ab1ef82ec4f8b07b0",
+  "readme_size": 12318,
+  "last_used_at": "2026-08-10T23:19:34.839954+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

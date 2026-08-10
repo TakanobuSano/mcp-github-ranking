@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/TencentCloud/TencentDB-Agent-Memory/feat/server_team/README.md",
   "readme_sha": "39d45a164ce2fe4e4e54de2bef732e4307452fbb",
   "readme_size": 18578,
-  "last_used_at": "2026-08-09T23:19:16.119173+00:00",
+  "last_used_at": "2026-08-10T23:19:24.017807+00:00",
   "readme_truncated_for_claude_input": false,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
