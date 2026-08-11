@@ -1,0 +1,27 @@
+{
+  "full_name": "yc-software/qm",
+  "url": "https://github.com/yc-software/qm",
+  "generated_at": "2026-08-11T23:19:37.823890+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "9588226b6b19b354f125d805b18b3a585ccbe76ae04800d719f978dc5cce51ca",
+  "readme_length": 8483,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/yc-software__qm.md",
+  "readme_meta_path": "output/readmes/yc-software__qm.json",
+  "anthropic_response_id": "msg_011CdwpMdjGLeR8n239gcY42",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 2530,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 150,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/yc-software__qm.md"
+}

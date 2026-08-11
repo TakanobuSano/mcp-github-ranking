@@ -1,0 +1,20 @@
+{
+  "full_name": "yc-software/qm",
+  "url": "https://github.com/yc-software/qm",
+  "readme_cache_path": "output/readmes/yc-software__qm.md",
+  "fetched_at": "2026-08-11T23:19:34.128757+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-11T21:48:26Z",
+  "readme_length": 8483,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/yc-software/qm/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/yc-software/qm/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/yc-software/qm/main/README.md",
+  "readme_sha": "fee08758db89825ef0e0623ac6612971a08118d2",
+  "readme_size": 8534,
+  "last_used_at": "2026-08-11T23:19:34.128777+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
