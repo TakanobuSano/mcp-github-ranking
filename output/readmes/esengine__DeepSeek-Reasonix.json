@@ -1,0 +1,20 @@
+{
+  "full_name": "esengine/DeepSeek-Reasonix",
+  "url": "https://github.com/esengine/DeepSeek-Reasonix",
+  "readme_cache_path": "output/readmes/esengine__DeepSeek-Reasonix.md",
+  "fetched_at": "2026-08-12T23:19:26.924107+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-12T21:39:10Z",
+  "readme_length": 12433,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/esengine/DeepSeek-Reasonix/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/esengine/DeepSeek-Reasonix/blob/main-v2/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/esengine/DeepSeek-Reasonix/main-v2/README.md",
+  "readme_sha": "f44a8bd0b8faaaf3cf6de8db2679df2c8281af59",
+  "readme_size": 12518,
+  "last_used_at": "2026-08-12T23:19:26.924122+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
