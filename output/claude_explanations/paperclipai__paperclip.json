@@ -1,0 +1,27 @@
+{
+  "full_name": "paperclipai/paperclip",
+  "url": "https://github.com/paperclipai/paperclip",
+  "generated_at": "2026-08-13T23:20:17.269539+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "cb75a0cc9e7bdf189e11e248b498713eb148f7c98622e9cf188dd23e2002f8d9",
+  "readme_length": 26583,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/paperclipai__paperclip.md",
+  "readme_meta_path": "output/readmes/paperclipai__paperclip.json",
+  "anthropic_response_id": "msg_011Ce1c2N2nzF3yXC8nZBuhC",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8410,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 141,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/paperclipai__paperclip.md"
+}

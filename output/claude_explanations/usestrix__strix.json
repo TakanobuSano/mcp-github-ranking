@@ -1,0 +1,27 @@
+{
+  "full_name": "usestrix/strix",
+  "url": "https://github.com/usestrix/strix",
+  "generated_at": "2026-08-13T23:19:49.777351+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "540e5795c73470fa24f42e1aa322d893827279ecd11ba3315166ec974f3ad0e5",
+  "readme_length": 15891,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/usestrix__strix.md",
+  "readme_meta_path": "output/readmes/usestrix__strix.json",
+  "anthropic_response_id": "msg_011Ce1bzM9A8FuUTLTi3s7r9",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 5147,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 158,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/usestrix__strix.md"
+}
