@@ -1,0 +1,1 @@
+Word、PowerPoint、Excel、PDF等の複数の文書形式をGitHub Flavored Markdownに高速変換するRust製ライブラリです。Node.js、Python、ブラウザ向けバインディングを備え、LLM向けのクリーンなMarkdown出力を数ミリ秒で生成します。Claude Codeを含む各種エージェントのスキルとしても利用でき、ドキュメント処理パイプラインに最適です。
