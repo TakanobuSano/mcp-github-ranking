@@ -1,0 +1,1 @@
+Unslothはローカルで大規模言語モデルと拡散モデルを実行・学習できるデスクトップアプリです。Qwen、DeepSeek、Gemmaなど多数のモデルに対応し、Claude CodeやMCPとの連携、ファインチューニングを2倍高速化、70%少ないVRAMで実行できます。Windows、macOS、Linuxで利用可能です。

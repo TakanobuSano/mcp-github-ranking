@@ -1,0 +1,27 @@
+{
+  "full_name": "unslothai/unsloth",
+  "url": "https://github.com/unslothai/unsloth",
+  "generated_at": "2026-08-15T23:19:33.995373+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "8c0486f084e07451383a04d3eb272ff8566db74406af786d1cdb6e558fb4c597",
+  "readme_length": 30885,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/unslothai__unsloth.md",
+  "readme_meta_path": "output/readmes/unslothai__unsloth.json",
+  "anthropic_response_id": "msg_011Ce5Pb2s3PyVWneTgtgAqB",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 10844,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 125,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/unslothai__unsloth.md"
+}
