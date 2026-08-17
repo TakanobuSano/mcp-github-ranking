@@ -1,0 +1,1 @@
+dot-skill（同事.skill） チャットログや文書から個人の思考パターンを抽出し、Claude CodeやHermesなどのエージェント上で動作するAIスキルに変換するツール。同僚・家族・著名人など、誰でも「デジタル化」できます。Feishu/DingTalk/Slackとの連携で自動収集にも対応。

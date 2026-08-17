@@ -1,0 +1,20 @@
+{
+  "full_name": "tt-a1i/archify",
+  "url": "https://github.com/tt-a1i/archify",
+  "readme_cache_path": "output/readmes/tt-a1i__archify.md",
+  "fetched_at": "2026-08-17T23:19:34.378349+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-17T15:47:26Z",
+  "readme_length": 17880,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/tt-a1i/archify/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/tt-a1i/archify/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/tt-a1i/archify/main/README.md",
+  "readme_sha": "8731865270622bb2c5a5c206462441f653d0b786",
+  "readme_size": 17963,
+  "last_used_at": "2026-08-17T23:19:34.378364+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

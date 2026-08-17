@@ -1,0 +1,27 @@
+{
+  "full_name": "tt-a1i/archify",
+  "url": "https://github.com/tt-a1i/archify",
+  "generated_at": "2026-08-17T23:19:42.645081+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "f18ed604c937329a8df5a0066062ff8394da0a48b0d94a0187c44427bd03da13",
+  "readme_length": 17880,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/tt-a1i__archify.md",
+  "readme_meta_path": "output/readmes/tt-a1i__archify.json",
+  "anthropic_response_id": "msg_011Ce9BDVLzyuwKPVWYPK7Dx",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 5651,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 150,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/tt-a1i__archify.md"
+}
