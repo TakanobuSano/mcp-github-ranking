@@ -1,0 +1,20 @@
+{
+  "full_name": "volcengine/OpenViking",
+  "url": "https://github.com/volcengine/OpenViking",
+  "readme_cache_path": "output/readmes/volcengine__OpenViking.md",
+  "fetched_at": "2026-08-20T23:19:23.034472+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-20T16:28:26Z",
+  "readme_length": 15903,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/volcengine/OpenViking/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/volcengine/OpenViking/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/volcengine/OpenViking/main/README.md",
+  "readme_sha": "405ee268d942980f61df0c6fcca7e98f394de5ea",
+  "readme_size": 16198,
+  "last_used_at": "2026-08-20T23:19:23.034489+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

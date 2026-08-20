@@ -1,0 +1,1 @@
+OpenSandboxはAIエージェント向けの汎用サンドボックスプラットフォームで、Python・Java・JavaScriptなど複数言語のSDK、CLI、MCP対応により、コーディングエージェントやGUIエージェント、AIコード実行などの用途に対応しています。DockerとKubernetesランタイムで、ローカル実行から大規模分散スケジューリングまで対応可能です。
