@@ -1,0 +1,27 @@
+{
+  "full_name": "walkinglabs/learn-harness-engineering",
+  "url": "https://github.com/walkinglabs/learn-harness-engineering",
+  "generated_at": "2026-08-21T23:19:32.566775+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "39d8f903da3ddb7d9d8eae2032217670ea44a2a9b990fb3967a59c6b096ccb0b",
+  "readme_length": 39411,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/walkinglabs__learn-harness-engineering.md",
+  "readme_meta_path": "output/readmes/walkinglabs__learn-harness-engineering.json",
+  "anthropic_response_id": "msg_011CeGkSQZkVSyXGSqvBaQRX",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8794,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 160,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/walkinglabs__learn-harness-engineering.md"
+}

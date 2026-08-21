@@ -1,0 +1,20 @@
+{
+  "full_name": "walkinglabs/learn-harness-engineering",
+  "url": "https://github.com/walkinglabs/learn-harness-engineering",
+  "readme_cache_path": "output/readmes/walkinglabs__learn-harness-engineering.md",
+  "fetched_at": "2026-08-21T23:19:26.621040+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-21T10:31:08Z",
+  "readme_length": 39411,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/walkinglabs/learn-harness-engineering/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/walkinglabs/learn-harness-engineering/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/walkinglabs/learn-harness-engineering/main/README.md",
+  "readme_sha": "7451595517a0aa0fd2cbdafada9304d7d65809ac",
+  "readme_size": 42212,
+  "last_used_at": "2026-08-21T23:19:26.621062+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
