@@ -1,0 +1,27 @@
+{
+  "full_name": "K-Dense-AI/scientific-agent-skills",
+  "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+  "generated_at": "2026-08-28T23:19:30.916534+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "3b5a49da805c3f7c20271dd466434a2ac07137ed80557f955a055d56e83bea89",
+  "readme_length": 71632,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/K-Dense-AI__scientific-agent-skills.md",
+  "readme_meta_path": "output/readmes/K-Dense-AI__scientific-agent-skills.json",
+  "anthropic_response_id": "msg_011CeW16iHbW8dnXLCaL4jqP",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8620,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 110,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/K-Dense-AI__scientific-agent-skills.md"
+}
