@@ -1,0 +1,20 @@
+{
+  "full_name": "THU-MAIC/OpenMAIC",
+  "url": "https://github.com/THU-MAIC/OpenMAIC",
+  "readme_cache_path": "output/readmes/THU-MAIC__OpenMAIC.md",
+  "fetched_at": "2026-08-30T23:19:26.938132+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-30T09:16:58Z",
+  "readme_length": 48515,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/THU-MAIC/OpenMAIC/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/THU-MAIC/OpenMAIC/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/THU-MAIC/OpenMAIC/main/README.md",
+  "readme_sha": "496f1dd765bea493f35b2b8f8ce9420e6b492332",
+  "readme_size": 49262,
+  "last_used_at": "2026-08-30T23:19:26.938171+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
