@@ -1,0 +1,27 @@
+{
+  "full_name": "abi/screenshot-to-code",
+  "url": "https://github.com/abi/screenshot-to-code",
+  "generated_at": "2026-08-31T23:20:35.154350+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a728506f78f76cbe602ae83805be2516b4c0b03763de09a64184fc96bb619c06",
+  "readme_length": 7455,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/abi__screenshot-to-code.md",
+  "readme_meta_path": "output/readmes/abi__screenshot-to-code.json",
+  "anthropic_response_id": "msg_011CebgcBrAFFY7ur931Neks",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 2556,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 124,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/abi__screenshot-to-code.md"
+}
