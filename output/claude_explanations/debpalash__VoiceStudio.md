@@ -1,0 +1,1 @@
+VoiceStudio は、ElevenLabs の代替となるオープンソースの音声AI ツールです。ローカル環境で音声クローニング、ビデオダビング、文字起こし、オーディオブック作成が 646 言語で可能。16 種類の TTS エンジンと 11 種類の ASR エンジンを搭載し、CUDA・Apple Silicon・ROCm に対応。アカウントや API キーなしで完全ローカル処理でき、macOS・Windows・Linux・Docker で動作します。
