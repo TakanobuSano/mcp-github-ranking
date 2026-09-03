@@ -1,0 +1,20 @@
+{
+  "full_name": "h4ckf0r0day/obscura",
+  "url": "https://github.com/h4ckf0r0day/obscura",
+  "readme_cache_path": "output/readmes/h4ckf0r0day__obscura.md",
+  "fetched_at": "2026-09-03T23:19:40.261334+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-03T17:35:45Z",
+  "readme_length": 25962,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/h4ckf0r0day/obscura/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/h4ckf0r0day/obscura/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/README.md",
+  "readme_sha": "7505dbe8d14b2b7e8415d9a414861e101a7ef029",
+  "readme_size": 26056,
+  "last_used_at": "2026-09-03T23:19:40.261353+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

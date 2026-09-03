@@ -1,0 +1,1 @@
+Rustで書かれたヘッドレスブラウザ。AIエージェントとWebスクレイピング向けに、Chromiumなしで軽量・高速に動作します。メモリ使用量30MB、バイナリサイズ70MBと小さく、PuppeteerやPlaywrightと互換性があり、Chrome DevTools Protocolに対応。スクリーンショット・PDF出力・反検出機能も備えています。
