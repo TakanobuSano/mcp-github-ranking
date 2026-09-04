@@ -1,0 +1,27 @@
+{
+  "full_name": "sgl-project/sglang",
+  "url": "https://github.com/sgl-project/sglang",
+  "generated_at": "2026-09-04T23:19:33.883281+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "ee6908559f95fe54c3f6773ed23e163d76c984f4750445830a343eac6edca1d0",
+  "readme_length": 11935,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/sgl-project__sglang.md",
+  "readme_meta_path": "output/readmes/sgl-project__sglang.json",
+  "anthropic_response_id": "msg_011CejFmDiPjoFHU7trzUY6m",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4906,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 153,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/sgl-project__sglang.md"
+}
