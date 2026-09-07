@@ -1,0 +1,1 @@
+OpenClaudeはOpenAI互換API、Gemini、GitHub Models、Ollamaなど複数のLLMプロバイダーに対応したオープンソースのコーディングエージェントCLIです。ターミナルベースのワークフローでプロンプト、ツール、エージェント、MCPをサポートし、クラウドとローカルモデルの両方で動作します。

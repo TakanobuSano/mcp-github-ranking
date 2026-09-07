@@ -1,0 +1,27 @@
+{
+  "full_name": "Gitlawb/openclaude",
+  "url": "https://github.com/Gitlawb/openclaude",
+  "generated_at": "2026-09-07T23:19:27.685161+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "807b9880c5e8b1a5fad0d74866bd6ef8c21a992105ca7e561b97709a4111f4e7",
+  "readme_length": 27823,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/Gitlawb__openclaude.md",
+  "readme_meta_path": "output/readmes/Gitlawb__openclaude.json",
+  "anthropic_response_id": "msg_011CepwBcYK74MZYyYxcnLgS",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8855,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 118,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/Gitlawb__openclaude.md"
+}
