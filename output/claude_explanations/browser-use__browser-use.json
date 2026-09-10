@@ -1,0 +1,27 @@
+{
+  "full_name": "browser-use/browser-use",
+  "url": "https://github.com/browser-use/browser-use",
+  "generated_at": "2026-09-10T23:19:38.659556+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "f404d93b546c7659d6de02ea91312afd71995c2bf3479deda9461aad5d1102f2",
+  "readme_length": 14467,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/browser-use__browser-use.md",
+  "readme_meta_path": "output/readmes/browser-use__browser-use.json",
+  "anthropic_response_id": "msg_011CevcdBavb6EKzXE2e9P8x",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4870,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 126,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/browser-use__browser-use.md"
+}
