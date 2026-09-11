@@ -1,0 +1,20 @@
+{
+  "full_name": "D4Vinci/Scrapling",
+  "url": "https://github.com/D4Vinci/Scrapling",
+  "readme_cache_path": "output/readmes/D4Vinci__Scrapling.md",
+  "fetched_at": "2026-09-11T23:19:34.572783+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-11T19:20:30Z",
+  "readme_length": 36920,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/D4Vinci/Scrapling/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/D4Vinci/Scrapling/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/D4Vinci/Scrapling/main/README.md",
+  "readme_sha": "6f8d8405b5691adb305aeae5d7a83f543ede1756",
+  "readme_size": 37124,
+  "last_used_at": "2026-09-11T23:19:34.572807+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
