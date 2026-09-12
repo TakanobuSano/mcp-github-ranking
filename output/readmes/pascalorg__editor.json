@@ -1,0 +1,20 @@
+{
+  "full_name": "pascalorg/editor",
+  "url": "https://github.com/pascalorg/editor",
+  "readme_cache_path": "output/readmes/pascalorg__editor.md",
+  "fetched_at": "2026-09-12T23:19:29.449616+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-12T05:11:03Z",
+  "readme_length": 20065,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/pascalorg/editor/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/pascalorg/editor/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/pascalorg/editor/main/README.md",
+  "readme_sha": "2f4b9a1be5c9a608f5bac8226c945c0b5e59eeea",
+  "readme_size": 20293,
+  "last_used_at": "2026-09-12T23:19:29.449636+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

@@ -1,0 +1,20 @@
+{
+  "full_name": "mksglu/context-mode",
+  "url": "https://github.com/mksglu/context-mode",
+  "readme_cache_path": "output/readmes/mksglu__context-mode.md",
+  "fetched_at": "2026-09-12T23:19:30.228995+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-12T18:04:51Z",
+  "readme_length": 94434,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/mksglu/context-mode/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/mksglu/context-mode/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/mksglu/context-mode/main/README.md",
+  "readme_sha": "b796169524473691594af24995d21ca94027f7c7",
+  "readme_size": 94871,
+  "last_used_at": "2026-09-12T23:19:30.229025+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

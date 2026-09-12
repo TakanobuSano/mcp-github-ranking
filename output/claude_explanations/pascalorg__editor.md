@@ -1,0 +1,1 @@
+Pascal Editorは、React Three FiberとWebGPUで構築されたオープンソースの3D建築エディタです。ブラウザまたはCLIから実行でき、MCPを通じてAIエージェントと連携できます。ローカルファースト設計で、TypeScriptベースのTurborepoモノレポとして構成されており、建築・BIM・パラメトリック設計のワークフローに対応しています。
