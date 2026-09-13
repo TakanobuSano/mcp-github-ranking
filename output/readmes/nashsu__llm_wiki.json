@@ -1,0 +1,20 @@
+{
+  "full_name": "nashsu/llm_wiki",
+  "url": "https://github.com/nashsu/llm_wiki",
+  "readme_cache_path": "output/readmes/nashsu__llm_wiki.md",
+  "fetched_at": "2026-09-13T23:19:27.781169+00:00",
+  "repo_pushed_at_when_fetched": "2026-08-25T06:42:02Z",
+  "readme_length": 31405,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/nashsu/llm_wiki/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/nashsu/llm_wiki/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/nashsu/llm_wiki/main/README.md",
+  "readme_sha": "47020c0ae0414363f23c6d1af1a1d5c8a1a57003",
+  "readme_size": 31910,
+  "last_used_at": "2026-09-13T23:19:27.781186+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
