@@ -1,0 +1,27 @@
+{
+  "full_name": "asgeirtj/system_prompts_leaks",
+  "url": "https://github.com/asgeirtj/system_prompts_leaks",
+  "generated_at": "2026-09-14T23:19:32.628567+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "8ce38a30c466ff7c941f072c528250d9a0ba4283d6b8f13b0aaf1ab3634551d5",
+  "readme_length": 21294,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/asgeirtj__system_prompts_leaks.md",
+  "readme_meta_path": "output/readmes/asgeirtj__system_prompts_leaks.json",
+  "anthropic_response_id": "msg_011Cf4BrQmQcZSJVZer8xwry",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9407,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 120,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/asgeirtj__system_prompts_leaks.md"
+}
