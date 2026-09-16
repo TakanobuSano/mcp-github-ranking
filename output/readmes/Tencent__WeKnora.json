@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/Tencent/WeKnora/main/README.md",
   "readme_sha": "7664b5c8933b6e39ad1e3bd83e5af12c1d864e63",
   "readme_size": 32860,
-  "last_used_at": "2026-09-15T23:19:26.929750+00:00",
+  "last_used_at": "2026-09-16T23:19:29.217279+00:00",
   "readme_truncated_for_claude_input": true,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
