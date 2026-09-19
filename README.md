@@ -22,11 +22,11 @@ flowchart LR
 - 仕組みの詳細と**ライブ稼働ステータス**: [定常自律運転ページ](https://takanobusano.github.io/mcp-github-ranking/)
 - 作り方の解説記事: [パイプライン編](https://qiita.com/4q_sano/items/913e93ee5cc2731561fc) / [cron-job.org 完全自動化編](https://qiita.com/4q_sano/items/1bc5e0669a8f0166936c)
 <!-- MCP_REPOS_START -->
-最終更新: **2026-09-19 08:17:12 JST**
+最終更新: **2026-09-20 08:17:11 JST**
 
 MCP関連リポジトリに加え、Claude Code周辺で活用候補になりそうな関連ツールをGitHub Search APIで毎日自動収集してランキング化しています。
 
-Stars / Forks の差分は、UTC基準の前日データ（2026-09-17）との差分です。
+Stars / Forks の差分は、UTC基準の前日データ（2026-09-18）との差分です。
 CSVには最大500件を保存し、本文では上位100件を表示しています。
 
 > 注意: この一覧はClaude Codeでの動作を保証するものではありません。  
@@ -38,7 +38,7 @@ CSVには最大500件を保存し、本文では上位100件を表示してい�
 
 A collective list of free APIs
 
-⭐ **481,433 Stars**（+216）　🍴 **53,156 Forks**（+32）　/　🟢 **1,940 Open Issues**　/　Python
+⭐ **481,630 Stars**（+197）　🍴 **53,184 Forks**（+28）　/　🟢 **1,946 Open Issues**　/　Python
 
 Topics: `api` / `apis` / `dataset` / `development` / `free` / `list` / `lists` / `open-source`
 
@@ -46,7 +46,7 @@ Topics: `api` / `apis` / `dataset` / `development` / `free` / `list` / `lists` /
 
 The AI that really does things. Any OS. Any Platform. The lobster way. 🦞
 
-⭐ **390,057 Stars**（+60）　🍴 **82,007 Forks**（+24）　/　🟢 **7,856 Open Issues**　/　TypeScript
+⭐ **390,097 Stars**（+40）　🍴 **82,027 Forks**（+20）　/　🟢 **8,117 Open Issues**　/　TypeScript
 
 Topics: `ai` / `assistant` / `crustacean` / `molty` / `openclaw` / `own-your-data` / `personal`
 
@@ -54,7 +54,7 @@ Topics: `ai` / `assistant` / `crustacean` / `molty` / `openclaw` / `own-your-dat
 
 An agentic skills framework & software development methodology that works.
 
-⭐ **288,540 Stars**（+429）　🍴 **25,806 Forks**（+36）　/　🟢 **374 Open Issues**　/　Shell
+⭐ **288,821 Stars**（+281）　🍴 **25,836 Forks**（+30）　/　🟢 **369 Open Issues**　/　Shell
 
 Topics: `ai` / `brainstorming` / `coding` / `obra` / `sdlc` / `skills` / `subagent-driven-development` / `superpowers`
 
@@ -62,7 +62,7 @@ Topics: `ai` / `brainstorming` / `coding` / `obra` / `sdlc` / `skills` / `subage
 
 Skills for Real Engineers. Straight from my .agents directory.
 
-⭐ **265,255 Stars**（+805）　🍴 **22,363 Forks**（+60）　/　🟢 **503 Open Issues**　/　Shell
+⭐ **265,801 Stars**（+546）　🍴 **22,423 Forks**（+60）　/　🟢 **504 Open Issues**　/　Shell
 
 Topics: `topicなし`
 
@@ -70,7 +70,7 @@ Topics: `topicなし`
 
 The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.
 
-⭐ **262,023 Stars**（+897）　🍴 **39,205 Forks**（+117）　/　🟢 **228 Open Issues**　/　JavaScript
+⭐ **262,927 Stars**（+904）　🍴 **39,337 Forks**（+132）　/　🟢 **199 Open Issues**　/　JavaScript
 
 Topics: `ai-agents` / `anthropic` / `claude` / `claude-code` / `developer-tools` / `llm` / `mcp` / `productivity`
 
@@ -78,7 +78,7 @@ Topics: `ai-agents` / `anthropic` / `claude` / `claude-code` / `developer-tools`
 
 The agent that grows with you
 
-⭐ **246,899 Stars**（+358）　🍴 **51,789 Forks**（+151）　/　🟢 **43,521 Open Issues**　/　Python
+⭐ **247,154 Stars**（+255）　🍴 **51,920 Forks**（+131）　/　🟢 **43,455 Open Issues**　/　Python
 
 Topics: `ai` / `ai-agent` / `ai-agents` / `anthropic` / `chatgpt` / `claude` / `claude-code` / `codex`
 
@@ -86,7 +86,7 @@ Topics: `ai` / `ai-agent` / `ai-agents` / `anthropic` / `chatgpt` / `claude` / `
 
 A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.
 
-⭐ **213,973 Stars**（+280）　🍴 **21,639 Forks**（+16）　/　🟢 **130 Open Issues**　/　不明
+⭐ **214,139 Stars**（+166）　🍴 **21,657 Forks**（+18）　/　🟢 **130 Open Issues**　/　不明
 
 Topics: `topicなし`
 
@@ -94,7 +94,7 @@ Topics: `topicなし`
 
 An agent-managed museum exhibit, built in Rust with Gajae-Code / LazyCodex — developed and maintained with no human intervention.
 
-⭐ **195,261 Stars**（-2）　🍴 **108,496 Forks**（-15）　/　🟢 **45 Open Issues**　/　Rust
+⭐ **195,269 Stars**（+8）　🍴 **108,491 Forks**（-5）　/　🟢 **45 Open Issues**　/　Rust
 
 Topics: `topicなし`
 
@@ -102,7 +102,7 @@ Topics: `topicなし`
 
 The web data API to search, scrape, and interact at scale. 🔥
 
-⭐ **182,002 Stars**（+340）　🍴 **9,845 Forks**（+10）　/　🟢 **642 Open Issues**　/　TypeScript
+⭐ **182,270 Stars**（+268）　🍴 **9,853 Forks**（+8）　/　🟢 **640 Open Issues**　/　TypeScript
 
 Topics: `ai` / `ai-agents` / `ai-crawler` / `ai-scraping` / `ai-search` / `crawler` / `data-extraction` / `html-to-markdown`
 
@@ -110,7 +110,7 @@ Topics: `ai` / `ai-agents` / `ai-crawler` / `ai-scraping` / `ai-search` / `crawl
 
 Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.
 
-⭐ **181,229 Stars**（+63）　🍴 **17,925 Forks**（+6）　/　🟢 **4,036 Open Issues**　/　Go
+⭐ **181,276 Stars**（+47）　🍴 **17,935 Forks**（+10）　/　🟢 **4,037 Open Issues**　/　Go
 
 Topics: `deepseek` / `gemma` / `gemma3` / `glm` / `go` / `golang` / `gpt-oss` / `llama`
 
@@ -118,7 +118,7 @@ Topics: `deepseek` / `gemma` / `gemma3` / `glm` / `go` / `golang` / `gpt-oss` / 
 
 Public repository for Agent Skills
 
-⭐ **177,042 Stars**（+162）　🍴 **20,974 Forks**（+34）　/　🟢 **1,248 Open Issues**　/　Python
+⭐ **177,163 Stars**（+121）　🍴 **20,991 Forks**（+17）　/　🟢 **1,253 Open Issues**　/　Python
 
 Topics: `agent-skills`
 
@@ -126,7 +126,7 @@ Topics: `agent-skills`
 
 Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.
 
-⭐ **156,348 Stars**（+163）　🍴 **24,680 Forks**（+18）　/　🟢 **1,109 Open Issues**　/　TypeScript
+⭐ **156,482 Stars**（+134）　🍴 **24,689 Forks**（+9）　/　🟢 **1,103 Open Issues**　/　TypeScript
 
 Topics: `agent` / `agentic-ai` / `agentic-framework` / `agentic-workflow` / `ai` / `automation` / `claude` / `deepseek`
 
@@ -134,7 +134,7 @@ Topics: `agent` / `agentic-ai` / `agentic-framework` / `agentic-workflow` / `ai`
 
 Langflow is a powerful tool for building and deploying AI-powered agents and workflows.
 
-⭐ **154,987 Stars**（+40）　🍴 **10,113 Forks**（+5）　/　🟢 **1,109 Open Issues**　/　Python
+⭐ **155,019 Stars**（+32）　🍴 **10,118 Forks**（+5）　/　🟢 **1,110 Open Issues**　/　Python
 
 Topics: `agents` / `chatgpt` / `generative-ai` / `large-language-models` / `multiagent` / `react-flow`
 
@@ -142,7 +142,7 @@ Topics: `agents` / `chatgpt` / `generative-ai` / `large-language-models` / `mult
 
 A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.
 
-⭐ **153,382 Stars**（+217）　🍴 **24,740 Forks**（+30）　/　🟢 **150 Open Issues**　/　Shell
+⭐ **153,542 Stars**（+160）　🍴 **24,764 Forks**（+24）　/　🟢 **155 Open Issues**　/　Shell
 
 Topics: `topicなし`
 
@@ -150,7 +150,7 @@ Topics: `topicなし`
 
 Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.
 
-⭐ **146,270 Stars**（+421）　🍴 **23,781 Forks**（+159）　/　🟢 **12,421 Open Issues**　/　TypeScript
+⭐ **146,689 Stars**（+419）　🍴 **23,917 Forks**（+136）　/　🟢 **12,302 Open Issues**　/　TypeScript
 
 Topics: `topicなし`
 
@@ -158,7 +158,7 @@ Topics: `topicなし`
 
 FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models
 
-⭐ **143,710 Stars**（+11）　🍴 **34,816 Forks**（-4）　/　🟢 **162 Open Issues**　/　不明
+⭐ **143,736 Stars**（+26）　🍴 **34,809 Forks**（-7）　/　🟢 **162 Open Issues**　/　不明
 
 Topics: `ai` / `bolt` / `cluely` / `copilot` / `cursor` / `cursorai` / `devin` / `github-copilot`
 
@@ -166,7 +166,7 @@ Topics: `ai` / `bolt` / `cluely` / `copilot` / `cursor` / `cursorai` / `devin` /
 
 Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.
 
-⭐ **142,006 Stars**（+715）　🍴 **7,615 Forks**（+41）　/　🟢 **276 Open Issues**　/　JavaScript
+⭐ **142,507 Stars**（+501）　🍴 **7,646 Forks**（+31）　/　🟢 **281 Open Issues**　/　JavaScript
 
 Topics: `agent-skills` / `ai-agents` / `claude` / `claude-code` / `claude-code-plugin` / `cursor-rules` / `developer-tools` / `llm`
 
@@ -174,7 +174,7 @@ Topics: `agent-skills` / `ai-agents` / `claude` / `claude-code` / `claude-code-p
 
 Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA
 
-⭐ **133,589 Stars**（+122）　🍴 **19,901 Forks**（+10）　/　🟢 **911 Open Issues**　/　TypeScript
+⭐ **133,708 Stars**（+119）　🍴 **19,925 Forks**（+24）　/　🟢 **918 Open Issues**　/　TypeScript
 
 Topics: `topicなし`
 
@@ -182,7 +182,7 @@ Topics: `topicなし`
 
 A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io
 
-⭐ **133,567 Stars**（+175）　🍴 **9,214 Forks**（+14）　/　🟢 **2,766 Open Issues**　/　Rust
+⭐ **133,678 Stars**（+111）　🍴 **9,222 Forks**（+8）　/　🟢 **2,782 Open Issues**　/　Rust
 
 Topics: `ai-tools` / `claude-code` / `codex` / `desktop-app` / `grok` / `grokbuild` / `hermes` / `hermes-agent`
 
@@ -190,7 +190,7 @@ Topics: `ai-tools` / `claude-code` / `codex` / `desktop-app` / `grok` / `grokbui
 
 An AI skill that provides design intelligence for building professional UI/UX across multiple platforms.
 
-⭐ **128,825 Stars**（+319）　🍴 **13,734 Forks**（+32）　/　🟢 **87 Open Issues**　/　Python
+⭐ **129,056 Stars**（+231）　🍴 **13,756 Forks**（+22）　/　🟢 **84 Open Issues**　/　Python
 
 Topics: `ai-skills` / `antigravity` / `claude` / `claude-code` / `codex` / `command-line` / `copilot` / `cursor-ai`
 
@@ -198,7 +198,7 @@ Topics: `ai-skills` / `antigravity` / `claude` / `claude-code` / `codex` / `comm
 
 利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.
 
-⭐ **124,586 Stars**（+139）　🍴 **19,302 Forks**（+25）　/　🟢 **29 Open Issues**　/　Python
+⭐ **124,719 Stars**（+133）　🍴 **19,322 Forks**（+20）　/　🟢 **29 Open Issues**　/　Python
 
 Topics: `ai-video-generator` / `content-creation` / `ffmpeg` / `instagram-reels` / `llm` / `python` / `short-video` / `subtitles`
 
@@ -206,7 +206,7 @@ Topics: `ai-video-generator` / `content-creation` / `ffmpeg` / `instagram-reels`
 
 Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.
 
-⭐ **119,377 Stars**（+335）　🍴 **11,538 Forks**（+26）　/　🟢 **1,407 Open Issues**　/　Python
+⭐ **119,629 Stars**（+252）　🍴 **11,562 Forks**（+24）　/　🟢 **1,424 Open Issues**　/　Python
 
 Topics: `ai-agents` / `antigravity` / `ast` / `claude-code` / `code-analysis` / `code-search` / `codex` / `cursor`
 
@@ -214,7 +214,7 @@ Topics: `ai-agents` / `antigravity` / `ast` / `claude-code` / `code-analysis` / 
 
 Agents that use the browser.
 
-⭐ **115,159 Stars**（+178）　🍴 **12,677 Forks**（+25）　/　🟢 **444 Open Issues**　/　Python
+⭐ **115,328 Stars**（+169）　🍴 **12,692 Forks**（+15）　/　🟢 **452 Open Issues**　/　Python
 
 Topics: `ai-agents` / `ai-tools` / `browser-automation` / `browser-use` / `llm` / `playwright` / `python`
 
@@ -222,7 +222,7 @@ Topics: `ai-agents` / `ai-tools` / `browser-automation` / `browser-use` / `llm` 
 
 TradingAgents: Multi-Agents LLM Financial Trading Framework
 
-⭐ **107,465 Stars**（+153）　🍴 **20,549 Forks**（+41）　/　🟢 **157 Open Issues**　/　Python
+⭐ **107,610 Stars**（+145）　🍴 **20,586 Forks**（+37）　/　🟢 **160 Open Issues**　/　Python
 
 Topics: `agent` / `finance` / `llm` / `multiagent` / `trading`
 
@@ -230,7 +230,7 @@ Topics: `agent` / `finance` / `llm` / `multiagent` / `trading`
 
 An open-source AI agent that brings the power of Gemini directly into your terminal.
 
-⭐ **107,069 Stars**（+28）　🍴 **14,604 Forks**（+4）　/　🟢 **843 Open Issues**　/　TypeScript
+⭐ **107,087 Stars**（+18）　🍴 **14,604 Forks**（±0）　/　🟢 **842 Open Issues**　/　TypeScript
 
 Topics: `ai` / `ai-agents` / `cli` / `gemini` / `gemini-api` / `mcp-client` / `mcp-server`
 
@@ -238,7 +238,7 @@ Topics: `ai` / `ai-agents` / `cli` / `gemini` / `gemini-api` / `mcp-client` / `m
 
 🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.
 
-⭐ **106,594 Stars**（+327）　🍴 **6,177 Forks**（+23）　/　🟢 **128 Open Issues**　/　Go
+⭐ **106,775 Stars**（+181）　🍴 **6,178 Forks**（+1）　/　🟢 **129 Open Issues**　/　Go
 
 Topics: `ai` / `anthropic` / `caveman` / `claude` / `claude-code` / `llm` / `meme` / `prompt-engineering`
 
@@ -246,7 +246,7 @@ Topics: `ai` / `anthropic` / `caveman` / `claude` / `claude-code` / `llm` / `mem
 
 🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: pr...
 
-⭐ **96,947 Stars**（+181）　🍴 **11,263 Forks**（+17）　/　🟢 **1,090 Open Issues**　/　TypeScript
+⭐ **97,093 Stars**（+146）　🍴 **11,284 Forks**（+21）　/　🟢 **1,101 Open Issues**　/　TypeScript
 
 Topics: `agent-skills` / `ai-design` / `byok` / `claude-code-for-design` / `claude-design` / `codex-design` / `coding-agents` / `cursor-design`
 
@@ -254,7 +254,7 @@ Topics: `agent-skills` / `ai-design` / `byok` / `claude-code-for-design` / `clau
 
 Production-grade engineering skills for AI coding agents.
 
-⭐ **96,378 Stars**（+554）　🍴 **10,188 Forks**（+44）　/　🟢 **111 Open Issues**　/　JavaScript
+⭐ **96,994 Stars**（+616）　🍴 **10,237 Forks**（+49）　/　🟢 **111 Open Issues**　/　JavaScript
 
 Topics: `agent-skills` / `antigravity` / `claude-code` / `codex` / `cursor` / `skills`
 
@@ -262,7 +262,7 @@ Topics: `agent-skills` / `antigravity` / `claude-code` / `codex` / `cursor` / `s
 
 Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API.
 
-⭐ **96,332 Stars**（+51）　🍴 **6,461 Forks**（+5）　/　🟢 **191 Open Issues**　/　TypeScript
+⭐ **96,364 Stars**（+32）　🍴 **6,470 Forks**（+9）　/　🟢 **200 Open Issues**　/　TypeScript
 
 Topics: `automation` / `chrome` / `chromium` / `e2e-testing` / `electron` / `end-to-end-testing` / `firefox` / `javascript`
 
@@ -270,7 +270,7 @@ Topics: `automation` / `chrome` / `chromium` / `e2e-testing` / `electron` / `end
 
 JavaScript API for Chrome and Firefox
 
-⭐ **95,590 Stars**（+6）　🍴 **9,575 Forks**（±0）　/　🟢 **259 Open Issues**　/　TypeScript
+⭐ **95,592 Stars**（+2）　🍴 **9,579 Forks**（+4）　/　🟢 **261 Open Issues**　/　TypeScript
 
 Topics: `automation` / `chrome` / `chromium` / `developer-tools` / `firefox` / `headless-chrome` / `node-module` / `testing`
 
@@ -278,7 +278,7 @@ Topics: `automation` / `chrome` / `chromium` / `developer-tools` / `firefox` / `
 
 Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More
 
-⭐ **94,209 Stars**（+75）　🍴 **8,315 Forks**（+9）　/　🟢 **218 Open Issues**　/　TypeScript
+⭐ **94,271 Stars**（+62）　🍴 **8,321 Forks**（+6）　/　🟢 **226 Open Issues**　/　TypeScript
 
 Topics: `ai` / `ai-agents` / `ai-memory` / `anthropic` / `artificial-intelligence` / `chromadb` / `claude` / `claude-agent-sdk`
 
@@ -286,7 +286,7 @@ Topics: `ai` / `ai-agents` / `ai-memory` / `anthropic` / `artificial-intelligenc
 
 Model Context Protocol Servers
 
-⭐ **90,450 Stars**（+28）　🍴 **11,662 Forks**（+11）　/　🟢 **546 Open Issues**　/　TypeScript
+⭐ **90,473 Stars**（+23）　🍴 **11,666 Forks**（+4）　/　🟢 **547 Open Issues**　/　TypeScript
 
 Topics: `topicなし`
 
@@ -294,7 +294,7 @@ Topics: `topicなし`
 
 The open-source CapCut alternative
 
-⭐ **89,772 Stars**（+87）　🍴 **8,867 Forks**（+14）　/　🟢 **378 Open Issues**　/　TypeScript
+⭐ **89,864 Stars**（+92）　🍴 **8,876 Forks**（+9）　/　🟢 **378 Open Issues**　/　TypeScript
 
 Topics: `editor` / `oss` / `videoeditor`
 
@@ -302,7 +302,7 @@ Topics: `editor` / `oss` / `videoeditor`
 
 ✨ Zero-config AI chat assistant. No API key needed — sign up and instantly chat with GPT-5, Claude 4, Gemini 2.5, DeepSeek & 100+ top models. Pay-as-you-go save...
 
-⭐ **88,790 Stars**（+10）　🍴 **59,049 Forks**（-8）　/　🟢 **865 Open Issues**　/　TypeScript
+⭐ **88,788 Stars**（-2）　🍴 **59,042 Forks**（-7）　/　🟢 **865 Open Issues**　/　TypeScript
 
 Topics: `calclaude` / `chatgpt` / `claude` / `cross-platform` / `desktop` / `fe` / `gemini` / `gemini-pro`
 
@@ -310,7 +310,7 @@ Topics: `calclaude` / `chatgpt` / `claude` / `cross-platform` / `desktop` / `fe`
 
 🙌 OpenHands: AI-Driven Development
 
-⭐ **88,443 Stars**（+117）　🍴 **11,617 Forks**（+16）　/　🟢 **819 Open Issues**　/　TypeScript
+⭐ **88,539 Stars**（+96）　🍴 **11,634 Forks**（+17）　/　🟢 **848 Open Issues**　/　TypeScript
 
 Topics: `agent` / `artificial-intelligence` / `chatgpt` / `claude-ai` / `cli` / `developer-tools` / `gpt` / `llm`
 
@@ -318,7 +318,7 @@ Topics: `agent` / `artificial-intelligence` / `chatgpt` / `claude-ai` / `cli` / 
 
 Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop
 
-⭐ **88,245 Stars**（+271）　🍴 **6,007 Forks**（+25）　/　🟢 **69 Open Issues**　/　JavaScript
+⭐ **88,473 Stars**（+228）　🍴 **6,025 Forks**（+18）　/　🟢 **69 Open Issues**　/　JavaScript
 
 Topics: `agent` / `ai` / `claude` / `claude-code` / `codex` / `coding` / `design` / `frontend`
 
@@ -326,7 +326,7 @@ Topics: `agent` / `ai` / `claude` / `claude-code` / `codex` / `coding` / `design
 
 Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface
 
-⭐ **86,933 Stars**（+241）　🍴 **13,186 Forks**（+39）　/　🟢 **399 Open Issues**　/　TypeScript
+⭐ **87,009 Stars**（+76）　🍴 **13,207 Forks**（+21）　/　🟢 **426 Open Issues**　/　TypeScript
 
 Topics: `agent` / `ai` / `dashboard` / `geopolitics` / `mcp` / `mcp-server` / `monitoring` / `news`
 
@@ -334,7 +334,7 @@ Topics: `agent` / `ai` / `dashboard` / `geopolitics` / `mcp` / `mcp-server` / `m
 
 Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation for your next big idea — freeing you to create without sweating the small things.
 
-⭐ **84,982 Stars**（+14）　🍴 **25,345 Forks**（+136）　/　🟢 **31 Open Issues**　/　Blade
+⭐ **84,983 Stars**（+1）　🍴 **25,452 Forks**（+107）　/　🟢 **32 Open Issues**　/　Blade
 
 Topics: `framework` / `laravel` / `php`
 
@@ -342,31 +342,31 @@ Topics: `framework` / `laravel` / `php`
 
 🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here:
 
-⭐ **83,834 Stars**（+78）　🍴 **8,669 Forks**（+8）　/　🟢 **201 Open Issues**　/　Python
+⭐ **83,875 Stars**（+41）　🍴 **8,675 Forks**（+6）　/　🟢 **201 Open Issues**　/　Python
 
 Topics: `topicなし`
 
-## 40位 [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
-
-Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.
-
-⭐ **83,245 Stars**（+83）　🍴 **7,023 Forks**（+12）　/　🟢 **305 Open Issues**　/　TypeScript
-
-Topics: `antigravity-skills` / `business-knowledge` / `claude-code` / `claude-skills` / `codebase-analysis` / `codex` / `codex-skills` / `developer-tools-ai-agent`
-
-## 41位 [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach)
+## 40位 [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach)
 
 Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.
 
-⭐ **83,111 Stars**（+316）　🍴 **7,278 Forks**（+37）　/　🟢 **150 Open Issues**　/　Python
+⭐ **83,448 Stars**（+337）　🍴 **7,312 Forks**（+34）　/　🟢 **153 Open Issues**　/　Python
 
 Topics: `agent-infrastructure` / `ai-agent` / `ai-search` / `automation` / `bilibili` / `claude-code` / `cli` / `cursor`
+
+## 41位 [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
+
+Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.
+
+⭐ **83,316 Stars**（+71）　🍴 **7,036 Forks**（+13）　/　🟢 **306 Open Issues**　/　TypeScript
+
+Topics: `antigravity-skills` / `business-knowledge` / `claude-code` / `claude-skills` / `codebase-analysis` / `codex` / `codex-skills` / `developer-tools-ai-agent`
 
 ## 42位 [bytedance/deer-flow](https://github.com/bytedance/deer-flow)
 
 An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of tasks that could take minutes to hours.
 
-⭐ **82,656 Stars**（+60）　🍴 **11,414 Forks**（+20）　/　🟢 **888 Open Issues**　/　Python
+⭐ **82,702 Stars**（+46）　🍴 **11,424 Forks**（+10）　/　🟢 **900 Open Issues**　/　Python
 
 Topics: `agent` / `agentic` / `agentic-framework` / `agentic-workflow` / `ai` / `ai-agents` / `deep-research` / `harness`
 
@@ -374,7 +374,7 @@ Topics: `agent` / `agentic` / `agentic-framework` / `agentic-workflow` / `ai` / 
 
 🤯 LobeHub is your Chief Agent Operator, organizing your agents into 7×24 operations by hiring, scheduling, and reporting on your entire AI team.
 
-⭐ **82,605 Stars**（+53）　🍴 **15,897 Forks**（+2）　/　🟢 **921 Open Issues**　/　TypeScript
+⭐ **82,659 Stars**（+54）　🍴 **15,904 Forks**（+7）　/　🟢 **931 Open Issues**　/　TypeScript
 
 Topics: `agent` / `agent-collaboration` / `agent-harness` / `ai` / `cao` / `chatgpt` / `chief-agent-operator` / `claude`
 
@@ -382,7 +382,7 @@ Topics: `agent` / `agent-collaboration` / `agent-harness` / `ai` / `cao` / `chat
 
 🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here:
 
-⭐ **82,165 Stars**（+316）　🍴 **8,366 Forks**（+53）　/　🟢 **6 Open Issues**　/　Python
+⭐ **82,417 Stars**（+252）　🍴 **8,400 Forks**（+34）　/　🟢 **3 Open Issues**　/　Python
 
 Topics: `ai` / `ai-scraping` / `automation` / `crawler` / `crawling` / `crawling-python` / `data` / `data-extraction`
 
@@ -390,7 +390,7 @@ Topics: `ai` / `ai-scraping` / `automation` / `crawler` / `crawling` / `crawling
 
 The open-source app everyone uses to manage agents at work
 
-⭐ **81,012 Stars**（+68）　🍴 **14,873 Forks**（+18）　/　🟢 **5,520 Open Issues**　/　TypeScript
+⭐ **81,075 Stars**（+63）　🍴 **14,898 Forks**（+25）　/　🟢 **5,544 Open Issues**　/　TypeScript
 
 Topics: `topicなし`
 
@@ -398,7 +398,7 @@ Topics: `topicなし`
 
 CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies
 
-⭐ **80,943 Stars**（+110）　🍴 **5,134 Forks**（+12）　/　🟢 **1,642 Open Issues**　/　Rust
+⭐ **81,039 Stars**（+96）　🍴 **5,136 Forks**（+2）　/　🟢 **1,572 Open Issues**　/　Rust
 
 Topics: `agentic-coding` / `ai-coding` / `anthropic` / `claude-code` / `cli` / `command-line-tool` / `cost-reduction` / `developer-tools`
 
@@ -406,7 +406,7 @@ Topics: `agentic-coding` / `ai-coding` / `anthropic` / `claude-code` / `cli` / `
 
 Drop in a screenshot and convert it to clean code (HTML/Tailwind/React/Vue)
 
-⭐ **79,235 Stars**（+89）　🍴 **9,672 Forks**（+9）　/　🟢 **145 Open Issues**　/　Python
+⭐ **79,323 Stars**（+88）　🍴 **9,689 Forks**（+17）　/　🟢 **146 Open Issues**　/　Python
 
 Topics: `topicなし`
 
@@ -414,7 +414,7 @@ Topics: `topicなし`
 
 Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1
 
-⭐ **77,139 Stars**（+80）　🍴 **12,405 Forks**（+14）　/　🟢 **52 Open Issues**　/　Python
+⭐ **77,194 Stars**（+55）　🍴 **12,414 Forks**（+9）　/　🟢 **52 Open Issues**　/　Python
 
 Topics: `agent` / `agent-development` / `ai-agent` / `claude` / `claude-code` / `educational` / `llm` / `python`
 
@@ -422,7 +422,7 @@ Topics: `agent` / `agent-development` / `ai-agent` / `claude` / `claude-code` / 
 
 Local UI to run and train LLMs and diffusion models. Supports GGUF, MLX, Qwen3.8, DeepSeek-V4, MiniMax-H3, Gemma 4, FLUX and more.
 
-⭐ **76,389 Stars**（+74）　🍴 **6,974 Forks**（+18）　/　🟢 **1,250 Open Issues**　/　Python
+⭐ **76,446 Stars**（+57）　🍴 **6,980 Forks**（+6）　/　🟢 **1,255 Open Issues**　/　Python
 
 Topics: `agent` / `ai` / `chatgpt` / `deepseek` / `fine-tuning` / `gemma` / `image-generation` / `llama`
 
@@ -430,7 +430,7 @@ Topics: `agent` / `ai` / `chatgpt` / `deepseek` / `fine-tuning` / `gemma` / `ima
 
 A terminal for a more modern age
 
-⭐ **74,569 Stars**（+24）　🍴 **4,258 Forks**（+3）　/　🟢 **2,834 Open Issues**　/　TypeScript
+⭐ **74,584 Stars**（+15）　🍴 **4,258 Forks**（±0）　/　🟢 **2,834 Open Issues**　/　TypeScript
 
 Topics: `serial` / `ssh-client` / `telnet-client` / `terminal` / `terminal-emulators`
 
@@ -438,7 +438,7 @@ Topics: `serial` / `ssh-client` / `telnet-client` / `terminal` / `terminal-emula
 
 🗂 The essential checklist for modern web development, for humans and AI agents
 
-⭐ **74,200 Stars**（+23）　🍴 **6,741 Forks**（-1）　/　🟢 **11 Open Issues**　/　MDX
+⭐ **74,208 Stars**（+8）　🍴 **6,742 Forks**（+1）　/　🟢 **11 Open Issues**　/　MDX
 
 Topics: `ai-agent` / `ai-agents` / `checklist` / `css` / `front-end-developer-tool` / `front-end-development` / `frontend` / `guidelines`
 
@@ -446,7 +446,7 @@ Topics: `ai-agent` / `ai-agents` / `checklist` / `css` / `front-end-developer-to
 
 Open Data Platform for analysts, quants and AI agents.
 
-⭐ **73,212 Stars**（+56）　🍴 **7,573 Forks**（+7）　/　🟢 **113 Open Issues**　/　Python
+⭐ **73,257 Stars**（+45）　🍴 **7,580 Forks**（+7）　/　🟢 **114 Open Issues**　/　Python
 
 Topics: `ai` / `crypto` / `derivatives` / `economics` / `equity` / `finance` / `fixed-income` / `machine-learning`
 
@@ -454,7 +454,7 @@ Topics: `ai` / `crypto` / `derivatives` / `economics` / `equity` / `finance` / `
 
 Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.
 
-⭐ **72,954 Stars**（+181）　🍴 **5,610 Forks**（+17）　/　🟢 **682 Open Issues**　/　Python
+⭐ **73,097 Stars**（+143）　🍴 **5,621 Forks**（+11）　/　🟢 **685 Open Issues**　/　Python
 
 Topics: `agent` / `ai` / `anthropic` / `claude-code` / `compression` / `context-engineering` / `context-window` / `cursor`
 
@@ -462,7 +462,7 @@ Topics: `agent` / `ai` / `anthropic` / `claude-code` / `compression` / `context-
 
 🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive me...
 
-⭐ **72,799 Stars**（+77）　🍴 **8,629 Forks**（+18）　/　🟢 **975 Open Issues**　/　TypeScript
+⭐ **72,866 Stars**（+67）　🍴 **8,647 Forks**（+18）　/　🟢 **993 Open Issues**　/　TypeScript
 
 Topics: `agentic-ai` / `agentic-framework` / `agentic-workflow` / `agents` / `ai-agents` / `ai-assistant` / `ai-skills` / `autonomous-agents`
 
@@ -470,7 +470,7 @@ Topics: `agentic-ai` / `agentic-framework` / `agentic-workflow` / `agents` / `ai
 
 Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.
 
-⭐ **71,916 Stars**（+816）　🍴 **4,699 Forks**（+49）　/　🟢 **6,337 Open Issues**　/　TypeScript
+⭐ **72,591 Stars**（+675）　🍴 **4,751 Forks**（+52）　/　🟢 **6,293 Open Issues**　/　TypeScript
 
 Topics: `ade` / `agent-ide` / `ai-agents` / `claude-code` / `cli` / `codex` / `cursor-agent` / `devtools`
 
@@ -478,7 +478,7 @@ Topics: `ade` / `agent-ide` / `ai-agents` / `claude-code` / `cli` / `codex` / `c
 
 Daytona is a Secure and Elastic Infrastructure for Running AI-Generated Code
 
-⭐ **71,743 Stars**（+26）　🍴 **5,649 Forks**（+3）　/　🟢 **457 Open Issues**　/　不明
+⭐ **71,747 Stars**（+4）　🍴 **5,644 Forks**（-5）　/　🟢 **457 Open Issues**　/　不明
 
 Topics: `agentic-workflow` / `ai` / `ai-agents` / `ai-runtime` / `ai-sandboxes` / `code-execution` / `code-interpreter` / `developer-tools`
 
@@ -486,7 +486,7 @@ Topics: `agentic-workflow` / `ai` / `ai-agents` / `ai-runtime` / `ai-sandboxes` 
 
 Pre-indexed code knowledge graph, auto syncs on code changes, for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, CoPilot, and Hermes Agent — fewer tokens, fewer tool calls, 100% local
 
-⭐ **71,429 Stars**（+104）　🍴 **4,596 Forks**（+18）　/　🟢 **521 Open Issues**　/　C
+⭐ **71,494 Stars**（+65）　🍴 **4,598 Forks**（+2）　/　🟢 **522 Open Issues**　/　C
 
 Topics: `topicなし`
 
@@ -494,7 +494,7 @@ Topics: `topicなし`
 
 OmO: Just type "mass ulw" keyword with your prompt. Now you are the master of graph engineering.
 
-⭐ **69,193 Stars**（+39）　🍴 **5,692 Forks**（+2）　/　🟢 **1,036 Open Issues**　/　TypeScript
+⭐ **69,200 Stars**（+7）　🍴 **5,700 Forks**（+8）　/　🟢 **1,046 Open Issues**　/　TypeScript
 
 Topics: `ai` / `ai-agents` / `anthropic` / `chatgpt` / `claude` / `claude-skills` / `codex` / `cursor`
 
@@ -502,7 +502,7 @@ Topics: `ai` / `ai-agents` / `anthropic` / `chatgpt` / `claude` / `claude-skills
 
 The design language that makes your AI harness better at design.
 
-⭐ **68,989 Stars**（+230）　🍴 **4,217 Forks**（+9）　/　🟢 **42 Open Issues**　/　JavaScript
+⭐ **69,158 Stars**（+169）　🍴 **4,225 Forks**（+8）　/　🟢 **43 Open Issues**　/　JavaScript
 
 Topics: `topicなし`
 
@@ -510,7 +510,7 @@ Topics: `topicなし`
 
 Autonomous coding agent as an SDK, IDE extension, or CLI assistant.
 
-⭐ **68,692 Stars**（+148）　🍴 **7,425 Forks**（+12）　/　🟢 **1,365 Open Issues**　/　TypeScript
+⭐ **68,782 Stars**（+90）　🍴 **7,445 Forks**（+20）　/　🟢 **1,380 Open Issues**　/　TypeScript
 
 Topics: `topicなし`
 
@@ -518,7 +518,7 @@ Topics: `topicなし`
 
 A coding agent for open models like Kimi K3 and GLM 5.3
 
-⭐ **68,379 Stars**（+11）　🍴 **5,884 Forks**（+1）　/　🟢 **3 Open Issues**　/　Rust
+⭐ **68,385 Stars**（+6）　🍴 **5,884 Forks**（±0）　/　🟢 **3 Open Issues**　/　Rust
 
 Topics: `acp` / `coding-agent` / `deepseek` / `kimi` / `python` / `qwen` / `rust`
 
@@ -526,7 +526,7 @@ Topics: `acp` / `coding-agent` / `deepseek` / `kimi` / `python` / `qwen` / `rust
 
 Never stop coding. Free MIT AI gateway: one endpoint, 352 providers (150+ free), 1200+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by 550+ contributors
 
-⭐ **67,869 Stars**（+403）　🍴 **9,564 Forks**（+67）　/　🟢 **457 Open Issues**　/　TypeScript
+⭐ **68,237 Stars**（+368）　🍴 **9,646 Forks**（+82）　/　🟢 **466 Open Issues**　/　TypeScript
 
 Topics: `a2a` / `ai-agents` / `ai-gateway` / `anthropic` / `claude` / `claude-code` / `cline` / `codex`
 
@@ -534,47 +534,47 @@ Topics: `a2a` / `ai-agents` / `ai-gateway` / `anthropic` / `claude` / `claude-co
 
 Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly.
 
-⭐ **67,464 Stars**（+92）　🍴 **10,962 Forks**（+16）　/　🟢 **55 Open Issues**　/　JavaScript
+⭐ **67,671 Stars**（+207）　🍴 **10,993 Forks**（+31）　/　🟢 **55 Open Issues**　/　JavaScript
 
 Topics: `ai` / `ai-agents` / `ai-prompts` / `anthropic` / `chatbot` / `chatgpt` / `claude` / `claude-code`
 
-## 64位 [bradtraversy/design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers)
-
-Curated list of design and UI resources from stock photos, web templates, CSS frameworks, UI libraries, tools and much more
-
-⭐ **66,975 Stars**（+7）　🍴 **12,192 Forks**（+4）　/　🟢 **133 Open Issues**　/　不明
-
-Topics: `topicなし`
-
-## 65位 [tt-a1i/archify](https://github.com/tt-a1i/archify)
+## 64位 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
 Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
-⭐ **66,779 Stars**（+977）　🍴 **4,453 Forks**（+59）　/　🟢 **134 Open Issues**　/　JavaScript
+⭐ **67,437 Stars**（+658）　🍴 **4,506 Forks**（+53）　/　🟢 **141 Open Issues**　/　JavaScript
 
 Topics: `agent-skills` / `architecture-as-code` / `architecture-diagram` / `claude-skill` / `code-visualization` / `codex` / `coding-agents` / `data-flow-diagram`
 
-## 66位 [xtekky/gpt4free](https://github.com/xtekky/gpt4free)
-
-The official gpt4free repository \| various collection of powerful language models \| opus 4.6 gpt 5.3 kimi 2.5 deepseek v3.2 gemini 3
-
-⭐ **66,699 Stars**（+6）　🍴 **13,506 Forks**（-1）　/　🟢 **1 Open Issues**　/　Python
-
-Topics: `chatbot` / `chatbots` / `chatgpt` / `chatgpt-4` / `chatgpt-api` / `chatgpt-free` / `chatgpt4` / `deepseek`
-
-## 67位 [docling-project/docling](https://github.com/docling-project/docling)
+## 65位 [docling-project/docling](https://github.com/docling-project/docling)
 
 Get your documents ready for gen AI
 
-⭐ **66,685 Stars**（+116）　🍴 **4,812 Forks**（+14）　/　🟢 **931 Open Issues**　/　Python
+⭐ **67,015 Stars**（+330）　🍴 **4,833 Forks**（+21）　/　🟢 **935 Open Issues**　/　Python
 
 Topics: `ai` / `convert` / `document-parser` / `document-parsing` / `documents` / `docx` / `html` / `markdown`
+
+## 66位 [bradtraversy/design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers)
+
+Curated list of design and UI resources from stock photos, web templates, CSS frameworks, UI libraries, tools and much more
+
+⭐ **66,982 Stars**（+7）　🍴 **12,193 Forks**（+1）　/　🟢 **135 Open Issues**　/　不明
+
+Topics: `topicなし`
+
+## 67位 [xtekky/gpt4free](https://github.com/xtekky/gpt4free)
+
+The official gpt4free repository \| various collection of powerful language models \| opus 4.6 gpt 5.3 kimi 2.5 deepseek v3.2 gemini 3
+
+⭐ **66,699 Stars**（±0）　🍴 **13,506 Forks**（±0）　/　🟢 **1 Open Issues**　/　Python
+
+Topics: `chatbot` / `chatbots` / `chatgpt` / `chatgpt-4` / `chatgpt-api` / `chatgpt-free` / `chatgpt4` / `deepseek`
 
 ## 68位 [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)
 
 from vibe coding to agentic engineering - practice makes claude perfect
 
-⭐ **66,098 Stars**（+40）　🍴 **6,555 Forks**（+2）　/　🟢 **35 Open Issues**　/　HTML
+⭐ **66,119 Stars**（+21）　🍴 **6,558 Forks**（+3）　/　🟢 **36 Open Issues**　/　HTML
 
 Topics: `agentic-ai` / `agentic-coding` / `agentic-engineering` / `agentic-workflow` / `ai` / `ai-agents` / `anthropic` / `best-practices`
 
@@ -582,7 +582,7 @@ Topics: `agentic-ai` / `agentic-coding` / `agentic-engineering` / `agentic-workf
 
 The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.
 
-⭐ **65,607 Stars**（+91）　🍴 **7,699 Forks**（+16）　/　🟢 **757 Open Issues**　/　Python
+⭐ **65,651 Stars**（+44）　🍴 **7,711 Forks**（+12）　/　🟢 **758 Open Issues**　/　Python
 
 Topics: `agentic-memory` / `agentic-memory-system` / `agents` / `ai` / `ai-agents` / `chatgpt` / `genai` / `llm`
 
@@ -590,7 +590,7 @@ Topics: `agentic-memory` / `agentic-memory-system` / `agents` / `ai` / `ai-agent
 
 小红书笔记 \| 评论爬虫、抖音视频 \| 评论爬虫、快手视频 \| 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫  \| 知乎问答文章｜评论爬虫
 
-⭐ **65,215 Stars**（+57）　🍴 **12,620 Forks**（+8）　/　🟢 **209 Open Issues**　/　Python
+⭐ **65,269 Stars**（+54）　🍴 **12,626 Forks**（+6）　/　🟢 **209 Open Issues**　/　Python
 
 Topics: `topicなし`
 
@@ -598,7 +598,7 @@ Topics: `topicなし`
 
 Warp is an agentic development environment, born out of the terminal.
 
-⭐ **65,087 Stars**（+16）　🍴 **5,564 Forks**（+3）　/　🟢 **5,277 Open Issues**　/　Rust
+⭐ **65,101 Stars**（+14）　🍴 **5,570 Forks**（+6）　/　🟢 **5,283 Open Issues**　/　Rust
 
 Topics: `bash` / `linux` / `macos` / `rust` / `shell` / `terminal` / `wasm` / `zsh`
 
@@ -606,7 +606,7 @@ Topics: `bash` / `linux` / `macos` / `rust` / `shell` / `terminal` / `wasm` / `z
 
 Open-source AI penetration testing tool to find and fix your app’s vulnerabilities.
 
-⭐ **63,547 Stars**（+222）　🍴 **6,937 Forks**（+31）　/　🟢 **396 Open Issues**　/　Python
+⭐ **63,706 Stars**（+159）　🍴 **6,964 Forks**（+27）　/　🟢 **399 Open Issues**　/　Python
 
 Topics: `agents` / `ai-hacking` / `ai-penetration-testing` / `ai-pentesting` / `ai-security` / `artificial-intelligence` / `bug-bounty` / `code-quality`
 
@@ -614,7 +614,7 @@ Topics: `agents` / `ai-hacking` / `ai-penetration-testing` / `ai-pentesting` / `
 
 ⭐AI-driven public opinion & trend monitor with multi-platform aggregation, RSS, and smart alerts.🎯 告别信息过载，你的 AI 舆情监控助手与热点筛选工具！聚合多平台热点 +  RSS 订阅，支持关键词精准筛选。AI 智能筛...
 
-⭐ **62,388 Stars**（+51）　🍴 **24,882 Forks**（±0）　/　🟢 **58 Open Issues**　/　Python
+⭐ **62,420 Stars**（+32）　🍴 **24,877 Forks**（-5）　/　🟢 **58 Open Issues**　/　Python
 
 Topics: `ai` / `bark` / `data-analysis` / `docker` / `hot-news` / `llm` / `mail` / `mcp`
 
@@ -622,7 +622,7 @@ Topics: `ai` / `bark` / `data-analysis` / `docker` / `hot-news` / `llm` / `mail`
 
 AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary
 
-⭐ **62,298 Stars**（+70）　🍴 **5,427 Forks**（+1）　/　🟢 **115 Open Issues**　/　Python
+⭐ **62,354 Stars**（+56）　🍴 **5,436 Forks**（+9）　/　🟢 **112 Open Issues**　/　Python
 
 Topics: `ai-prompts` / `ai-skill` / `bluesky` / `claude` / `claude-code` / `clawhub` / `deep-research` / `hackernews`
 
@@ -630,7 +630,7 @@ Topics: `ai-prompts` / `ai-skill` / `bluesky` / `claude` / `claude-code` / `claw
 
 Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors
 
-⭐ **62,174 Stars**（+45）　🍴 **3,011 Forks**（+9）　/　🟢 **62 Open Issues**　/　TypeScript
+⭐ **62,209 Stars**（+35）　🍴 **3,014 Forks**（+3）　/　🟢 **63 Open Issues**　/　TypeScript
 
 Topics: `llm` / `mcp` / `mcp-server` / `vibe-coding`
 
@@ -638,7 +638,7 @@ Topics: `llm` / `mcp` / `mcp-server` / `vibe-coding`
 
 An open-source, self-hostable PaaS alternative to Vercel, Heroku & Netlify that lets you easily deploy static sites, databases, full-stack applications and 280+ one-click services on your own servers.
 
-⭐ **61,996 Stars**（+46）　🍴 **5,495 Forks**（+7）　/　🟢 **708 Open Issues**　/　PHP
+⭐ **62,030 Stars**（+34）　🍴 **5,500 Forks**（+5）　/　🟢 **711 Open Issues**　/　PHP
 
 Topics: `coolify` / `databases` / `deployment` / `docker` / `docker-compose` / `inertiajs` / `laravel` / `mariadb`
 
@@ -646,7 +646,7 @@ Topics: `coolify` / `databases` / `deployment` / `docker` / `docker-compose` / `
 
 🤱🏻 Turn any webpage into a desktop app with one command.
 
-⭐ **61,514 Stars**（+18）　🍴 **12,671 Forks**（+10）　/　🟢 **5 Open Issues**　/　Rust
+⭐ **61,534 Stars**（+20）　🍴 **12,678 Forks**（+7）　/　🟢 **0 Open Issues**　/　Rust
 
 Topics: `chatgpt` / `claude` / `desktop` / `gemini` / `hight-performance` / `linux` / `macos` / `no-electron`
 
@@ -654,7 +654,7 @@ Topics: `chatgpt` / `claude` / `desktop` / `gemini` / `hight-performance` / `lin
 
 👩🏿‍💻👨🏾‍💻👩🏼‍💻👨🏽‍💻👩🏻‍💻中国独立开发者项目列表 -- 分享大家都在做什么
 
-⭐ **61,491 Stars**（+19）　🍴 **5,402 Forks**（+4）　/　🟢 **1 Open Issues**　/　不明
+⭐ **61,498 Stars**（+7）　🍴 **5,404 Forks**（+2）　/　🟢 **1 Open Issues**　/　不明
 
 Topics: `china` / `indie` / `indie-developer`
 
@@ -662,7 +662,7 @@ Topics: `china` / `indie` / `indie-developer`
 
 A programming framework for agentic AI
 
-⭐ **61,051 Stars**（+27）　🍴 **9,232 Forks**（+3）　/　🟢 **1,076 Open Issues**　/　Python
+⭐ **61,062 Stars**（+11）　🍴 **9,235 Forks**（+3）　/　🟢 **1,086 Open Issues**　/　Python
 
 Topics: `agentic` / `agentic-agi` / `agents` / `ai` / `autogen` / `autogen-ecosystem` / `chatgpt` / `framework`
 
@@ -670,7 +670,7 @@ Topics: `agentic` / `agentic-agi` / `agents` / `ai` / `autogen` / `autogen-ecosy
 
 Penpot: The open-source design platform for Product teams that need scalable collaboration.
 
-⭐ **60,142 Stars**（+43）　🍴 **4,113 Forks**（+4）　/　🟢 **824 Open Issues**　/　Clojure
+⭐ **60,172 Stars**（+30）　🍴 **4,120 Forks**（+7）　/　🟢 **826 Open Issues**　/　Clojure
 
 Topics: `clojure` / `clojurescript` / `design` / `prototyping` / `ui` / `ux-design` / `ux-experience`
 
@@ -678,7 +678,7 @@ Topics: `clojure` / `clojurescript` / `design` / `prototyping` / `ui` / `ux-desi
 
 World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.
 
-⭐ **59,936 Stars**（+183）　🍴 **7,571 Forks**（+36）　/　🟢 **328 Open Issues**　/　Python
+⭐ **60,158 Stars**（+222）　🍴 **7,610 Forks**（+39）　/　🟢 **329 Open Issues**　/　Python
 
 Topics: `agent` / `agentic-ai` / `ai` / `claude` / `copilot` / `cursor` / `elevenlabs` / `ffmpeg`
 
@@ -686,31 +686,31 @@ Topics: `agent` / `agentic-ai` / `ai` / `claude` / `copilot` / `cursor` / `eleve
 
 A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.
 
-⭐ **59,330 Stars**（+12）　🍴 **2,711 Forks**（+1）　/　🟢 **308 Open Issues**　/　Rust
+⭐ **59,341 Stars**（+11）　🍴 **2,712 Forks**（+1）　/　🟢 **308 Open Issues**　/　Rust
 
 Topics: `ai` / `api` / `app-search` / `database` / `enterprise-search` / `faceting` / `full-text-search` / `fuzzy-search`
 
-## 83位 [MemPalace/mempalace](https://github.com/MemPalace/mempalace)
-
-The best-benchmarked open-source AI memory system. And it's free.
-
-⭐ **59,147 Stars**（+17）　🍴 **7,564 Forks**（+5）　/　🟢 **739 Open Issues**　/　Python
-
-Topics: `ai` / `chromadb` / `llm` / `mcp` / `memory` / `python`
-
-## 84位 [BerriAI/litellm](https://github.com/BerriAI/litellm)
+## 83位 [BerriAI/litellm](https://github.com/BerriAI/litellm)
 
 The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]
 
-⭐ **59,106 Stars**（+90）　🍴 **11,566 Forks**（+28）　/　🟢 **5,207 Open Issues**　/　Python
+⭐ **59,163 Stars**（+57）　🍴 **11,585 Forks**（+19）　/　🟢 **5,177 Open Issues**　/　Python
 
 Topics: `ai-gateway` / `anthropic` / `azure-openai` / `bedrock` / `gateway` / `langchain` / `litellm` / `llm`
+
+## 84位 [MemPalace/mempalace](https://github.com/MemPalace/mempalace)
+
+The best-benchmarked open-source AI memory system. And it's free.
+
+⭐ **59,151 Stars**（+4）　🍴 **7,563 Forks**（-1）　/　🟢 **742 Open Issues**　/　Python
+
+Topics: `ai` / `chromadb` / `llm` / `mcp` / `memory` / `python`
 
 ## 85位 [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI)
 
 Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.
 
-⭐ **58,741 Stars**（+32）　🍴 **8,498 Forks**（+5）　/　🟢 **361 Open Issues**　/　Python
+⭐ **58,778 Stars**（+37）　🍴 **8,512 Forks**（+14）　/　🟢 **406 Open Issues**　/　Python
 
 Topics: `agents` / `ai` / `ai-agents` / `aiagentframework` / `llms`
 
@@ -718,7 +718,7 @@ Topics: `agents` / `ai` / `ai-agents` / `aiagentframework` / `llms`
 
 No fortress, purely open ground.  OpenManus is Coming.
 
-⭐ **58,345 Stars**（+10）　🍴 **10,130 Forks**（+2）　/　🟢 **457 Open Issues**　/　Python
+⭐ **58,348 Stars**（+3）　🍴 **10,132 Forks**（+2）　/　🟢 **456 Open Issues**　/　Python
 
 Topics: `topicなし`
 
@@ -726,7 +726,7 @@ Topics: `topicなし`
 
 Complete API layer for private AI applications on local models: RAG, skills, tools, MCP, text-to-sql, and more. Works with any OpenAI-compatible inference server.
 
-⭐ **57,520 Stars**（+4）　🍴 **7,621 Forks**（+3）　/　🟢 **13 Open Issues**　/　Python
+⭐ **57,519 Stars**（-1）　🍴 **7,619 Forks**（-2）　/　🟢 **18 Open Issues**　/　Python
 
 Topics: `ai` / `ai-tools` / `on-premise`
 
@@ -734,7 +734,7 @@ Topics: `ai` / `ai-tools` / `on-premise`
 
 The open alternative to Salesforce, designed for AI.
 
-⭐ **57,009 Stars**（+51）　🍴 **9,167 Forks**（+17）　/　🟢 **205 Open Issues**　/　TypeScript
+⭐ **57,089 Stars**（+80）　🍴 **9,189 Forks**（+22）　/　🟢 **191 Open Issues**　/　TypeScript
 
 Topics: `crm` / `crm-system` / `customer` / `good-first-issue` / `graphql` / `hacktoberfest` / `javascript` / `marketing`
 
@@ -742,7 +742,7 @@ Topics: `crm` / `crm-system` / `customer` / `good-first-issue` / `graphql` / `ha
 
 Use Claude Code, Codex, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now from the browser with native browser sessions (multi-harness + multi-model) like OpenClaw (voice supported + ToS friendly)
 
-⭐ **55,396 Stars**（+78）　🍴 **8,858 Forks**（+14）　/　🟢 **398 Open Issues**　/　Python
+⭐ **55,455 Stars**（+59）　🍴 **8,869 Forks**（+11）　/　🟢 **399 Open Issues**　/　Python
 
 Topics: `topicなし`
 
@@ -750,7 +750,7 @@ Topics: `topicなし`
 
 AI turns documents or topics into real, native PowerPoint decks—with native shapes, transitions and animations, data-backed charts and tables on demand, audio narration from speaker notes, and support for your own .pptx templates. · by Hugo He
 
-⭐ **55,196 Stars**（+187）　🍴 **4,376 Forks**（+17）　/　🟢 **1 Open Issues**　/　Python
+⭐ **55,337 Stars**（+141）　🍴 **4,385 Forks**（+9）　/　🟢 **1 Open Issues**　/　Python
 
 Topics: `ai-agent` / `aippt` / `office` / `powerpoint` / `powerpoint-generation` / `ppt` / `pptx` / `presentation`
 
@@ -758,7 +758,7 @@ Topics: `ai-agent` / `aippt` / `office` / `powerpoint` / `powerpoint-generation`
 
 The open-source AI voice studio. Clone, dictate, create.
 
-⭐ **55,110 Stars**（+288）　🍴 **6,859 Forks**（+36）　/　🟢 **699 Open Issues**　/　TypeScript
+⭐ **55,192 Stars**（+82）　🍴 **6,882 Forks**（+23）　/　🟢 **699 Open Issues**　/　TypeScript
 
 Topics: `ai` / `cuda` / `mlx` / `qwen3-tts` / `qwen3-tts-ui` / `voice-ai` / `voice-clone` / `whisper`
 
@@ -766,7 +766,7 @@ Topics: `ai` / `cuda` / `mlx` / `qwen3-tts` / `qwen3-tts-ui` / `voice-ai` / `voi
 
 Learn it. Build it. Ship it for others.
 
-⭐ **54,968 Stars**（+69）　🍴 **9,658 Forks**（+17）　/　🟢 **114 Open Issues**　/　Python
+⭐ **55,027 Stars**（+59）　🍴 **9,673 Forks**（+15）　/　🟢 **114 Open Issues**　/　Python
 
 Topics: `agents` / `ai` / `ai-agents` / `ai-engineering` / `computer-vision` / `course` / `deep-learning` / `from-scratch`
 
@@ -774,7 +774,7 @@ Topics: `agents` / `ai` / `ai-agents` / `ai-engineering` / `computer-vision` / `
 
 an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM
 
-⭐ **54,446 Stars**（+52）　🍴 **6,270 Forks**（+14）　/　🟢 **387 Open Issues**　/　Rust
+⭐ **54,470 Stars**（+24）　🍴 **6,276 Forks**（+6）　/　🟢 **395 Open Issues**　/　Rust
 
 Topics: `acp` / `ai` / `ai-agents` / `mcp`
 
@@ -782,7 +782,7 @@ Topics: `acp` / `ai` / `ai-agents` / `mcp`
 
 Breakthrough Method for Agile Ai Driven Development
 
-⭐ **53,195 Stars**（+40）　🍴 **6,004 Forks**（+3）　/　🟢 **66 Open Issues**　/　Python
+⭐ **53,241 Stars**（+46）　🍴 **6,009 Forks**（+5）　/　🟢 **66 Open Issues**　/　Python
 
 Topics: `agile` / `ai` / `context-engineering` / `sdlc` / `spec-driven-development`
 
@@ -790,7 +790,7 @@ Topics: `agile` / `ai` / `context-engineering` / `sdlc` / `spec-driven-developme
 
 Wrap Antigravity, ChatGPT Codex, Claude Code, Grok Build, Muse Code, Davin as an OpenAI/Gemini/Claude/Codex compatible API service, allowing you to enjoy the free Gemini Series, GPT Series, Grok Series, Claude model through API
 
-⭐ **52,428 Stars**（+126）　🍴 **7,914 Forks**（+23）　/　🟢 **629 Open Issues**　/　Go
+⭐ **52,513 Stars**（+85）　🍴 **7,929 Forks**（+15）　/　🟢 **636 Open Issues**　/　Go
 
 Topics: `antigravity` / `claude-code` / `cluade` / `codex` / `devin` / `gemini` / `muse` / `openai`
 
@@ -798,7 +798,7 @@ Topics: `antigravity` / `claude-code` / `cluade` / `codex` / `devin` / `gemini` 
 
 Chrome DevTools for coding agents
 
-⭐ **52,280 Stars**（+79）　🍴 **4,153 Forks**（+141）　/　🟢 **111 Open Issues**　/　TypeScript
+⭐ **52,313 Stars**（+33）　🍴 **4,240 Forks**（+87）　/　🟢 **115 Open Issues**　/　TypeScript
 
 Topics: `browser` / `chrome` / `chrome-devtools` / `debugging` / `devtools` / `mcp` / `mcp-server` / `puppeteer`
 
@@ -806,31 +806,31 @@ Topics: `browser` / `chrome` / `chrome-devtools` / `debugging` / `devtools` / `m
 
 AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs
 
-⭐ **51,970 Stars**（+42）　🍴 **4,979 Forks**（+1）　/　🟢 **1,540 Open Issues**　/　TypeScript
+⭐ **52,001 Stars**（+31）　🍴 **4,978 Forks**（-1）　/　🟢 **1,585 Open Issues**　/　TypeScript
 
 Topics: `agent-skills` / `ai-agent` / `claude-code` / `codex` / `deepseek` / `hermes-agent` / `open-code-review` / `skills`
 
-## 98位 [charlax/professional-programming](https://github.com/charlax/professional-programming)
-
-A collection of learning resources for curious software engineers
-
-⭐ **51,530 Stars**（+10）　🍴 **4,020 Forks**（±0）　/　🟢 **9 Open Issues**　/　Python
-
-Topics: `architecture` / `computer-science` / `concepts` / `documentation` / `engineer` / `learning` / `lessons-learned` / `professional`
-
-## 99位 [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
+## 98位 [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
 
 Write HTML. Render video. Built for agents.
 
-⭐ **51,369 Stars**（+318）　🍴 **4,678 Forks**（+29）　/　🟢 **202 Open Issues**　/　TypeScript
+⭐ **51,648 Stars**（+279）　🍴 **4,706 Forks**（+28）　/　🟢 **192 Open Issues**　/　TypeScript
 
 Topics: `ai` / `animation` / `ffmpeg` / `framework` / `gsap` / `html` / `mcp` / `puppeteer`
+
+## 99位 [charlax/professional-programming](https://github.com/charlax/professional-programming)
+
+A collection of learning resources for curious software engineers
+
+⭐ **51,535 Stars**（+5）　🍴 **4,018 Forks**（-2）　/　🟢 **10 Open Issues**　/　Python
+
+Topics: `architecture` / `computer-science` / `concepts` / `documentation` / `engineer` / `learning` / `lessons-learned` / `professional`
 
 ## 100位 [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
 
 Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.
 
-⭐ **50,835 Stars**（+114）　🍴 **7,699 Forks**（+15）　/　🟢 **114 Open Issues**　/　JavaScript
+⭐ **50,917 Stars**（+82）　🍴 **7,712 Forks**（+13）　/　🟢 **114 Open Issues**　/　JavaScript
 
 Topics: `claude` / `codex` / `marketing`
 
@@ -838,245 +838,245 @@ Topics: `claude` / `codex` / `marketing`
 
 スター数ランキングとは別に、最近コードがプッシュされたリポジトリを表示します。古いスター数だけではなく、現在も開発が動いていそうな候補を探すための一覧です。
 
-## プッシュ順 1位 [manaflow-ai/cmux](https://github.com/manaflow-ai/cmux)
-
-Open source Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents. Built for multitasking, organization, and programmability.
-
-⭐ **27,244 Stars**（+46）　🍴 **2,375 Forks**（+6）　/　Swift　/　最終プッシュ: 2026-09-18
-
-Topics: `amp` / `claude-code` / `cli` / `codex` / `coding-agents` / `gemini` / `ghostty` / `macos`
-
-## プッシュ順 2位 [openclaw/openclaw](https://github.com/openclaw/openclaw)
+## プッシュ順 1位 [openclaw/openclaw](https://github.com/openclaw/openclaw)
 
 The AI that really does things. Any OS. Any Platform. The lobster way. 🦞
 
-⭐ **390,057 Stars**（+60）　🍴 **82,007 Forks**（+24）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **390,097 Stars**（+40）　🍴 **82,027 Forks**（+20）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
 Topics: `ai` / `assistant` / `crustacean` / `molty` / `openclaw` / `own-your-data` / `personal`
 
-## プッシュ順 3位 [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai)
+## プッシュ順 2位 [unslothai/unsloth](https://github.com/unslothai/unsloth)
 
-How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end.
+Local UI to run and train LLMs and diffusion models. Supports GGUF, MLX, Qwen3.8, DeepSeek-V4, MiniMax-H3, Gemma 4, FLUX and more.
 
-⭐ **20,032 Stars**（+18）　🍴 **2,734 Forks**（+6）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **76,446 Stars**（+57）　🍴 **6,980 Forks**（+6）　/　Python　/　最終プッシュ: 2026-09-19
 
-Topics: `agent-framework` / `genai` / `harness` / `harness-engineering` / `llm` / `pydantic` / `python`
+Topics: `agent` / `ai` / `chatgpt` / `deepseek` / `fine-tuning` / `gemma` / `image-generation` / `llama`
 
-## プッシュ順 4位 [rtk-ai/rtk](https://github.com/rtk-ai/rtk)
+## プッシュ順 3位 [coder/coder](https://github.com/coder/coder)
 
-CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies
+Secure environments for developers and their agents
 
-⭐ **80,943 Stars**（+110）　🍴 **5,134 Forks**（+12）　/　Rust　/　最終プッシュ: 2026-09-18
+⭐ **15,603 Stars**（+331）　🍴 **1,521 Forks**（+18）　/　Go　/　最終プッシュ: 2026-09-19
 
-Topics: `agentic-coding` / `ai-coding` / `anthropic` / `claude-code` / `cli` / `command-line-tool` / `cost-reduction` / `developer-tools`
+Topics: `agents` / `dev-tools` / `development-environment` / `go` / `golang` / `ide` / `jetbrains` / `remote-development`
 
-## プッシュ順 5位 [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI)
-
-Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.
-
-⭐ **58,741 Stars**（+32）　🍴 **8,498 Forks**（+5）　/　Python　/　最終プッシュ: 2026-09-18
-
-Topics: `agents` / `ai` / `ai-agents` / `aiagentframework` / `llms`
-
-## プッシュ順 6位 [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin)
-
-Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more
-
-⭐ **25,151 Stars**（+15）　🍴 **2,063 Forks**（+4）　/　TypeScript　/　最終プッシュ: 2026-09-18
-
-Topics: `compound` / `engineering`
-
-## プッシュ順 7位 [stablyai/orca](https://github.com/stablyai/orca)
+## プッシュ順 4位 [stablyai/orca](https://github.com/stablyai/orca)
 
 Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.
 
-⭐ **71,916 Stars**（+816）　🍴 **4,699 Forks**（+49）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **72,591 Stars**（+675）　🍴 **4,751 Forks**（+52）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
 Topics: `ade` / `agent-ide` / `ai-agents` / `claude-code` / `cli` / `codex` / `cursor-agent` / `devtools`
 
-## プッシュ順 8位 [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
+## プッシュ順 5位 [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
 
 Write HTML. Render video. Built for agents.
 
-⭐ **51,369 Stars**（+318）　🍴 **4,678 Forks**（+29）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **51,648 Stars**（+279）　🍴 **4,706 Forks**（+28）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
 Topics: `ai` / `animation` / `ffmpeg` / `framework` / `gsap` / `html` / `mcp` / `puppeteer`
 
-## プッシュ順 9位 [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat)
-
-Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active
-
-⭐ **44,330 Stars**（+97）　🍴 **9,110 Forks**（+20）　/　TypeScript　/　最終プッシュ: 2026-09-18
-
-Topics: `ai` / `anthropic` / `artifacts` / `aws` / `azure` / `chatgpt` / `chatgpt-clone` / `claude`
-
-## プッシュ順 10位 [ccusage/ccusage](https://github.com/ccusage/ccusage)
-
-npx ccusage
-
-⭐ **18,619 Stars**（+15）　🍴 **839 Forks**（-1）　/　Rust　/　最終プッシュ: 2026-09-18
-
-Topics: `topicなし`
-
-## プッシュ順 11位 [BerriAI/litellm](https://github.com/BerriAI/litellm)
+## プッシュ順 6位 [BerriAI/litellm](https://github.com/BerriAI/litellm)
 
 The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]
 
-⭐ **59,106 Stars**（+90）　🍴 **11,566 Forks**（+28）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **59,163 Stars**（+57）　🍴 **11,585 Forks**（+19）　/　Python　/　最終プッシュ: 2026-09-19
 
 Topics: `ai-gateway` / `anthropic` / `azure-openai` / `bedrock` / `gateway` / `langchain` / `litellm` / `llm`
 
-## プッシュ順 12位 [1jehuang/jcode](https://github.com/1jehuang/jcode)
+## プッシュ順 7位 [QwenLM/qwen-code](https://github.com/QwenLM/qwen-code)
 
-The most RAM efficient harness
+An open-source AI coding agent that lives in your terminal.
 
-⭐ **19,880 Stars**（+55）　🍴 **2,300 Forks**（+2）　/　Rust　/　最終プッシュ: 2026-09-18
+⭐ **27,990 Stars**（+23）　🍴 **3,076 Forks**（+8）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
-Topics: `ai` / `ai-agent` / `ai-coding-agent` / `claude` / `cli` / `coding-agent` / `llm` / `mcp`
+Topics: `agentic` / `ai` / `ai-agent` / `ai-coding` / `cli` / `coding-agent` / `developer-tools` / `llm`
 
-## プッシュ順 13位 [PostHog/posthog](https://github.com/PostHog/posthog)
+## プッシュ順 8位 [manaflow-ai/cmux](https://github.com/manaflow-ai/cmux)
 
-:hedgehog: PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.
+Open source Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents. Built for multitasking, organization, and programmability.
 
-⭐ **39,851 Stars**（+13）　🍴 **3,400 Forks**（+6）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **27,259 Stars**（+15）　🍴 **2,377 Forks**（+2）　/　Swift　/　最終プッシュ: 2026-09-19
 
-Topics: `ab-testing` / `ai-analytics` / `analytics` / `cdp` / `data-warehouse` / `experiments` / `feature-flags` / `javascript`
+Topics: `amp` / `claude-code` / `cli` / `codex` / `coding-agents` / `gemini` / `ghostty` / `macos`
 
-## プッシュ順 14位 [nearai/ironclaw](https://github.com/nearai/ironclaw)
-
-IronClaw is an Agent OS focused on privacy, security and extensibility
-
-⭐ **12,623 Stars**（±0）　🍴 **1,480 Forks**（+1）　/　Rust　/　最終プッシュ: 2026-09-18
-
-Topics: `codeact` / `openclaw` / `rlm` / `rust` / `wasm`
-
-## プッシュ順 15位 [langflow-ai/langflow](https://github.com/langflow-ai/langflow)
-
-Langflow is a powerful tool for building and deploying AI-powered agents and workflows.
-
-⭐ **154,987 Stars**（+40）　🍴 **10,113 Forks**（+5）　/　Python　/　最終プッシュ: 2026-09-18
-
-Topics: `agents` / `chatgpt` / `generative-ai` / `large-language-models` / `multiagent` / `react-flow`
-
-## プッシュ順 16位 [vercel/ai](https://github.com/vercel/ai)
-
-The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents
-
-⭐ **26,828 Stars**（+17）　🍴 **5,160 Forks**（+1）　/　TypeScript　/　最終プッシュ: 2026-09-18
-
-Topics: `anthropic` / `artificial-intelligence` / `gemini` / `generative-ai` / `generative-ui` / `javascript` / `language-model` / `llm`
-
-## プッシュ順 17位 [NVIDIA/NemoClaw](https://github.com/NVIDIA/NemoClaw)
+## プッシュ順 9位 [NVIDIA/NemoClaw](https://github.com/NVIDIA/NemoClaw)
 
 Run agents like Hermes, LangChain Deep Agents, and OpenClaw more securely inside NVIDIA OpenShell with managed inference
 
-⭐ **22,498 Stars**（+11）　🍴 **3,096 Forks**（+5）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **22,500 Stars**（+2）　🍴 **3,101 Forks**（+5）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
 Topics: `ai-agents` / `deep-agents` / `hermes` / `nvidia` / `openclaw` / `openshell` / `sandboxing` / `typescript`
 
-## プッシュ順 18位 [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense)
+## プッシュ順 10位 [elizaOS/eliza](https://github.com/elizaOS/eliza)
 
-Air gapped, open source NotebookLM alternative. Join our Discord:
+Open source agentic operating system
 
-⭐ **16,165 Stars**（+5）　🍴 **1,538 Forks**（+1）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **19,373 Stars**（+13）　🍴 **5,747 Forks**（+3）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
-Topics: `agent` / `agents` / `ai` / `fastapi` / `langchain` / `langgraph` / `nextjs` / `notebooklm`
+Topics: `agent` / `agentic` / `ai` / `autonomous` / `chatbot` / `crypto` / `discord` / `eliza`
 
-## プッシュ順 19位 [lightpanda-io/browser](https://github.com/lightpanda-io/browser)
-
-Lightpanda: the headless browser designed for AI and automation
-
-⭐ **35,425 Stars**（+10）　🍴 **1,681 Forks**（+1）　/　Zig　/　最終プッシュ: 2026-09-18
-
-Topics: `browser` / `browser-automation` / `cdp` / `headless` / `lightpanda` / `playwright` / `puppeteer` / `zig`
-
-## プッシュ順 20位 [yc-software/qm](https://github.com/yc-software/qm)
-
-Multiplayer agent harness for work.
-
-⭐ **15,156 Stars**（+19）　🍴 **1,851 Forks**（+1）　/　TypeScript　/　最終プッシュ: 2026-09-18
-
-Topics: `ai` / `assistant` / `harness` / `qm`
-
-## プッシュ順 21位 [mastra-ai/mastra](https://github.com/mastra-ai/mastra)
+## プッシュ順 11位 [mastra-ai/mastra](https://github.com/mastra-ai/mastra)
 
 Mastra is the modern TypeScript framework for AI-powered applications and agents.
 
-⭐ **28,171 Stars**（+26）　🍴 **2,821 Forks**（+6）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **28,187 Stars**（+16）　🍴 **2,828 Forks**（+7）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
 Topics: `agents` / `ai` / `chatbots` / `evals` / `javascript` / `llm` / `mcp` / `nextjs`
 
-## プッシュ順 22位 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
+## プッシュ順 12位 [luongnv89/claude-howto](https://github.com/luongnv89/claude-howto)
 
-The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
+A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.
 
-⭐ **15,254 Stars**（+15）　🍴 **2,390 Forks**（+5）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **41,604 Stars**（+30）　🍴 **5,107 Forks**（+2）　/　Python　/　最終プッシュ: 2026-09-19
 
-Topics: `context` / `context-layer` / `data-catalog` / `data-collaboration` / `data-contracts` / `data-discovery` / `data-governance` / `data-lineage`
+Topics: `claude-code` / `guide` / `tutorial`
 
-## プッシュ順 23位 [anthropics/claude-code](https://github.com/anthropics/claude-code)
-
-Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.
-
-⭐ **146,270 Stars**（+421）　🍴 **23,781 Forks**（+159）　/　TypeScript　/　最終プッシュ: 2026-09-18
-
-Topics: `topicなし`
-
-## プッシュ順 24位 [sgl-project/sglang](https://github.com/sgl-project/sglang)
+## プッシュ順 13位 [sgl-project/sglang](https://github.com/sgl-project/sglang)
 
 SGLang is a high-performance serving framework for large language models and multimodal models.
 
-⭐ **36,151 Stars**（+41）　🍴 **8,977 Forks**（+22）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **36,177 Stars**（+26）　🍴 **8,992 Forks**（+15）　/　Python　/　最終プッシュ: 2026-09-19
 
 Topics: `attention` / `blackwell` / `cuda` / `deepseek` / `diffusion` / `glm` / `gpt-oss` / `inference`
 
-## プッシュ順 25位 [pipecat-ai/pipecat](https://github.com/pipecat-ai/pipecat)
+## プッシュ順 14位 [tursodatabase/turso](https://github.com/tursodatabase/turso)
 
-Open Source framework for voice agents, multimodal apps, and realtime AI. Maintained by Daily and the community.
+A SQL database in Rust: SQLite-compatible, now also speaking Postgres (experimental). The LLVM of databases.
 
-⭐ **15,649 Stars**（+26）　🍴 **2,708 Forks**（+6）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **24,320 Stars**（±0）　🍴 **1,357 Forks**（±0）　/　Rust　/　最終プッシュ: 2026-09-19
 
-Topics: `ai` / `chatbot-framework` / `chatbots` / `real-time` / `voice` / `voice-assistant`
+Topics: `database` / `embedded-database` / `sql` / `sqlite3` / `webassembly`
 
-## プッシュ順 26位 [logto-io/logto](https://github.com/logto-io/logto)
+## プッシュ順 15位 [block/buzz](https://github.com/block/buzz)
 
-🧑‍🚀 Authentication and authorization infrastructure for SaaS and AI apps, built on OIDC and OAuth 2.1 with multi-tenancy, SSO, and RBAC.
+A hive mind communication platform
 
-⭐ **14,592 Stars**（+9）　🍴 **1,209 Forks**（+2）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **33,695 Stars**（+69）　🍴 **4,426 Forks**（+17）　/　Rust　/　最終プッシュ: 2026-09-19
 
-Topics: `authentication` / `authorization` / `email` / `identity` / `jwt` / `login` / `logto` / `mfa`
+Topics: `topicなし`
 
-## プッシュ順 27位 [pingdotgg/t3code](https://github.com/pingdotgg/t3code)
+## プッシュ順 16位 [nukeop/nuclear](https://github.com/nukeop/nuclear)
+
+Streaming music player that finds free music for you
+
+⭐ **18,479 Stars**（+4）　🍴 **1,327 Forks**（±0）　/　TypeScript　/　最終プッシュ: 2026-09-19
+
+Topics: `agent` / `ai` / `desktop-app` / `linux` / `mac` / `mcp` / `mcp-server` / `music`
+
+## プッシュ順 17位 [lidge-jun/opencodex](https://github.com/lidge-jun/opencodex)
+
+Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini, Grok, DeepSeek, Ollama…) with Codex CLI, App, SDK, and Claude Code
+
+⭐ **15,465 Stars**（+165）　🍴 **1,173 Forks**（+20）　/　TypeScript　/　最終プッシュ: 2026-09-19
+
+Topics: `ai-gateway` / `ai-tools` / `anthropic` / `chatgpt` / `claude` / `claude-code` / `codex` / `codex-cli`
+
+## プッシュ順 18位 [superset-sh/superset](https://github.com/superset-sh/superset)
+
+Superset is an agentic IDE to orchestrate 100+ coding agents in parallel. Run any agent with your own subscription.
+
+⭐ **14,397 Stars**（+16）　🍴 **1,285 Forks**（+5）　/　TypeScript　/　最終プッシュ: 2026-09-19
+
+Topics: `ade` / `agent` / `agent-orchestration` / `ai-agents` / `ai-coding` / `claude-code` / `cli` / `codex`
+
+## プッシュ順 19位 [mudler/LocalAI](https://github.com/mudler/LocalAI)
+
+LocalAI is the open-source AI engine. Run any model - LLMs, vision, voice, image, video - on any hardware. No GPU required.
+
+⭐ **49,174 Stars**（+13）　🍴 **4,459 Forks**（+3）　/　Go　/　最終プッシュ: 2026-09-19
+
+Topics: `agents` / `ai` / `api` / `audio-generation` / `decentralized` / `distributed` / `image-generation` / `libp2p`
+
+## プッシュ順 20位 [PostHog/posthog](https://github.com/PostHog/posthog)
+
+:hedgehog: PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.
+
+⭐ **39,863 Stars**（+12）　🍴 **3,403 Forks**（+3）　/　Python　/　最終プッシュ: 2026-09-19
+
+Topics: `ab-testing` / `ai-analytics` / `analytics` / `cdp` / `data-warehouse` / `experiments` / `feature-flags` / `javascript`
+
+## プッシュ順 21位 [pingdotgg/t3code](https://github.com/pingdotgg/t3code)
 
 説明なし
 
-⭐ **23,022 Stars**（+65）　🍴 **5,859 Forks**（+41）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **23,084 Stars**（+62）　🍴 **5,891 Forks**（+32）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
 Topics: `topicなし`
 
-## プッシュ順 28位 [paperclipai/paperclip](https://github.com/paperclipai/paperclip)
+## プッシュ順 22位 [bendlang/bend](https://github.com/bendlang/bend)
 
-The open-source app everyone uses to manage agents at work
+Bend 2: a fast language that blocks AI mistakes via proof. Install: curl -fsSL  \| sh
 
-⭐ **81,012 Stars**（+68）　🍴 **14,873 Forks**（+18）　/　TypeScript　/　最終プッシュ: 2026-09-18
+⭐ **21,851 Stars**（+399）　🍴 **617 Forks**（+41）　/　TypeScript　/　最終プッシュ: 2026-09-19
 
-Topics: `topicなし`
+Topics: `bend` / `cuda` / `dependent-types` / `gpu` / `metal` / `parallel` / `programming-language` / `proof`
 
-## プッシュ順 29位 [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB)
-
-Open Data Platform for analysts, quants and AI agents.
-
-⭐ **73,212 Stars**（+56）　🍴 **7,573 Forks**（+7）　/　Python　/　最終プッシュ: 2026-09-18
-
-Topics: `ai` / `crypto` / `derivatives` / `economics` / `equity` / `finance` / `fixed-income` / `machine-learning`
-
-## プッシュ順 30位 [datahub-project/datahub](https://github.com/datahub-project/datahub)
+## プッシュ順 23位 [datahub-project/datahub](https://github.com/datahub-project/datahub)
 
 The Context Platform for your Data and AI Stack
 
-⭐ **12,731 Stars**（+7）　🍴 **3,694 Forks**（+3）　/　Python　/　最終プッシュ: 2026-09-18
+⭐ **12,735 Stars**（+4）　🍴 **3,693 Forks**（-1）　/　Python　/　最終プッシュ: 2026-09-19
 
 Topics: `agent-platform` / `context-management` / `data-catalog` / `data-discovery` / `data-governance` / `data-observability` / `datahub` / `metadata`
+
+## プッシュ順 24位 [herdrdev/herdr](https://github.com/herdrdev/herdr)
+
+the runtime your coding agents live on
+
+⭐ **39,632 Stars**（+178）　🍴 **2,990 Forks**（+16）　/　Rust　/　最終プッシュ: 2026-09-19
+
+Topics: `agent` / `agent-orchestration` / `ai` / `ai-agents` / `claude-code` / `cli` / `codex` / `coding-agents`
+
+## プッシュ順 25位 [langflow-ai/langflow](https://github.com/langflow-ai/langflow)
+
+Langflow is a powerful tool for building and deploying AI-powered agents and workflows.
+
+⭐ **155,019 Stars**（+32）　🍴 **10,118 Forks**（+5）　/　Python　/　最終プッシュ: 2026-09-19
+
+Topics: `agents` / `chatgpt` / `generative-ai` / `large-language-models` / `multiagent` / `react-flow`
+
+## プッシュ順 26位 [ag-grid/ag-grid](https://github.com/ag-grid/ag-grid)
+
+The best JavaScript Data Table for building Enterprise Applications. Supports React / Angular / Vue / Plain JavaScript.
+
+⭐ **15,603 Stars**（±0）　🍴 **2,081 Forks**（+1）　/　TypeScript　/　最終プッシュ: 2026-09-19
+
+Topics: `angular` / `angular-grid` / `angular-table` / `charting` / `datagrid` / `datatable` / `excel` / `filtering`
+
+## プッシュ順 27位 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
+
+The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
+
+⭐ **15,260 Stars**（+6）　🍴 **2,389 Forks**（-1）　/　TypeScript　/　最終プッシュ: 2026-09-19
+
+Topics: `context` / `context-layer` / `data-catalog` / `data-collaboration` / `data-contracts` / `data-discovery` / `data-governance` / `data-lineage`
+
+## プッシュ順 28位 [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)
+
+AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs
+
+⭐ **52,001 Stars**（+31）　🍴 **4,978 Forks**（-1）　/　TypeScript　/　最終プッシュ: 2026-09-19
+
+Topics: `agent-skills` / `ai-agent` / `claude-code` / `codex` / `deepseek` / `hermes-agent` / `open-code-review` / `skills`
+
+## プッシュ順 29位 [langchain-ai/deepagents](https://github.com/langchain-ai/deepagents)
+
+The batteries-included agent harness.
+
+⭐ **29,576 Stars**（+30）　🍴 **4,151 Forks**（+5）　/　Python　/　最終プッシュ: 2026-09-19
+
+Topics: `ai` / `deepagents` / `harness` / `harness-engineering` / `langchain` / `langgraph` / `python` / `typescript`
+
+## プッシュ順 30位 [steipete/CodexBar](https://github.com/steipete/CodexBar)
+
+Show usage stats for OpenAI Codex and Claude Code, without having to login.
+
+⭐ **21,645 Stars**（+28）　🍴 **1,967 Forks**（+6）　/　Swift　/　最終プッシュ: 2026-09-19
+
+Topics: `ai` / `claude-code` / `codex` / `swift`
 
 # 検索条件
 
