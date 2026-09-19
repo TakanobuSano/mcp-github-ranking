@@ -1,0 +1,20 @@
+{
+  "full_name": "anthropics/claude-code",
+  "url": "https://github.com/anthropics/claude-code",
+  "readme_cache_path": "output/readmes/anthropics__claude-code.md",
+  "fetched_at": "2026-09-19T23:19:24.904860+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-19T19:16:54Z",
+  "readme_length": 2873,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/anthropics/claude-code/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/anthropics/claude-code/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/anthropics/claude-code/main/README.md",
+  "readme_sha": "80aa75edf74a5f9e1269811b4e8b5852be91e66e",
+  "readme_size": 2873,
+  "last_used_at": "2026-09-19T23:19:24.904876+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

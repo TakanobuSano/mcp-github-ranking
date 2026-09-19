@@ -1,0 +1,27 @@
+{
+  "full_name": "anthropics/claude-code",
+  "url": "https://github.com/anthropics/claude-code",
+  "generated_at": "2026-09-19T23:19:26.868159+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "aa0d8b80ac083e1591be0789273f447058cc9187b4331634a5614155da27778d",
+  "readme_length": 2873,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/anthropics__claude-code.md",
+  "readme_meta_path": "output/readmes/anthropics__claude-code.json",
+  "anthropic_response_id": "msg_011CfDetc3Z3XErQYxpzeDfx",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 1168,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 103,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/anthropics__claude-code.md"
+}
