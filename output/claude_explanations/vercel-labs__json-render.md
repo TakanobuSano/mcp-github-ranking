@@ -1,0 +1,1 @@
+json-render Vercel Labsが開発した生成UI フレームワークです。AIがプロンプトから動的なUIをJSON形式で生成し、定義済みコンポーネントで安全に制約できます。React、Vue、Svelte、React Native、Next.js、Remotion、PDFなど複数のプラットフォームに対応し、36個の事前構築されたshadcn/uiコンポーネントも含まれています。

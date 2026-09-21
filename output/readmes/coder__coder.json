@@ -1,0 +1,20 @@
+{
+  "full_name": "coder/coder",
+  "url": "https://github.com/coder/coder",
+  "readme_cache_path": "output/readmes/coder__coder.md",
+  "fetched_at": "2026-09-21T23:19:35.177321+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-21T23:10:57Z",
+  "readme_length": 7842,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/coder/coder/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/coder/coder/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/coder/coder/main/README.md",
+  "readme_sha": "10b465ebe18106acc58c418be52543ee90369ff5",
+  "readme_size": 7843,
+  "last_used_at": "2026-09-21T23:19:35.177340+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
