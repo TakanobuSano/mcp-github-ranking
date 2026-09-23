@@ -1,0 +1,27 @@
+{
+  "full_name": "anthropics/financial-services",
+  "url": "https://github.com/anthropics/financial-services",
+  "generated_at": "2026-09-23T23:20:04.833024+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "52f689c6c32bd2a505fb75e774c8857d4a70db77b1b0057353fb10e7a6e5ca42",
+  "readme_length": 15781,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/anthropics__financial-services.md",
+  "readme_meta_path": "output/readmes/anthropics__financial-services.json",
+  "anthropic_response_id": "msg_011CfMEAvyQSYj3U72inJNcx",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4817,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 193,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/anthropics__financial-services.md"
+}

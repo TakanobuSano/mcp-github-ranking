@@ -1,0 +1,20 @@
+{
+  "full_name": "anthropics/financial-services",
+  "url": "https://github.com/anthropics/financial-services",
+  "readme_cache_path": "output/readmes/anthropics__financial-services.md",
+  "fetched_at": "2026-09-23T23:19:30.064161+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-21T21:10:41Z",
+  "readme_length": 15781,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/anthropics/financial-services/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/anthropics/financial-services/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/anthropics/financial-services/main/README.md",
+  "readme_sha": "5c203c0ea8f19361b447c7f9592f4658b33b5fae",
+  "readme_size": 15894,
+  "last_used_at": "2026-09-23T23:19:30.064176+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
