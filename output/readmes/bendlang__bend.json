@@ -1,0 +1,20 @@
+{
+  "full_name": "bendlang/bend",
+  "url": "https://github.com/bendlang/bend",
+  "readme_cache_path": "output/readmes/bendlang__bend.md",
+  "fetched_at": "2026-09-24T23:19:25.428714+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-24T18:19:33Z",
+  "readme_length": 10729,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/bendlang/bend/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/bendlang/bend/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/bendlang/bend/main/README.md",
+  "readme_sha": "156ea173f2edd23e22e909c7b5c5e3e04973b92b",
+  "readme_size": 10729,
+  "last_used_at": "2026-09-24T23:19:25.428732+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

@@ -1,0 +1,27 @@
+{
+  "full_name": "bendlang/bend",
+  "url": "https://github.com/bendlang/bend",
+  "generated_at": "2026-09-24T23:19:33.623293+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "35fb34f184c572542dfd2a88d46ee7b2ddc5812c10ae2736437f2efc7ddcdddc",
+  "readme_length": 10729,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/bendlang__bend.md",
+  "readme_meta_path": "output/readmes/bendlang__bend.json",
+  "anthropic_response_id": "msg_011CfP7wduRaRvs7UFkbYxcx",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 3850,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 115,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/bendlang__bend.md"
+}
