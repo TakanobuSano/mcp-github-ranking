@@ -1,0 +1,27 @@
+{
+  "full_name": "eternity4719/HowToLiveBetter",
+  "url": "https://github.com/eternity4719/HowToLiveBetter",
+  "generated_at": "2026-09-30T23:19:44.238864+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "b79b7779febfcdac9052fe1f6550508db876940c1933536fbae0937b63b1702b",
+  "readme_length": 18975,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/eternity4719__HowToLiveBetter.md",
+  "readme_meta_path": "output/readmes/eternity4719__HowToLiveBetter.json",
+  "anthropic_response_id": "msg_011CfaUopBLJRHMsTqTQ4rdm",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 17419,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 204,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/eternity4719__HowToLiveBetter.md"
+}

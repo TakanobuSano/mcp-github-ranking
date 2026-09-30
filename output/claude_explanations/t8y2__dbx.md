@@ -1,0 +1,1 @@
+Rustで開発された軽量なクロスプラットフォーム対応のデータベース管理ツール。MySQL、PostgreSQL、SQLite、Redis、MongoDBなど100以上のデータベースに対応し、わずか25MBのサイズで動作します。デスクトップ版、Docker、CLI、内蔵AI助手、MCPサーバーを備えており、Claude CodeやCursorなどのAIコーディングエージェントとの連携にも対応しています。

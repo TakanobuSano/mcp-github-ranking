@@ -1,0 +1,20 @@
+{
+  "full_name": "VectifyAI/PageIndex",
+  "url": "https://github.com/VectifyAI/PageIndex",
+  "readme_cache_path": "output/readmes/VectifyAI__PageIndex.md",
+  "fetched_at": "2026-09-30T23:19:34.677644+00:00",
+  "repo_pushed_at_when_fetched": "2026-09-30T08:22:36Z",
+  "readme_length": 12891,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/VectifyAI/PageIndex/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/VectifyAI/PageIndex/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/VectifyAI/PageIndex/main/README.md",
+  "readme_sha": "05457ee57115bfffe5cec2ff1490d3f894e2240f",
+  "readme_size": 12965,
+  "last_used_at": "2026-09-30T23:19:34.677661+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

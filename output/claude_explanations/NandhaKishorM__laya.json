@@ -1,0 +1,27 @@
+{
+  "full_name": "NandhaKishorM/laya",
+  "url": "https://github.com/NandhaKishorM/laya",
+  "generated_at": "2026-09-30T23:20:11.545806+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "dcdf6c45e204890dc762f3b1f55067a88e99d074df2c86b16c22d358adc67f83",
+  "readme_length": 88295,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/NandhaKishorM__laya.md",
+  "readme_meta_path": "output/readmes/NandhaKishorM__laya.json",
+  "anthropic_response_id": "msg_011CfaUqu8HjFUV2dA74rYu8",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9286,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 141,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/NandhaKishorM__laya.md"
+}
