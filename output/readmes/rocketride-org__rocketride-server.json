@@ -1,0 +1,20 @@
+{
+  "full_name": "rocketride-org/rocketride-server",
+  "url": "https://github.com/rocketride-org/rocketride-server",
+  "readme_cache_path": "output/readmes/rocketride-org__rocketride-server.md",
+  "fetched_at": "2026-10-03T23:19:19.536878+00:00",
+  "repo_pushed_at_when_fetched": "2026-10-03T19:14:53Z",
+  "readme_length": 23118,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/rocketride-org/rocketride-server/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/rocketride-org/rocketride-server/blob/develop/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/rocketride-org/rocketride-server/develop/README.md",
+  "readme_sha": "6a5e1cd93121243fc4cc0d62f36105616e28b04e",
+  "readme_size": 23148,
+  "last_used_at": "2026-10-03T23:19:19.536895+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
