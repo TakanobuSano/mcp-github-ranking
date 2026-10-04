@@ -1,0 +1,27 @@
+{
+  "full_name": "vorssaint/vorssaint-utils",
+  "url": "https://github.com/vorssaint/vorssaint-utils",
+  "generated_at": "2026-10-04T23:19:34.174850+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a912f023e7eef2e3e98eb533761f536351a14be5af306d66bf1b0caff715ddea",
+  "readme_length": 16298,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/vorssaint__vorssaint-utils.md",
+  "readme_meta_path": "output/readmes/vorssaint__vorssaint-utils.json",
+  "anthropic_response_id": "msg_011Cfi42pm2wb82uJZbeeWUg",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4903,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 127,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/vorssaint__vorssaint-utils.md"
+}
