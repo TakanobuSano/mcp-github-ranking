@@ -1,0 +1,1 @@
+Claude-Memはセッション間でコンテキストを永続化するTypeScript製のメモリシステムです。エージェントの操作を自動キャプチャし、AIで圧縮して将来のセッションに関連情報を注入します。Claude Code、OpenClaw、Geminiなど複数のプラットフォームに対応し、SQLiteとChromaベクトルDBで検索可能なメモリを構築します。

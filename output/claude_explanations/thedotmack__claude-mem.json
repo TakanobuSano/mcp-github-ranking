@@ -1,0 +1,27 @@
+{
+  "full_name": "thedotmack/claude-mem",
+  "url": "https://github.com/thedotmack/claude-mem",
+  "generated_at": "2026-10-06T23:19:56.274295+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "5acecc5ba8cc43fa6e4cb228c3a76a93147862e1979d3a17d1e2d2f5ffca7614",
+  "readme_length": 19452,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/thedotmack__claude-mem.md",
+  "readme_meta_path": "output/readmes/thedotmack__claude-mem.json",
+  "anthropic_response_id": "msg_011CfmqgHozprcj3UZgZV69Y",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 6745,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 126,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  },
+  "explanation_cache_path": "output/claude_explanations/thedotmack__claude-mem.md"
+}
