@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/pingdotgg/t3code/main/README.md",
   "readme_sha": "ad6ef840314034b4dd77f1e0b2516130f70b99d9",
   "readme_size": 4638,
-  "last_used_at": "2026-10-07T23:19:32.003391+00:00",
+  "last_used_at": "2026-10-08T23:19:37.609239+00:00",
   "readme_truncated_for_claude_input": false,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
