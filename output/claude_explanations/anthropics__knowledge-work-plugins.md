@@ -1,0 +1,1 @@
+Anthropic公式の知識労働者向けプラグイン集です。Claude CoworkおよびClaude Code対応で、営業・カスタマーサポート・プロダクト管理・マーケティング・財務・データ分析など11種類のプラグインを提供。Slack・Notion・HubSpot・Snowflakeなど主要ツールと連携し、スキルとスラッシュコマンドでClaudeを職種別に特化させられます。
