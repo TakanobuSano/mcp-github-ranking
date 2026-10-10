@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/README.md",
   "readme_sha": "261e2f47e2b1701258e4bd3ec18620dc5d7c28ad",
   "readme_size": 6109,
-  "last_used_at": "2026-10-09T23:19:38.832961+00:00",
+  "last_used_at": "2026-10-10T23:19:29.694616+00:00",
   "readme_truncated_for_claude_input": false,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
