@@ -1,0 +1,1 @@
+Strataは125億パラメータのQwen3.8-Flash-Nextを12GB以上のGPUを搭載した一般的なPC上で動作させるオープンソースエンジンです。ワンクリックインストール対応で、OpenAI/Anthropic互換APIをlocalhostで提供し、チャット、コード生成、画像入力に対応。Claude CodeなどのAIコーディングアシスタントから自動セットアップ可能で、MCPサーバーとしても機能します。
