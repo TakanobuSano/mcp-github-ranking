@@ -1,0 +1,1 @@
+REA: Reverse Engineer Anything AIエージェントを使ってアプリやバイナリの動作を逆エンジニアリングするツール。ネイティブバイナリ、JavaScript/Electronアプリ、.NETアセンブリなど多様な対象に対応し、MCPを通じてClaudeなどのエージェントと連携。ローカル分析で証拠付きの調査結果を返し、機能の実装に活用できます。
