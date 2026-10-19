@@ -1,0 +1,1 @@
+AI エージェント向けに任意のソフトウェアをCLI化する Python プロジェクト。GIMP、Blender、LibreOffice など 18+ アプリケーションに対応し、Claude Code や Cursor などのエージェント プラットフォームで利用可能。CLI-Hub レジストリから既製の CLI をワンコマンドでインストール可能で、新規 CLI の生成も 7 段階のハーネス生成で実現できます。
