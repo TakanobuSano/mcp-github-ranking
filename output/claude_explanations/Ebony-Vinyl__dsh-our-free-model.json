@@ -1,0 +1,28 @@
+{
+  "full_name": "Ebony-Vinyl/dsh-our-free-model",
+  "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
+  "generated_at": "2026-10-20T23:20:00.269373+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "9543d427a221bf94e505a388c8fd043fe713c518d71cf6dd004a2295dc1bb6de",
+  "readme_length": 45120,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/Ebony-Vinyl__dsh-our-free-model.md",
+  "readme_meta_path": "output/readmes/Ebony-Vinyl__dsh-our-free-model.json",
+  "anthropic_response_id": "msg_011CgEM1LzFwnXk5yt7ZYcFX",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 22615,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 146,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/Ebony-Vinyl__dsh-our-free-model.md"
+}

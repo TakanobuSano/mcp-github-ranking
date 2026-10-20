@@ -1,0 +1,20 @@
+{
+  "full_name": "ruvnet/ruflo",
+  "url": "https://github.com/ruvnet/ruflo",
+  "readme_cache_path": "output/readmes/ruvnet__ruflo.md",
+  "fetched_at": "2026-10-20T23:19:54.198442+00:00",
+  "repo_pushed_at_when_fetched": "2026-10-20T17:26:15Z",
+  "readme_length": 34518,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/ruvnet/ruflo/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/ruvnet/ruflo/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/ruvnet/ruflo/main/README.md",
+  "readme_sha": "f17904bd1a41b5236d64d16240f10ad806d46c9a",
+  "readme_size": 34675,
+  "last_used_at": "2026-10-20T23:19:54.198462+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
