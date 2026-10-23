@@ -1,0 +1,20 @@
+{
+  "full_name": "yetone/magpie",
+  "url": "https://github.com/yetone/magpie",
+  "readme_cache_path": "output/readmes/yetone__magpie.md",
+  "fetched_at": "2026-10-23T23:19:40.105953+00:00",
+  "repo_pushed_at_when_fetched": "2026-10-23T23:08:23Z",
+  "readme_length": 19207,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/yetone/magpie/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/yetone/magpie/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/yetone/magpie/main/README.md",
+  "readme_sha": "6cfd710b4da0224dcf976df19c526ce874f9b391",
+  "readme_size": 19345,
+  "last_used_at": "2026-10-23T23:19:40.105970+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

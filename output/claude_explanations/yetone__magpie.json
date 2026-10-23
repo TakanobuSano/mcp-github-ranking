@@ -1,0 +1,28 @@
+{
+  "full_name": "yetone/magpie",
+  "url": "https://github.com/yetone/magpie",
+  "generated_at": "2026-10-23T23:19:53.723160+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "d574d93c80fcfdba11144f83c6d49f2804fae0ac4bdaa01512a9aa8e5ac96df5",
+  "readme_length": 19207,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/yetone__magpie.md",
+  "readme_meta_path": "output/readmes/yetone__magpie.json",
+  "anthropic_response_id": "msg_011CgL2Rdqzy76yVFdH8nctc",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 6393,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 182,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/yetone__magpie.md"
+}
