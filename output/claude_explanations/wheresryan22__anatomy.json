@@ -1,0 +1,28 @@
+{
+  "full_name": "wheresryan22/anatomy",
+  "url": "https://github.com/wheresryan22/anatomy",
+  "generated_at": "2026-10-24T23:19:40.419244+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a1bc269d3d1b75a230a2ae54cb43c63c19a0a3a067f6a7bb0baf5a7785e3de16",
+  "readme_length": 25983,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/wheresryan22__anatomy.md",
+  "readme_meta_path": "output/readmes/wheresryan22__anatomy.json",
+  "anthropic_response_id": "msg_011CgMvDb24yvgyhdwX7L1A2",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8258,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 143,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/wheresryan22__anatomy.md"
+}
