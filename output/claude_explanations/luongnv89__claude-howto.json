@@ -1,0 +1,28 @@
+{
+  "full_name": "luongnv89/claude-howto",
+  "url": "https://github.com/luongnv89/claude-howto",
+  "generated_at": "2026-10-25T23:19:35.455180+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "f37f3b628cffdca962f59ebe7253976b2a7abf7d2f5627f131c886121cef7dc3",
+  "readme_length": 30096,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/luongnv89__claude-howto.md",
+  "readme_meta_path": "output/readmes/luongnv89__claude-howto.json",
+  "anthropic_response_id": "msg_011CgPp28wuuWsmVbtwnf4Wp",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9403,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 154,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/luongnv89__claude-howto.md"
+}
