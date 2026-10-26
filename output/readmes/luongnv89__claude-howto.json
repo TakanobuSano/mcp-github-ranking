@@ -13,8 +13,8 @@
   "readme_download_url": "https://raw.githubusercontent.com/luongnv89/claude-howto/main/README.md",
   "readme_sha": "3079bb8e772afccb7dee1f9e513c760d270ac278",
   "readme_size": 30643,
-  "last_used_at": "2026-10-25T23:19:31.063521+00:00",
+  "last_used_at": "2026-10-26T23:19:44.251154+00:00",
   "readme_truncated_for_claude_input": true,
   "claude_input_max_chars": 30000,
-  "cache_status": "fetched"
+  "cache_status": "cache_hit"
 }
