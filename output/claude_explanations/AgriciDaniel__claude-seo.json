@@ -1,0 +1,28 @@
+{
+  "full_name": "AgriciDaniel/claude-seo",
+  "url": "https://github.com/AgriciDaniel/claude-seo",
+  "generated_at": "2026-10-27T23:20:06.493651+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a6f11dbfee5b5ba787bdbb8536a46813c55fc770f875094714c4916178dc1238",
+  "readme_length": 22858,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/AgriciDaniel__claude-seo.md",
+  "readme_meta_path": "output/readmes/AgriciDaniel__claude-seo.json",
+  "anthropic_response_id": "msg_011CgTbgFAHRaEHMpraRdzKH",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 7589,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 152,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/AgriciDaniel__claude-seo.md"
+}

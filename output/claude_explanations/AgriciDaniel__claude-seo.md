@@ -1,0 +1,1 @@
+Claude SEOはClaude Code向けの無料SEO監査プラグインで、26個のサブスキルと19の専門エージェントを備えています。技術的SEO、Core Web Vitals、E-E-A-T、Schema.org、AI検索対応度、ローカルSEO、eコマースSEOを10～15分で包括的に診断し、優先度付きの改善案を提供します。データはマシン上に保持され、Google APIと連携可能な拡張機能も用意されています。
