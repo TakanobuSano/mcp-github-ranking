@@ -1,0 +1,1 @@
+Lightpanda BrowserはAIエージェントと自動化向けに一から設計されたヘッドレスブラウザで、Chromiumフォークではなく、Zigで新規実装されています。Chromiumと比べてメモリ使用量は16分の1、実行速度は9倍高速で、PuppeteerやPlaywrightと互換性があり、CDP/WebDriver Bidiサーバーとして動作します。
