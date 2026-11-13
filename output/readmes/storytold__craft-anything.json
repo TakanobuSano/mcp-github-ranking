@@ -1,0 +1,20 @@
+{
+  "full_name": "storytold/craft-anything",
+  "url": "https://github.com/storytold/craft-anything",
+  "readme_cache_path": "output/readmes/storytold__craft-anything.md",
+  "fetched_at": "2026-11-13T23:19:34.364222+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-13T19:48:40Z",
+  "readme_length": 27694,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/storytold/craft-anything/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/storytold/craft-anything/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/storytold/craft-anything/main/README.md",
+  "readme_sha": "02a6b393f96f3e31489e94b47f3c1fd0f0bee3ac",
+  "readme_size": 27804,
+  "last_used_at": "2026-11-13T23:19:34.364237+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
