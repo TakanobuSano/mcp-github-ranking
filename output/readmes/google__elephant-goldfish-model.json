@@ -1,0 +1,20 @@
+{
+  "full_name": "google/elephant-goldfish-model",
+  "url": "https://github.com/google/elephant-goldfish-model",
+  "readme_cache_path": "output/readmes/google__elephant-goldfish-model.md",
+  "fetched_at": "2026-11-16T23:19:49.139620+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-16T20:05:21Z",
+  "readme_length": 9492,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/google/elephant-goldfish-model/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/google/elephant-goldfish-model/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+  "readme_sha": "d570bc7dee8f29e09f243e6a6245976bb803da15",
+  "readme_size": 9499,
+  "last_used_at": "2026-11-16T23:19:49.139636+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

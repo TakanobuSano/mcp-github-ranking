@@ -1,0 +1,20 @@
+{
+  "full_name": "ChromeDevTools/chrome-devtools-mcp",
+  "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+  "readme_cache_path": "output/readmes/ChromeDevTools__chrome-devtools-mcp.md",
+  "fetched_at": "2026-11-16T23:19:55.405959+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-16T17:21:41Z",
+  "readme_length": 9583,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/ChromeDevTools/chrome-devtools-mcp/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md",
+  "readme_sha": "2dca1a052a314a7c2635fb9da68c96221441e380",
+  "readme_size": 9583,
+  "last_used_at": "2026-11-16T23:19:55.405974+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
