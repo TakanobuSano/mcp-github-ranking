@@ -1,0 +1,28 @@
+{
+  "full_name": "ag-ui-protocol/ag-ui",
+  "url": "https://github.com/ag-ui-protocol/ag-ui",
+  "generated_at": "2026-11-17T23:19:53.684108+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "667422d2a16f79baa207b3e340947554c17158a009b3476040e52c8399d18f62",
+  "readme_length": 19418,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/ag-ui-protocol__ag-ui.md",
+  "readme_meta_path": "output/readmes/ag-ui-protocol__ag-ui.json",
+  "anthropic_response_id": "msg_011Ch9MeYhSJ2ru9xaVtMdBS",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 7058,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 152,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/ag-ui-protocol__ag-ui.md"
+}

@@ -1,0 +1,20 @@
+{
+  "full_name": "ag-ui-protocol/ag-ui",
+  "url": "https://github.com/ag-ui-protocol/ag-ui",
+  "readme_cache_path": "output/readmes/ag-ui-protocol__ag-ui.md",
+  "fetched_at": "2026-11-17T23:19:50.445838+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-17T21:27:09Z",
+  "readme_length": 19418,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/ag-ui-protocol/ag-ui/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/ag-ui-protocol/ag-ui/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/ag-ui-protocol/ag-ui/main/README.md",
+  "readme_sha": "511991757bea32ccb96348a311469f0fd345c88b",
+  "readme_size": 19476,
+  "last_used_at": "2026-11-17T23:19:50.445857+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
