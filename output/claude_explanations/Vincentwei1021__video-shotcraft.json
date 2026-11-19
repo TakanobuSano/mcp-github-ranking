@@ -1,0 +1,28 @@
+{
+  "full_name": "Vincentwei1021/video-shotcraft",
+  "url": "https://github.com/Vincentwei1021/video-shotcraft",
+  "generated_at": "2026-11-19T23:19:58.756408+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "177275851847f39546800dc47f49aa5ca793a95612f07bd96d5218c3c0c5b99b",
+  "readme_length": 20589,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/Vincentwei1021__video-shotcraft.md",
+  "readme_meta_path": "output/readmes/Vincentwei1021__video-shotcraft.json",
+  "anthropic_response_id": "msg_011ChD9GijC11t4teW3ifKwM",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 7272,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 147,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/Vincentwei1021__video-shotcraft.md"
+}
