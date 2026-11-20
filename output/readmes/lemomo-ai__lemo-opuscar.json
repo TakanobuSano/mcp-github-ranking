@@ -1,0 +1,20 @@
+{
+  "full_name": "lemomo-ai/lemo-opuscar",
+  "url": "https://github.com/lemomo-ai/lemo-opuscar",
+  "readme_cache_path": "output/readmes/lemomo-ai__lemo-opuscar.md",
+  "fetched_at": "2026-11-20T23:19:54.487407+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-20T04:32:37Z",
+  "readme_length": 99015,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/lemomo-ai/lemo-opuscar/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/lemomo-ai/lemo-opuscar/main/README.md",
+  "readme_sha": "9e4dfa5f0eeec56deabb51ecb3ca0a2604d6f854",
+  "readme_size": 99304,
+  "last_used_at": "2026-11-20T23:19:54.487428+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

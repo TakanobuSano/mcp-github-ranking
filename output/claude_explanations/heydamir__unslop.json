@@ -1,0 +1,28 @@
+{
+  "full_name": "heydamir/unslop",
+  "url": "https://github.com/heydamir/unslop",
+  "generated_at": "2026-11-20T23:19:59.753267+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "9fabffee59c2240e81dd5ec69e663a813d1e7a0836a9a380640fbbe79c7b7cb7",
+  "readme_length": 4846,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/heydamir__unslop.md",
+  "readme_meta_path": "output/readmes/heydamir__unslop.json",
+  "anthropic_response_id": "msg_011ChF35jvPCALjXHtZ7oJqy",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 1749,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 134,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/heydamir__unslop.md"
+}
