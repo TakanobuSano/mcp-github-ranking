@@ -1,0 +1,20 @@
+{
+  "full_name": "cursor/plugins",
+  "url": "https://github.com/cursor/plugins",
+  "readme_cache_path": "output/readmes/cursor__plugins.md",
+  "fetched_at": "2026-11-25T23:19:58.542298+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-25T23:13:51Z",
+  "readme_length": 26476,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/cursor/plugins/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/cursor/plugins/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/cursor/plugins/main/README.md",
+  "readme_sha": "2dd81be61eda27fbf70d3d0c7d5e4ae40ad1d4c0",
+  "readme_size": 26570,
+  "last_used_at": "2026-11-25T23:19:58.542315+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

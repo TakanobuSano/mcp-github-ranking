@@ -1,0 +1,28 @@
+{
+  "full_name": "cursor/plugins",
+  "url": "https://github.com/cursor/plugins",
+  "generated_at": "2026-11-25T23:20:01.124453+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "a88c1d5b0104b41f28a445161f61a16ed9c3a1ca217f279ac756b84e8abfcb3f",
+  "readme_length": 26476,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/cursor__plugins.md",
+  "readme_meta_path": "output/readmes/cursor__plugins.json",
+  "anthropic_response_id": "msg_011ChQW8S6ab1JdEZmKUw3wJ",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 8088,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 137,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/cursor__plugins.md"
+}
