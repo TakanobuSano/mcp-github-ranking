@@ -1,0 +1,20 @@
+{
+  "full_name": "jub0t/Concat",
+  "url": "https://github.com/jub0t/Concat",
+  "readme_cache_path": "output/readmes/jub0t__Concat.md",
+  "fetched_at": "2026-11-26T23:19:44.301488+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-26T12:34:56Z",
+  "readme_length": 11853,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/jub0t/Concat/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/jub0t/Concat/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/jub0t/Concat/main/README.md",
+  "readme_sha": "80dd06f0d24f22b6de0b70e5061d7360b0256498",
+  "readme_size": 12241,
+  "last_used_at": "2026-11-26T23:19:44.301503+00:00",
+  "readme_truncated_for_claude_input": false,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}

@@ -1,0 +1,28 @@
+{
+  "full_name": "xerj-org/xerj",
+  "url": "https://github.com/xerj-org/xerj",
+  "generated_at": "2026-11-26T23:19:48.093935+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "aa350a699e0e0f93b0722918e3832e33e3b7d9aa336a40929d67a4beacece8c2",
+  "readme_length": 56726,
+  "readme_truncated_for_claude_input": true,
+  "readme_cache_path": "output/readmes/xerj-org__xerj.md",
+  "readme_meta_path": "output/readmes/xerj-org__xerj.json",
+  "anthropic_response_id": "msg_011ChSPvKyxGbykLHUMinDnd",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 9771,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 172,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/xerj-org__xerj.md"
+}

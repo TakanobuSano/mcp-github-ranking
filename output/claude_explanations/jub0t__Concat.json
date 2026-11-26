@@ -1,0 +1,28 @@
+{
+  "full_name": "jub0t/Concat",
+  "url": "https://github.com/jub0t/Concat",
+  "generated_at": "2026-11-26T23:20:14.996955+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "prompt_version": "v1",
+  "readme_text_sha256": "240bf8f3297d0a338cf9b18584c6e2b3982c8f2213ab6ad8afe0ab5448986dbf",
+  "readme_length": 11853,
+  "readme_truncated_for_claude_input": false,
+  "readme_cache_path": "output/readmes/jub0t__Concat.md",
+  "readme_meta_path": "output/readmes/jub0t__Concat.json",
+  "anthropic_response_id": "msg_011ChSPxNXobKDGvuYSsX2hL",
+  "anthropic_stop_reason": "end_turn",
+  "anthropic_usage": {
+    "input_tokens": 4606,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 128,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "explanation_cache_path": "output/claude_explanations/jub0t__Concat.md"
+}

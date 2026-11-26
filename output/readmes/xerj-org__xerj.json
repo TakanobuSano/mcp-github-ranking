@@ -1,0 +1,20 @@
+{
+  "full_name": "xerj-org/xerj",
+  "url": "https://github.com/xerj-org/xerj",
+  "readme_cache_path": "output/readmes/xerj-org__xerj.md",
+  "fetched_at": "2026-11-26T23:19:38.587781+00:00",
+  "repo_pushed_at_when_fetched": "2026-11-26T22:31:51Z",
+  "readme_length": 56726,
+  "readme_available": true,
+  "github_api_url": "https://api.github.com/repos/xerj-org/xerj/readme",
+  "readme_name": "README.md",
+  "readme_path": "README.md",
+  "readme_html_url": "https://github.com/xerj-org/xerj/blob/main/README.md",
+  "readme_download_url": "https://raw.githubusercontent.com/xerj-org/xerj/main/README.md",
+  "readme_sha": "3280c74e5c8d8dc1c44bb1233c6843344f4fe232",
+  "readme_size": 56794,
+  "last_used_at": "2026-11-26T23:19:38.587800+00:00",
+  "readme_truncated_for_claude_input": true,
+  "claude_input_max_chars": 30000,
+  "cache_status": "fetched"
+}
